@@ -74,8 +74,6 @@ const App = () => {
       // Encontra os índices das colunas baseados nos nomes fornecidos pelo usuário
       const idxId = headers.findIndex(h => h.includes("CODIGO") || h.includes("CÓDIGO"));
       const idxNome = headers.findIndex(h => h.includes("PRODUTO") && !h.includes("CODIGO"));
-      const idxCusto116 = headers.findIndex(h => h.includes("CUSTO") && h.includes("116"));
-      const idxCusto87 = headers.findIndex(h => h.includes("CUSTO") && h.includes("87"));
       const idxPromo = headers.findIndex(h => h.includes("PROMOCIONAL") || h.includes("PROMO"));
       const idxIdeal = headers.findIndex(h => h.includes("IDEAL"));
 
@@ -90,16 +88,12 @@ const App = () => {
         .map(row => {
           const id = row[idxId]?.trim() || "";
           const nome = row[idxNome]?.trim() || "";
-          const custo116 = parsePrice(row[idxCusto116]);
-          const custo87 = parsePrice(row[idxCusto87]);
           const promo = parsePrice(row[idxPromo]);
           const ideal = parsePrice(row[idxIdeal]);
           
           return {
             id,
             nome,
-            custo116,
-            custo87,
             ideal,
             promo,
             preco: promo > 0 ? promo : ideal // Prioriza Promo se existir
@@ -124,13 +118,6 @@ const App = () => {
 
   const formatarMoeda = (valor: number) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor);
 
-  const getDisplayCusto = (p: any) => {
-    if (!p) return 0;
-    if (headerData.cd === "CD 116") return p.custo116 || 0;
-    if (headerData.cd === "CD 87") return p.custo87 || 0;
-    return 0;
-  };
-
   useEffect(() => {
     if (produtosBD.length === 0) return;
 
@@ -143,9 +130,6 @@ const App = () => {
       const qtdVenda = parseFloat(bloco.vendaQtd) || 0;
       const precoBonifica = parseFloat(bloco.bonificaPrecoPraticado) || (prodBonifica ? prodBonifica.preco : 0);
 
-      const custoVenda = getDisplayCusto(prodVenda);
-      const custoBonifica = getDisplayCusto(prodBonifica);
-
       const totalInvestimento = (precoNotaVenda - precoTabelaVenda) > 0 
         ? (precoNotaVenda - precoTabelaVenda) * qtdVenda 
         : 0;
@@ -156,19 +140,13 @@ const App = () => {
       const bonusFinal = Math.floor(qtdBruta);
       const valorBonificado = bonusFinal * precoBonifica;
 
-      const receitaTotal = precoNotaVenda * qtdVenda;
-      const custoTotalOp = (custoVenda * qtdVenda) + (custoBonifica * bonusFinal);
-      const rentabilidadeFinal = receitaTotal > 0 ? ((receitaTotal - custoTotalOp) / receitaTotal) * 100 : 0;
-
       return { 
         ...bloco, 
         res: { 
           saldo: totalInvestimento, 
           bonus: bonusFinal, 
           valorBonificado: valorBonificado,
-          rentabilidade: rentabilidadeFinal,
-          custoVenda,
-          custoBonifica
+          rentabilidade: 0
         } 
       };
     });
@@ -798,10 +776,6 @@ const App = () => {
                                 <span className="text-[6px] text-blue-600 font-black uppercase">Promo</span>
                                 <span className="text-[8px] font-bold text-blue-900">{formatarMoeda(produtosBD.find(p => p.id === bloco.vendaCod.trim()).promo)}</span>
                               </div>
-                              <div className="flex flex-col">
-                                <span className="text-[6px] text-blue-600 font-black uppercase">Custo</span>
-                                <span className="text-[8px] font-bold text-blue-900">{formatarMoeda(getDisplayCusto(produtosBD.find(p => p.id === bloco.vendaCod.trim())))}</span>
-                              </div>
                             </div>
                           </div>
                         )}
@@ -883,10 +857,6 @@ const App = () => {
                                 <span className="text-[6px] text-green-600 font-black uppercase">Promo</span>
                                 <span className="text-[8px] font-bold text-green-900">{formatarMoeda(produtosBD.find(p => p.id === bloco.bonificaId).promo)}</span>
                               </div>
-                              <div className="flex flex-col">
-                                <span className="text-[6px] text-green-600 font-black uppercase">Custo</span>
-                                <span className="text-[8px] font-bold text-green-900">{formatarMoeda(getDisplayCusto(produtosBD.find(p => p.id === bloco.bonificaId)))}</span>
-                              </div>
                             </div>
                           )}
                         </div>
@@ -945,18 +915,6 @@ const App = () => {
                         </div>
                       </div>
                     </div>
-
-                    {/* MÉTRICAS DE PRECISÃO */}
-                    {isSupervisorMode && (
-                      <div className="flex justify-end pt-4 border-t border-slate-800">
-                        <div className="flex flex-col text-right">
-                          <span className="text-[7px] font-black text-slate-500 uppercase tracking-widest">Rentab. Final</span>
-                          <p className={`text-[10px] font-black ${(bloco.res.rentabilidade || 0) > 0 ? 'text-green-400' : 'text-red-400'}`}>
-                            {(bloco.res.rentabilidade || 0).toFixed(2)}%
-                          </p>
-                        </div>
-                      </div>
-                    )}
                   </div>
                 </div>
               </motion.div>
@@ -1005,16 +963,6 @@ const App = () => {
             </p>
             <span className="text-[8px] font-bold text-slate-400 mt-1 uppercase">{new Date().toLocaleDateString('pt-BR')}</span>
           </div>
-          {isSupervisorMode && (
-            <div className="flex flex-col items-center">
-              <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Rentab. Média</span>
-              <p className={`text-sm font-black ${
-                (blocos.reduce((acc, b) => acc + (b.res.rentabilidade || 0), 0) / blocos.length) > 0 ? 'text-green-600' : 'text-red-600'
-              }`}>
-                {(blocos.reduce((acc, b) => acc + (b.res.rentabilidade || 0), 0) / blocos.length).toFixed(2)}%
-              </p>
-            </div>
-          )}
           <div className="text-right">
             <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Última Sincronização</span>
             <p className="text-[10px] font-bold text-slate-600">{lastUpdate || "---"}</p>
