@@ -215,11 +215,12 @@ const App = () => {
 
   const getGeneratedMessage = () => {
     let msg = `${headerData.equipe}\n`;
-    msg += `${headerData.supervisor}\n`;
+    msg += `${headerData.supervisor}\n\n`;
     msg += `${headerData.cd}\n`;
     msg += `${headerData.vendedor}\n`;
     msg += `${headerData.cliente}\n`;
-    if (headerData.pedido) msg += `PEDIDO: ${headerData.pedido}\n`;
+    if (headerData.pedido) msg += `${headerData.pedido}\n`;
+    msg += `\n`;
     
     blocos.forEach((b) => {
       if (b.res.bonus > 0) {
@@ -227,9 +228,10 @@ const App = () => {
         const prodBonifica = produtosBD.find(p => p.id === b.bonificaId);
         const nomeVenda = prodVenda ? prodVenda.nome : "Produto Venda";
         const nomeBonifica = prodBonifica ? prodBonifica.nome : "Produto Bonifica";
+        const precoNota = b.vendaPNota || "0.00";
         
-        // Exemplo: O PRODUTO QUE ESTA SENDO BONIFICADO - VALOR DA AÇÃO E EM QUE O PRODUTO ESTA SENDO BONIFICADO
-        msg += `${b.bonificaId}-${b.res.bonus} (${nomeBonifica} - ${formatarMoeda(b.res.saldo)} - ${nomeVenda})\n`;
+        // Exemplo: SABAO PO ALA COCO SH 400G 2,79 -> BONIF: SABAO PO ALA COCO SH 400G
+        msg += `${nomeVenda} ${precoNota} -> BONIF: ${b.res.bonus} UN ${nomeBonifica}\n`;
       }
     });
     return msg.trim();
@@ -638,9 +640,11 @@ const App = () => {
               <h2 className="text-[10px] font-black text-slate-600 uppercase tracking-widest">Identificação do Envio</h2>
             </div>
             <div className="flex items-center gap-2">
-              <button onClick={fetchData} className="text-[9px] font-black text-blue-600 bg-blue-50 px-3 py-1 rounded-full transition-colors uppercase flex items-center gap-1">
-                <RefreshCw size={10} /> Atualizar Preços
-              </button>
+              {isSupervisorMode && (
+                <button onClick={fetchData} className="text-[9px] font-black text-blue-600 bg-blue-50 px-3 py-1 rounded-full transition-colors uppercase flex items-center gap-1">
+                  <RefreshCw size={10} /> Atualizar Preços
+                </button>
+              )}
               <button onClick={limparTudo} className="text-[9px] font-black text-red-600 bg-red-50 px-3 py-1 rounded-full transition-colors uppercase">Limpar</button>
             </div>
           </div>
@@ -727,7 +731,7 @@ const App = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="bg-white rounded-[2.5rem] shadow-sm border border-slate-200 overflow-hidden"
+                className="bg-white rounded-[2.5rem] shadow-xl shadow-blue-900/5 border-2 border-blue-500/20 overflow-hidden"
               >
                 <div className="bg-slate-50 p-4 border-b border-slate-100 flex justify-between items-center">
                   <div className="flex items-center gap-2">
@@ -863,7 +867,10 @@ const App = () => {
                               {produtosBD.find(p => p.id === bloco.bonificaId)?.nome || "Produto não encontrado"}
                             </span>
                             {produtosBD.find(p => p.id === bloco.bonificaId)?.promo > 0 && (
-                              <span className="bg-red-600 text-white text-[7px] font-black px-2 py-0.5 rounded-md animate-bounce shadow-sm">AÇÃO DO DIA</span>
+                              <div className="bg-red-600 text-white text-[6px] font-black px-1.5 py-1 rounded-md shadow-sm flex flex-col items-center leading-none">
+                                <span>AÇÃO DO</span>
+                                <span>DIA</span>
+                              </div>
                             )}
                           </div>
                           {produtosBD.find(p => p.id === bloco.bonificaId) && (
@@ -903,6 +910,12 @@ const App = () => {
                       <div className="space-y-1">
                         <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest">Saldo de Investimento</span>
                         <p className="text-lg font-black text-white">{formatarMoeda(bloco.res.saldo)}</p>
+                        <div className="flex flex-col mt-1">
+                          <span className="text-[7px] font-black text-blue-400 uppercase tracking-widest">Margem de Segurança</span>
+                          <p className={`text-[10px] font-bold ${bloco.res.saldo - bloco.res.valorBonificado >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                            {formatarMoeda(bloco.res.saldo - bloco.res.valorBonificado)}
+                          </p>
+                        </div>
                       </div>
                       <div className="text-right">
                         <span className="text-[8px] font-black text-green-500 uppercase tracking-widest">Valor Bonificado</span>
@@ -923,12 +936,6 @@ const App = () => {
                             />
                           </div>
                         )}
-                        <div className="flex flex-col">
-                          <span className="text-[8px] font-black text-blue-400 uppercase tracking-widest">Margem de Segurança</span>
-                          <p className={`text-xs font-bold ${bloco.res.saldo - bloco.res.valorBonificado >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                            {formatarMoeda(bloco.res.saldo - bloco.res.valorBonificado)}
-                          </p>
-                        </div>
                       </div>
                       <div className="text-right">
                         <span className="text-[8px] font-black text-blue-400 uppercase tracking-widest">Bônus Calculado</span>
@@ -940,14 +947,16 @@ const App = () => {
                     </div>
 
                     {/* MÉTRICAS DE PRECISÃO */}
-                    <div className="flex justify-end pt-4 border-t border-slate-800">
-                      <div className="flex flex-col text-right">
-                        <span className="text-[7px] font-black text-slate-500 uppercase tracking-widest">Rentab. Final</span>
-                        <p className={`text-[10px] font-black ${(bloco.res.rentabilidade || 0) > 0 ? 'text-green-400' : 'text-red-400'}`}>
-                          {(bloco.res.rentabilidade || 0).toFixed(2)}%
-                        </p>
+                    {isSupervisorMode && (
+                      <div className="flex justify-end pt-4 border-t border-slate-800">
+                        <div className="flex flex-col text-right">
+                          <span className="text-[7px] font-black text-slate-500 uppercase tracking-widest">Rentab. Final</span>
+                          <p className={`text-[10px] font-black ${(bloco.res.rentabilidade || 0) > 0 ? 'text-green-400' : 'text-red-400'}`}>
+                            {(bloco.res.rentabilidade || 0).toFixed(2)}%
+                          </p>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </motion.div>
@@ -964,22 +973,24 @@ const App = () => {
               </button>
 
               {/* PREVIEW DA MENSAGEM */}
-              <div className="bg-white rounded-[2.5rem] shadow-sm border border-slate-200 overflow-hidden">
-                <div className="bg-slate-50 p-4 border-b border-slate-100 flex items-center gap-2">
-                  <Share2 size={14} className="text-blue-600"/>
-                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Resumo da Solicitação</span>
-                </div>
-                <div className="p-6">
-                  <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
-                    <pre className="text-[10px] font-bold text-slate-600 whitespace-pre-wrap leading-relaxed">
-                      {getGeneratedMessage()}
-                    </pre>
+              {isSupervisorMode && (
+                <div className="bg-white rounded-[2.5rem] shadow-sm border border-slate-200 overflow-hidden">
+                  <div className="bg-slate-50 p-4 border-b border-slate-100 flex items-center gap-2">
+                    <Share2 size={14} className="text-blue-600"/>
+                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Resumo da Solicitação</span>
                   </div>
-                  <p className="text-[8px] font-bold text-slate-400 mt-3 uppercase text-center italic">
-                    Esta é a mensagem que será enviada ao supervisor para validação.
-                  </p>
+                  <div className="p-6">
+                    <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+                      <pre className="text-[10px] font-bold text-slate-600 whitespace-pre-wrap leading-relaxed">
+                        {getGeneratedMessage()}
+                      </pre>
+                    </div>
+                    <p className="text-[8px] font-bold text-slate-400 mt-3 uppercase text-center italic">
+                      Esta é a mensagem que será enviada ao supervisor para validação.
+                    </p>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           )}
         </div>
@@ -994,14 +1005,16 @@ const App = () => {
             </p>
             <span className="text-[8px] font-bold text-slate-400 mt-1 uppercase">{new Date().toLocaleDateString('pt-BR')}</span>
           </div>
-          <div className="flex flex-col items-center">
-            <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Rentab. Média</span>
-            <p className={`text-sm font-black ${
-              (blocos.reduce((acc, b) => acc + (b.res.rentabilidade || 0), 0) / blocos.length) > 0 ? 'text-green-600' : 'text-red-600'
-            }`}>
-              {(blocos.reduce((acc, b) => acc + (b.res.rentabilidade || 0), 0) / blocos.length).toFixed(2)}%
-            </p>
-          </div>
+          {isSupervisorMode && (
+            <div className="flex flex-col items-center">
+              <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Rentab. Média</span>
+              <p className={`text-sm font-black ${
+                (blocos.reduce((acc, b) => acc + (b.res.rentabilidade || 0), 0) / blocos.length) > 0 ? 'text-green-600' : 'text-red-600'
+              }`}>
+                {(blocos.reduce((acc, b) => acc + (b.res.rentabilidade || 0), 0) / blocos.length).toFixed(2)}%
+              </p>
+            </div>
+          )}
           <div className="text-right">
             <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Última Sincronização</span>
             <p className="text-[10px] font-bold text-slate-600">{lastUpdate || "---"}</p>
