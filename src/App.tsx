@@ -61,7 +61,7 @@ const App = () => {
       if (!response.ok) throw new Error("Erro ao acessar a planilha");
       
       const csvData = await response.text();
-      const rows = csvData.split('\n').map(row => {
+      const rows = csvData.split(/\r?\n/).map(row => {
         // Handle CSV cells that might contain commas within quotes
         const matches = row.match(/(".*?"|[^,]+)(?=\s*,|\s*$)/g);
         return matches ? matches.map(m => m.replace(/^"|"$/g, '').trim()) : row.split(',').map(c => c.trim());
@@ -69,25 +69,31 @@ const App = () => {
       
       if (rows.length < 2) throw new Error("Planilha vazia ou mal formatada");
       
-      const headers = rows[0];
+      const headers = rows[0].map(h => h.trim().toUpperCase());
       
       // Encontra os índices das colunas baseados nos nomes fornecidos pelo usuário
-      const idxId = headers.findIndex(h => h.toUpperCase().includes("CODIGO DO PRODUTO") || h.toUpperCase().includes("CÓDIGO"));
-      const idxNome = headers.findIndex(h => h.toUpperCase().includes("PRODUTO") && !h.toUpperCase().includes("CODIGO"));
-      const idxCusto116 = headers.findIndex(h => h.toUpperCase().includes("CUSTO CD 116"));
-      const idxCusto87 = headers.findIndex(h => h.toUpperCase().includes("CUSTO 87"));
-      const idxPromo = headers.findIndex(h => h.toUpperCase().includes("PREÇO PROMOCIONAL") || h.toUpperCase().includes("PROMO"));
-      const idxIdeal = headers.findIndex(h => h.toUpperCase().includes("PREÇO IDEAL") || h.toUpperCase().includes("IDEAL"));
+      const idxId = headers.findIndex(h => h.includes("CODIGO") || h.includes("CÓDIGO"));
+      const idxNome = headers.findIndex(h => h.includes("PRODUTO") && !h.includes("CODIGO"));
+      const idxCusto116 = headers.findIndex(h => h.includes("CUSTO") && h.includes("116"));
+      const idxCusto87 = headers.findIndex(h => h.includes("CUSTO") && h.includes("87"));
+      const idxPromo = headers.findIndex(h => h.includes("PROMOCIONAL") || h.includes("PROMO"));
+      const idxIdeal = headers.findIndex(h => h.includes("IDEAL"));
+
+      const parsePrice = (val: string | undefined) => {
+        if (!val) return 0;
+        const clean = val.replace(/[^\d,.-]/g, '').replace(',', '.');
+        return parseFloat(clean) || 0;
+      };
 
       const formattedData = rows.slice(1)
         .filter(row => row[idxNome] && row[idxNome].trim() !== "")
         .map(row => {
           const id = row[idxId]?.trim() || "";
           const nome = row[idxNome]?.trim() || "";
-          const custo116 = parseFloat(row[idxCusto116]?.replace(',', '.')) || 0;
-          const custo87 = parseFloat(row[idxCusto87]?.replace(',', '.')) || 0;
-          const promo = parseFloat(row[idxPromo]?.replace(',', '.')) || 0;
-          const ideal = parseFloat(row[idxIdeal]?.replace(',', '.')) || 0;
+          const custo116 = parsePrice(row[idxCusto116]);
+          const custo87 = parsePrice(row[idxCusto87]);
+          const promo = parsePrice(row[idxPromo]);
+          const ideal = parsePrice(row[idxIdeal]);
           
           return {
             id,
@@ -207,7 +213,7 @@ const App = () => {
     }));
   };
 
-  const copiarGeral = () => {
+  const getGeneratedMessage = () => {
     let msg = `${headerData.equipe}\n`;
     msg += `${headerData.supervisor}\n`;
     msg += `${headerData.cd}\n`;
@@ -217,12 +223,22 @@ const App = () => {
     
     blocos.forEach((b) => {
       if (b.res.bonus > 0) {
-        msg += `${b.bonificaId}-${b.res.bonus}\n`;
+        const prodVenda = produtosBD.find(p => p.id === b.vendaCod.trim());
+        const prodBonifica = produtosBD.find(p => p.id === b.bonificaId);
+        const nomeVenda = prodVenda ? prodVenda.nome : "Produto Venda";
+        const nomeBonifica = prodBonifica ? prodBonifica.nome : "Produto Bonifica";
+        
+        // Exemplo: O PRODUTO QUE ESTA SENDO BONIFICADO - VALOR DA AÇÃO E EM QUE O PRODUTO ESTA SENDO BONIFICADO
+        msg += `${b.bonificaId}-${b.res.bonus} (${nomeBonifica} - ${formatarMoeda(b.res.saldo)} - ${nomeVenda})\n`;
       }
     });
+    return msg.trim();
+  };
 
+  const copiarGeral = () => {
+    const msg = getGeneratedMessage();
     const el = document.createElement('textarea');
-    el.value = msg.trim();
+    el.value = msg;
     document.body.appendChild(el);
     el.select();
     document.execCommand('copy');
@@ -615,7 +631,7 @@ const App = () => {
           </div>
         )}
 
-        <section className="bg-white rounded-[2.5rem] shadow-sm border border-slate-200 overflow-hidden">
+        <section className="bg-white rounded-[2.5rem] shadow-xl shadow-blue-900/5 border-2 border-blue-500/20 overflow-hidden">
           <div className="bg-slate-100 p-4 border-b border-slate-200 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <Users size={16} className="text-blue-800"/>
@@ -939,12 +955,32 @@ const App = () => {
           </AnimatePresence>
 
           {!isSupervisorMode && (
-            <button 
-              onClick={addBloco}
-              className="w-full py-6 rounded-[2.5rem] border-2 border-dashed border-slate-200 text-slate-400 font-black text-[10px] uppercase tracking-widest hover:border-blue-300 hover:text-blue-500 hover:bg-blue-50 transition-all flex items-center justify-center gap-2"
-            >
-              <Plus size={16}/> Adicionar Novo Bloco
-            </button>
+            <div className="space-y-4">
+              <button 
+                onClick={addBloco}
+                className="w-full py-6 rounded-[2.5rem] border-2 border-dashed border-slate-200 text-slate-400 font-black text-[10px] uppercase tracking-widest hover:border-blue-300 hover:text-blue-500 hover:bg-blue-50 transition-all flex items-center justify-center gap-2"
+              >
+                <Plus size={16}/> Adicionar Novo Bloco
+              </button>
+
+              {/* PREVIEW DA MENSAGEM */}
+              <div className="bg-white rounded-[2.5rem] shadow-sm border border-slate-200 overflow-hidden">
+                <div className="bg-slate-50 p-4 border-b border-slate-100 flex items-center gap-2">
+                  <Share2 size={14} className="text-blue-600"/>
+                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Resumo da Solicitação</span>
+                </div>
+                <div className="p-6">
+                  <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+                    <pre className="text-[10px] font-bold text-slate-600 whitespace-pre-wrap leading-relaxed">
+                      {getGeneratedMessage()}
+                    </pre>
+                  </div>
+                  <p className="text-[8px] font-bold text-slate-400 mt-3 uppercase text-center italic">
+                    Esta é a mensagem que será enviada ao supervisor para validação.
+                  </p>
+                </div>
+              </div>
+            </div>
           )}
         </div>
       </div>
@@ -957,6 +993,14 @@ const App = () => {
               {blocos.reduce((acc, b) => acc + b.res.bonus, 0)} <span className="text-[10px] uppercase">Unidades</span>
             </p>
             <span className="text-[8px] font-bold text-slate-400 mt-1 uppercase">{new Date().toLocaleDateString('pt-BR')}</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Rentab. Média</span>
+            <p className={`text-sm font-black ${
+              (blocos.reduce((acc, b) => acc + (b.res.rentabilidade || 0), 0) / blocos.length) > 0 ? 'text-green-600' : 'text-red-600'
+            }`}>
+              {(blocos.reduce((acc, b) => acc + (b.res.rentabilidade || 0), 0) / blocos.length).toFixed(2)}%
+            </p>
           </div>
           <div className="text-right">
             <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Última Sincronização</span>
