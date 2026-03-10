@@ -1,0 +1,5 @@
+{
+  "name": "Bonificação HF - Validação",
+  "description": "Sistema de cálculo e validação de bonificações com atualização de preços via Google Sheets.",
+  "requestFramePermissions": []
+}
