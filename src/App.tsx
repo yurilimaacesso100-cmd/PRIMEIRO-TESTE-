@@ -4,7 +4,7 @@ import { GoogleGenAI } from "@google/genai";
 import { motion, AnimatePresence } from "motion/react";
 
 /**
- * BONIFICAÇÃO HF - v12.0
+ * BONIFICAÇÃO UNILEVER - v12.0
  * CRIADO POR YURI LIMA
  * REGRAS: Design Intocado | Arredondamento 0.52 | Base de Produtos via Google Sheets
  */
@@ -27,15 +27,16 @@ const App = () => {
   const [supervisorSummary, setSupervisorSummary] = useState("");
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [passwordInput, setPasswordInput] = useState("");
+  const [pendingAction, setPendingAction] = useState<'supervisor' | 'update_db' | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [headerData, setHeaderData] = useState({
-    equipe: "31-COCAIS",
+    equipe: "31 COCAIS",
     supervisor: "YURI LIMA",
     cd: "CD 87",
-    vendedor: "",
-    cliente: "",
-    pedido: ""
+    vendedor: "19855 YURI LIMA",
+    cliente: "50501 ALDERICE V CUNHA",
+    pedido: "318021-1"
   });
 
   const [blocos, setBlocos] = useState([
@@ -44,8 +45,8 @@ const App = () => {
       vendaCod: "524052",
       vendaQtd: '',
       vendaPNota: '',
-      bonificaId: "2012",
-      inputBuscaBonifica: "2012",
+      bonificaId: "524052",
+      inputBuscaBonifica: "524052",
       bonificaPrecoPraticado: '',
       reportedBonus: '',
       res: { saldo: 0, bonus: 0, valorBonificado: 0, rentabilidade: 0 }
@@ -74,8 +75,8 @@ const App = () => {
       // Encontra os índices das colunas baseados nos nomes fornecidos pelo usuário
       const idxId = headers.findIndex(h => h.includes("CODIGO") || h.includes("CÓDIGO"));
       const idxNome = headers.findIndex(h => h.includes("PRODUTO") && !h.includes("CODIGO"));
-      const idxPromo = headers.findIndex(h => h.includes("PROMOCIONAL") || h.includes("PROMO"));
-      const idxIdeal = headers.findIndex(h => h.includes("IDEAL"));
+      const idxPromo = headers.findIndex(h => h.includes("PROMOCIONAL") || h.includes("PROMO") || h.includes("MÍNIMO") || h.includes("MINIMO"));
+      const idxIdeal = headers.findIndex(h => h.includes("IDEAL") || h.includes("TABELA") || h.includes("PREÇO") || h.includes("PRECO"));
 
       const parsePrice = (val: string | undefined) => {
         if (!val) return 0;
@@ -125,27 +126,34 @@ const App = () => {
       const prodVenda = produtosBD.find(p => p.id === bloco.vendaCod.trim());
       const prodBonifica = produtosBD.find(p => p.id === bloco.bonificaId);
       
-      const precoTabelaVenda = prodVenda ? prodVenda.preco : 0;
       const precoNotaVenda = parseFloat(bloco.vendaPNota) || 0;
       const qtdVenda = parseFloat(bloco.vendaQtd) || 0;
       const precoBonifica = parseFloat(bloco.bonificaPrecoPraticado) || (prodBonifica ? prodBonifica.preco : 0);
 
-      const totalInvestimento = (precoNotaVenda - precoTabelaVenda) > 0 
-        ? (precoNotaVenda - precoTabelaVenda) * qtdVenda 
-        : 0;
+      // A fórmula solicitada é: (Preço de Nota - Preço Praticado) * Quantidade / Preço Praticado
+      // O investimento é gerado pela diferença entre o preço vendido e o preço praticado (promoção)
+      const totalInvestimento = (precoNotaVenda - precoBonifica) * qtdVenda;
 
-      const qtdBruta = precoBonifica > 0 ? (totalInvestimento + 1.00) / precoBonifica : 0;
+      const qtdBruta = precoBonifica > 0 ? totalInvestimento / precoBonifica : 0;
       
-      // REGRA DE ARREDONDAMENTO: Segurança Real + Margem de 1 Real
-      const bonusFinal = Math.floor(qtdBruta);
-      const valorBonificado = bonusFinal * precoBonifica;
+      // Regra de arredondamento solicitada:
+      // 1. Se o investimento for menor que o preço praticado (qtdBruta < 1), bônus é 0
+      // 2. Se a parte decimal for >= 0.78, arredonda para cima (ex: 1.79 -> 2)
+      // 3. Caso contrário, mantém o inteiro (ex: 1.77 -> 1)
+      let bonusFinal = 0;
+      if (qtdBruta >= 1) {
+        const decimal = Number((qtdBruta % 1).toFixed(4));
+        bonusFinal = decimal >= 0.78 ? Math.ceil(qtdBruta) : Math.floor(qtdBruta);
+      }
 
+      // O valor da bonificação exibido agora é o total do investimento (diferença * quantidade)
+      // conforme solicitado pelo usuário (ex: 0,60 * 120 = 72)
       return { 
         ...bloco, 
         res: { 
           saldo: totalInvestimento, 
-          bonus: bonusFinal, 
-          valorBonificado: valorBonificado,
+          bonus: bonusFinal > 0 ? bonusFinal : 0, 
+          valorBonificado: totalInvestimento > 0 ? totalInvestimento : 0,
           rentabilidade: 0
         } 
       };
@@ -162,8 +170,8 @@ const App = () => {
       vendaCod: "524052",
       vendaQtd: '',
       vendaPNota: '',
-      bonificaId: "2012",
-      inputBuscaBonifica: "2012",
+      bonificaId: "524052",
+      inputBuscaBonifica: "524052",
       bonificaPrecoPraticado: '',
       reportedBonus: '',
       res: { saldo: 0, bonus: 0, valorBonificado: 0, rentabilidade: 0 }
@@ -192,26 +200,36 @@ const App = () => {
   };
 
   const getGeneratedMessage = () => {
-    let msg = `${headerData.equipe}\n`;
-    msg += `${headerData.supervisor}\n\n`;
-    msg += `${headerData.cd}\n`;
-    msg += `${headerData.vendedor}\n`;
-    msg += `${headerData.cliente}\n`;
-    if (headerData.pedido) msg += `${headerData.pedido}\n`;
-    msg += `\n`;
+    let msg = `EQUIPE:${headerData.equipe}\n`;
+    msg += `SUPERVISOR:${headerData.supervisor}\n`;
+    msg += `CD:${headerData.cd}\n`;
+    msg += `CLIENTE:${headerData.cliente}\n`;
+    msg += `VENDEDOR:${headerData.vendedor}\n`;
+    msg += `CODIGO DO PEDIDO: ${headerData.pedido}\n\n`;
     
-    blocos.forEach((b) => {
-      if (b.res.bonus > 0) {
-        const prodVenda = produtosBD.find(p => p.id === b.vendaCod.trim());
-        const prodBonifica = produtosBD.find(p => p.id === b.bonificaId);
-        const nomeVenda = prodVenda ? prodVenda.nome : "Produto Venda";
-        const nomeBonifica = prodBonifica ? prodBonifica.nome : "Produto Bonifica";
-        const precoNota = b.vendaPNota || "0.00";
-        
-        // Exemplo: SABAO PO ALA COCO SH 400G 2,79 -> BONIF: SABAO PO ALA COCO SH 400G
-        msg += `${nomeVenda} ${precoNota} -> BONIF: ${b.res.bonus} UN ${nomeBonifica}\n`;
-      }
+    const blocosComBonus = blocos.filter(b => b.res.bonus > 0);
+
+    // Parte 1: Códigos e Quantidades
+    blocosComBonus.forEach((b) => {
+      msg += `${b.bonificaId}-${b.res.bonus}\n`;
     });
+    
+    if (blocosComBonus.length > 0) {
+      msg += `\n`;
+    }
+
+    // Parte 2: Detalhamento
+    blocosComBonus.forEach((b) => {
+      const prodVenda = produtosBD.find(p => p.id === b.vendaCod);
+      const prodBonif = produtosBD.find(p => p.id === b.bonificaId);
+      
+      const nomeVenda = prodVenda ? prodVenda.nome : "Produto não encontrado";
+      const nomeBonif = prodBonif ? prodBonif.nome : "Produto não encontrado";
+      const precoFormatado = b.bonificaPrecoPraticado.toString().replace('.', ',');
+      
+      msg += `${nomeVenda} ${precoFormatado} -> BONIF: ${nomeBonif}\n`;
+    });
+    
     return msg.trim();
   };
 
@@ -234,8 +252,8 @@ const App = () => {
         vendaCod: "524052",
         vendaQtd: '',
         vendaPNota: '',
-        bonificaId: "2012",
-        inputBuscaBonifica: "2012",
+        bonificaId: "524052",
+        inputBuscaBonifica: "524052",
         bonificaPrecoPraticado: '',
         reportedBonus: '',
         res: { saldo: 0, bonus: 0, valorBonificado: 0, rentabilidade: 0 }
@@ -403,15 +421,26 @@ const App = () => {
     if (isSupervisorMode) {
       setIsSupervisorMode(false);
     } else {
+      setPendingAction('supervisor');
       setShowPasswordModal(true);
     }
   };
 
+  const handleUpdateClick = () => {
+    setPendingAction('update_db');
+    setShowPasswordModal(true);
+  };
+
   const confirmPassword = () => {
     if (passwordInput === "SuperUnilever@2026") {
-      setIsSupervisorMode(true);
+      if (pendingAction === 'supervisor') {
+        setIsSupervisorMode(true);
+      } else if (pendingAction === 'update_db') {
+        fetchData();
+      }
       setShowPasswordModal(false);
       setPasswordInput("");
+      setPendingAction(null);
       setError(null);
     } else {
       setError("Senha incorreta!");
@@ -432,31 +461,89 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 pb-24">
-      <header className="bg-[#001E62] text-white p-5 sticky top-0 z-50 shadow-xl border-b-4 border-yellow-400">
-        <div className="max-w-xl mx-auto flex justify-between items-center">
-          <div>
-            <h1 className="text-xl font-black italic uppercase leading-none tracking-tighter">BONIFICAÇÃO HF</h1>
-            <p className="text-[9px] font-bold text-yellow-400 tracking-[0.2em] uppercase mt-1">CRIADO POR YURI LIMA</p>
+      <div className="max-w-xl mx-auto p-4 space-y-6 pt-6">
+        <section className="bg-white rounded-[2.5rem] shadow-xl shadow-blue-900/5 border-2 border-blue-500/20 overflow-hidden">
+          <div className="bg-slate-50 p-4 border-b border-slate-100 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Users size={16} className="text-blue-800"/>
+              <h2 className="text-[10px] font-black text-slate-600 uppercase tracking-widest">Identificação do Envio</h2>
+            </div>
+            <button onClick={limparTudo} className="text-[10px] font-black text-red-600 uppercase hover:opacity-70 transition-opacity">LIMPAR</button>
           </div>
-          <div className="flex gap-2">
-            <button 
-              onClick={handleSupervisorToggle}
-              className={`px-4 py-2 rounded-xl font-black text-[10px] uppercase transition-all border-b-4 ${isSupervisorMode ? 'bg-yellow-400 text-blue-900 border-yellow-600' : 'bg-blue-800 text-white border-blue-950'}`}
-            >
-              {isSupervisorMode ? "MODO SUPERVISOR" : "MODO RCA"}
-            </button>
-            <button 
-              onClick={copiarGeral} 
-              className="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-2xl font-black text-xs flex items-center gap-2 transition-all active:scale-95 shadow-lg border-b-4 border-green-800"
-            >
-              {copiado ? <CheckCircle2 size={16}/> : <Share2 size={16}/>}
-              {copiado ? "COPIADO!" : "ENVIAR TUDO"}
-            </button>
-          </div>
-        </div>
-      </header>
+          {!isSupervisorMode ? (
+            <div className="p-6 space-y-4">
+               <div className="grid grid-cols-3 gap-2">
+                 <div className="space-y-1">
+                   <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Equipe</label>
+                   <input className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200" value={headerData.equipe} onChange={e => setHeaderData({...headerData, equipe: e.target.value})} />
+                 </div>
+                 <div className="space-y-1">
+                   <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Supervisor</label>
+                   <input className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200" value={headerData.supervisor} onChange={e => setHeaderData({...headerData, supervisor: e.target.value})} />
+                 </div>
+                 <div className="space-y-1">
+                   <label className="text-[8px] font-black text-slate-400 uppercase ml-1">C.D.</label>
+                   <select 
+                      className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200 outline-none focus:ring-2 ring-blue-500/20 appearance-none" 
+                      value={headerData.cd} 
+                      onChange={e => setHeaderData({...headerData, cd: e.target.value})}
+                    >
+                      <option value="CD 87">CD 87</option>
+                      <option value="CD 116">CD 116</option>
+                    </select>
+                 </div>
+               </div>
+               
+               <div className="space-y-1">
+                 <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><Briefcase size={10}/> VENDEDOR (CÓDIGO E NOME)</label>
+                 <input 
+                  className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20" 
+                  placeholder="EX: 19855-YURI LIMA-TUTOIA"
+                  value={headerData.vendedor} 
+                  onChange={e => setHeaderData({...headerData, vendedor: e.target.value})} 
+                 />
+               </div>
 
-      <div className="max-w-xl mx-auto p-4 space-y-6">
+               <div className="space-y-1">
+                 <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><User size={10}/> CLIENTE (CÓDIGO E NOME)</label>
+                 <input 
+                  className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20" 
+                  placeholder="EX: 50501-ALDERICE V CUNHA"
+                  value={headerData.cliente} 
+                  onChange={e => setHeaderData({...headerData, cliente: e.target.value})} 
+                 />
+               </div>
+
+               <div className="space-y-1">
+                 <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><Calculator size={10}/> CÓDIGO DO PEDIDO</label>
+                 <input 
+                  className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20" 
+                  placeholder="Ex: 318021-1"
+                  value={headerData.pedido} 
+                  onChange={e => setHeaderData({...headerData, pedido: e.target.value})} 
+                 />
+               </div>
+            </div>
+          ) : (
+            <div className="p-4 bg-blue-50/30">
+              <div className="flex flex-wrap gap-x-6 gap-y-2 text-[10px] font-bold text-slate-600">
+                <div className="flex gap-2">
+                  <span className="text-slate-400 uppercase">Vendedor:</span>
+                  <span className="text-blue-900 uppercase">{headerData.vendedor || "Não informado"}</span>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-slate-400 uppercase">Cliente:</span>
+                  <span className="text-blue-900 uppercase">{headerData.cliente || "Não informado"}</span>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-slate-400 uppercase">Pedido:</span>
+                  <span className="text-blue-900 uppercase">{headerData.pedido || "---"}</span>
+                </div>
+              </div>
+            </div>
+          )}
+        </section>
+
         {isSupervisorMode && (
           <div className="space-y-4">
             <motion.div 
@@ -611,95 +698,6 @@ const App = () => {
           </div>
         )}
 
-        <section className="bg-white rounded-[2.5rem] shadow-xl shadow-blue-900/5 border-2 border-blue-500/20 overflow-hidden">
-          <div className="bg-slate-100 p-4 border-b border-slate-200 flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <Users size={16} className="text-blue-800"/>
-              <h2 className="text-[10px] font-black text-slate-600 uppercase tracking-widest">Identificação do Envio</h2>
-            </div>
-            <div className="flex items-center gap-2">
-              {isSupervisorMode && (
-                <button onClick={fetchData} className="text-[9px] font-black text-blue-600 bg-blue-50 px-3 py-1 rounded-full transition-colors uppercase flex items-center gap-1">
-                  <RefreshCw size={10} /> Atualizar Preços
-                </button>
-              )}
-              <button onClick={limparTudo} className="text-[9px] font-black text-red-600 bg-red-50 px-3 py-1 rounded-full transition-colors uppercase">Limpar</button>
-            </div>
-          </div>
-          {!isSupervisorMode ? (
-            <div className="p-6 space-y-4">
-               <div className="grid grid-cols-3 gap-2">
-                 <div className="space-y-1">
-                   <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Equipe</label>
-                   <input className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200" value={headerData.equipe} onChange={e => setHeaderData({...headerData, equipe: e.target.value})} />
-                 </div>
-                 <div className="space-y-1">
-                   <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Supervisor</label>
-                   <input className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200" value={headerData.supervisor} onChange={e => setHeaderData({...headerData, supervisor: e.target.value})} />
-                 </div>
-                 <div className="space-y-1">
-                   <label className="text-[8px] font-black text-slate-400 uppercase ml-1">C.D.</label>
-                   <select 
-                      className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200 outline-none focus:ring-2 ring-blue-500/20 appearance-none" 
-                      value={headerData.cd} 
-                      onChange={e => setHeaderData({...headerData, cd: e.target.value})}
-                    >
-                      <option value="CD 87">CD 87</option>
-                      <option value="CD 116">CD 116</option>
-                    </select>
-                 </div>
-               </div>
-               
-               <div className="space-y-1">
-                 <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><Briefcase size={10}/> Vendedor (Código e Nome)</label>
-                 <input 
-                  className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20" 
-                  placeholder="EX: 19855-YURI LIMA-TUTOIA"
-                  value={headerData.vendedor} 
-                  onChange={e => setHeaderData({...headerData, vendedor: e.target.value})} 
-                 />
-               </div>
-
-               <div className="space-y-1">
-                 <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><User size={10}/> Cliente (Código e Nome)</label>
-                 <input 
-                  className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20" 
-                  placeholder="EX: 50501-ALDERICE V CUNHA"
-                  value={headerData.cliente} 
-                  onChange={e => setHeaderData({...headerData, cliente: e.target.value})} 
-                 />
-               </div>
-
-               <div className="space-y-1">
-                 <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><Calculator size={10}/> Código do Pedido</label>
-                 <input 
-                  className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20" 
-                  placeholder="Ex: 318021-1"
-                  value={headerData.pedido} 
-                  onChange={e => setHeaderData({...headerData, pedido: e.target.value})} 
-                 />
-               </div>
-            </div>
-          ) : (
-            <div className="p-4 bg-blue-50/30">
-              <div className="flex flex-wrap gap-x-6 gap-y-2 text-[10px] font-bold text-slate-600">
-                <div className="flex gap-2">
-                  <span className="text-slate-400 uppercase">Vendedor:</span>
-                  <span className="text-blue-900 uppercase">{headerData.vendedor || "Não informado"}</span>
-                </div>
-                <div className="flex gap-2">
-                  <span className="text-slate-400 uppercase">Cliente:</span>
-                  <span className="text-blue-900 uppercase">{headerData.cliente || "Não informado"}</span>
-                </div>
-                <div className="flex gap-2">
-                  <span className="text-slate-400 uppercase">Pedido:</span>
-                  <span className="text-blue-900 uppercase">{headerData.pedido || "---"}</span>
-                </div>
-              </div>
-            </div>
-          )}
-        </section>
-
         <div className="space-y-4">
           <AnimatePresence mode="popLayout">
             {!isSupervisorMode && blocos.map((bloco, index) => (
@@ -729,7 +727,7 @@ const App = () => {
                     <div className="space-y-3">
                       <div className="flex items-center gap-2 text-blue-900">
                         <ShoppingCart size={14}/>
-                        <h3 className="text-[10px] font-black uppercase tracking-tight">Venda</h3>
+                        <h3 className="text-[10px] font-black uppercase tracking-tight">VENDA</h3>
                       </div>
                       <div className="space-y-2">
                         <div className="relative">
@@ -754,7 +752,7 @@ const App = () => {
                           onClick={() => setShowStockModal({ open: true, target: 'venda', uid: bloco.uid })}
                           className="w-full py-2 bg-blue-50 text-blue-700 text-[8px] font-black uppercase rounded-lg border border-blue-100 hover:bg-blue-100 transition-colors"
                         >
-                          Acessar Estoque
+                          ACESSAR ESTOQUE
                         </button>
                         
                         {produtosBD.find(p => p.id === bloco.vendaCod.trim()) && (
@@ -767,13 +765,13 @@ const App = () => {
                                 <span className="bg-red-600 text-white text-[7px] font-black px-2 py-0.5 rounded-md animate-bounce shadow-sm">AÇÃO DO DIA</span>
                               )}
                             </div>
-                            <div className="grid grid-cols-3 gap-1 border-t border-blue-100 pt-1">
+                            <div className="grid grid-cols-2 gap-1 border-t border-blue-100 pt-1">
                               <div className="flex flex-col">
-                                <span className="text-[6px] text-blue-600 font-black uppercase">Ideal</span>
+                                <span className="text-[6px] text-blue-600 font-black uppercase">IDEAL</span>
                                 <span className="text-[8px] font-bold text-blue-900">{formatarMoeda(produtosBD.find(p => p.id === bloco.vendaCod.trim()).ideal)}</span>
                               </div>
                               <div className="flex flex-col">
-                                <span className="text-[6px] text-blue-600 font-black uppercase">Promo</span>
+                                <span className="text-[6px] text-blue-600 font-black uppercase">PROMO</span>
                                 <span className="text-[8px] font-bold text-blue-900">{formatarMoeda(produtosBD.find(p => p.id === bloco.vendaCod.trim()).promo)}</span>
                               </div>
                             </div>
@@ -782,7 +780,7 @@ const App = () => {
 
                         <div className="grid grid-cols-2 gap-2">
                           <div className="space-y-1">
-                            <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Qtd</label>
+                            <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Quantidade</label>
                             <input 
                               type="number"
                               className="w-full text-xs font-bold p-3 bg-slate-50 rounded-xl border border-slate-200"
@@ -791,7 +789,7 @@ const App = () => {
                             />
                           </div>
                           <div className="space-y-1">
-                            <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Preço Nota</label>
+                            <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Preço de Nota</label>
                             <input 
                               type="number"
                               step="0.01"
@@ -808,7 +806,7 @@ const App = () => {
                     <div className="space-y-3">
                       <div className="flex items-center gap-2 text-green-600">
                         <Gift size={14}/>
-                        <h3 className="text-[10px] font-black uppercase tracking-tight">Bonificação</h3>
+                        <h3 className="text-[10px] font-black uppercase tracking-tight">BONIFICAÇÃO</h3>
                       </div>
                       <div className="space-y-2">
                         <div className="relative">
@@ -833,7 +831,7 @@ const App = () => {
                           onClick={() => setShowStockModal({ open: true, target: 'bonifica', uid: bloco.uid })}
                           className="w-full py-2 bg-green-50 text-green-700 text-[8px] font-black uppercase rounded-lg border border-green-100 hover:bg-green-100 transition-colors"
                         >
-                          Acessar Estoque
+                          ACESSAR ESTOQUE
                         </button>
                         <div className="p-3 bg-green-50 rounded-xl border border-green-100 min-h-[42px] flex flex-col justify-center">
                           <div className="flex items-center justify-between">
@@ -850,11 +848,11 @@ const App = () => {
                           {produtosBD.find(p => p.id === bloco.bonificaId) && (
                             <div className="mt-1 grid grid-cols-3 gap-1 border-t border-green-100 pt-1">
                               <div className="flex flex-col">
-                                <span className="text-[6px] text-green-600 font-black uppercase">Ideal</span>
+                                <span className="text-[6px] text-green-600 font-black uppercase">IDEAL</span>
                                 <span className="text-[8px] font-bold text-green-900">{formatarMoeda(produtosBD.find(p => p.id === bloco.bonificaId).ideal)}</span>
                               </div>
                               <div className="flex flex-col">
-                                <span className="text-[6px] text-green-600 font-black uppercase">Promo</span>
+                                <span className="text-[6px] text-green-600 font-black uppercase">PROMO</span>
                                 <span className="text-[8px] font-bold text-green-900">{formatarMoeda(produtosBD.find(p => p.id === bloco.bonificaId).promo)}</span>
                               </div>
                             </div>
@@ -875,43 +873,37 @@ const App = () => {
                   </div>
 
                   {/* RESULTADO DO BLOCO */}
-                  <div className="bg-slate-900 rounded-3xl p-5 flex flex-col gap-4 shadow-lg">
-                    <div className="flex items-center justify-between">
-                      <div className="space-y-1">
-                        <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest">Saldo de Investimento</span>
-                        <p className="text-lg font-black text-white">{formatarMoeda(bloco.res.saldo)}</p>
-                        <div className="flex flex-col mt-1">
-                          <span className="text-[7px] font-black text-blue-400 uppercase tracking-widest">Margem de Segurança</span>
-                          <p className={`text-[10px] font-bold ${bloco.res.saldo - bloco.res.valorBonificado >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                            {formatarMoeda(bloco.res.saldo - bloco.res.valorBonificado)}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <span className="text-[8px] font-black text-green-500 uppercase tracking-widest">Valor Bonificado</span>
-                        <p className="text-lg font-black text-green-400">{formatarMoeda(bloco.res.valorBonificado)}</p>
-                      </div>
+                  <div className="bg-slate-900 rounded-3xl p-6 flex flex-col items-center text-center gap-6 shadow-lg">
+                    <div className="space-y-1">
+                      <span className="text-[10px] font-black text-green-500 uppercase tracking-widest">Valor da Bonificação</span>
+                      <p className="text-2xl font-black text-green-400">{formatarMoeda(bloco.res.valorBonificado)}</p>
                     </div>
                     
-                    <div className="flex items-center justify-between pt-4 border-t border-slate-800">
-                      <div className="flex items-center gap-4">
-                        {isSupervisorMode && (
-                          <div className="flex flex-col items-start pr-4 border-r border-slate-800">
-                            <span className="text-[8px] font-black text-yellow-500 uppercase tracking-widest">Informado RCA</span>
-                            <input 
-                              type="number"
-                              className="w-12 bg-transparent text-left text-xl font-black text-yellow-400 outline-none"
-                              value={bloco.reportedBonus}
-                              onChange={e => updateBloco(bloco.uid, { reportedBonus: e.target.value })}
-                            />
-                          </div>
-                        )}
-                      </div>
-                      <div className="text-right">
-                        <span className="text-[8px] font-black text-blue-400 uppercase tracking-widest">Bônus Calculado</span>
-                        <div className="flex items-baseline justify-end gap-1">
-                          <p className="text-3xl font-black text-white leading-none">{bloco.res.bonus}</p>
-                          <span className="text-[10px] font-black text-blue-400 uppercase">UN</span>
+                    <div className="w-full pt-6 border-t border-slate-800 flex flex-col items-center gap-4">
+                      {isSupervisorMode && (
+                        <div className="flex flex-col items-center gap-1 mb-2">
+                          <span className="text-[8px] font-black text-yellow-500 uppercase tracking-widest">Informado RCA</span>
+                          <input 
+                            type="number"
+                            className="w-20 bg-slate-800 rounded-lg p-2 text-center text-xl font-black text-yellow-400 outline-none border border-slate-700"
+                            value={bloco.reportedBonus}
+                            onChange={e => updateBloco(bloco.uid, { reportedBonus: e.target.value })}
+                          />
+                        </div>
+                      )}
+                      
+                      <div className="flex flex-col items-center">
+                        <span className="text-[10px] font-black text-blue-400 uppercase tracking-widest">Bônus Cálculo</span>
+                        <div className="flex items-baseline gap-1">
+                          <p className="text-5xl font-black text-white leading-none">{bloco.res.bonus}</p>
+                          <span className="text-xs font-black text-blue-400 uppercase">UN</span>
+                        </div>
+                        <div className="mt-3 px-4 py-1.5 bg-blue-500/10 rounded-xl border border-blue-500/20">
+                          <p className="text-[7px] font-black text-blue-400 uppercase leading-tight">
+                            Regra: Investimento ≥ Preço Praticado<br/>
+                            Decimal ≥ 0.78 arredonda p/ cima<br/>
+                            Ex: 1.79 → 2 | 1.77 → 1 | 0.90 → 0
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -954,18 +946,38 @@ const App = () => {
         </div>
       </div>
 
-      <footer className="fixed bottom-0 left-0 right-0 p-4 bg-white/80 backdrop-blur-xl border-t border-slate-100 z-40">
-        <div className="max-w-xl mx-auto flex items-center justify-between px-2">
+      <footer className="fixed bottom-0 left-0 right-0 p-4 bg-[#001E62] text-white shadow-2xl z-50">
+        <div className="max-w-4xl mx-auto flex items-center justify-between px-4">
           <div className="flex flex-col">
-            <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Total de Bônus</span>
-            <p className="text-xl font-black text-blue-900 leading-none">
-              {blocos.reduce((acc, b) => acc + b.res.bonus, 0)} <span className="text-[10px] uppercase">Unidades</span>
-            </p>
-            <span className="text-[8px] font-bold text-slate-400 mt-1 uppercase">{new Date().toLocaleDateString('pt-BR')}</span>
+            <h1 className="text-lg font-black italic uppercase leading-none tracking-tighter">BONIFICAÇÃO UNILEVER</h1>
+            <p className="text-[8px] font-bold text-yellow-400 tracking-[0.2em] uppercase mt-1">CRIADO POR YURI LIMA</p>
           </div>
-          <div className="text-right">
-            <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Última Sincronização</span>
-            <p className="text-[10px] font-bold text-slate-600">{lastUpdate || "---"}</p>
+
+          <div className="flex items-center gap-3">
+            {!isSupervisorMode && (
+              <button 
+                onClick={handleUpdateClick}
+                className="bg-blue-800 text-white p-3 rounded-xl hover:bg-blue-700 transition-all active:scale-95 shadow-lg"
+                title="Atualizar Banco de Dados"
+              >
+                <RefreshCw size={16} className={isLoadingDB ? "animate-spin" : ""} />
+              </button>
+            )}
+            
+            <button 
+              onClick={handleSupervisorToggle}
+              className={`px-6 py-3 rounded-xl font-black text-[10px] uppercase transition-all shadow-lg ${isSupervisorMode ? 'bg-yellow-400 text-blue-900' : 'bg-blue-600 text-white'}`}
+            >
+              {isSupervisorMode ? "MODO SUPERVISOR" : "MODO RCA"}
+            </button>
+
+            <button 
+              onClick={copiarGeral} 
+              className="bg-green-600 hover:bg-green-700 px-8 py-3 rounded-xl font-black text-xs flex items-center gap-2 transition-all active:scale-95 shadow-lg"
+            >
+              {copiado ? <CheckCircle2 size={16}/> : <Share2 size={16}/>}
+              {copiado ? "COPIADO!" : "ENVIAR TUDO"}
+            </button>
           </div>
         </div>
       </footer>
