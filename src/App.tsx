@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ShoppingCart, Gift, Trash2, Plus, Share2, CheckCircle2, Search, Calculator, User, Briefcase, Users, RefreshCw, Loader2, Camera, FileText, Sparkles, AlertCircle, Lock } from 'lucide-react';
+import { ShoppingCart, Gift, Trash2, Plus, Share2, CheckCircle2, Search, Calculator, User, Briefcase, Users, RefreshCw, Loader2, Camera, FileText, Sparkles, AlertCircle, Lock, Clock } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -36,7 +36,8 @@ const App = () => {
     cd: "CD 87",
     vendedor: "19855 YURI LIMA",
     cliente: "50501 ALDERICE V CUNHA",
-    pedido: "318021-1"
+    pedido: "318021-1",
+    prazo: "32"
   });
 
   const [blocos, setBlocos] = useState([
@@ -220,15 +221,23 @@ const App = () => {
 
     // Parte 2: Detalhamento
     blocosComBonus.forEach((b) => {
-      const prodVenda = produtosBD.find(p => p.id === b.vendaCod);
+      const prodVenda = produtosBD.find(p => p.id === b.vendaCod.trim());
       const prodBonif = produtosBD.find(p => p.id === b.bonificaId);
       
       const nomeVenda = prodVenda ? prodVenda.nome : "Produto não encontrado";
       const nomeBonif = prodBonif ? prodBonif.nome : "Produto não encontrado";
-      const precoFormatado = b.bonificaPrecoPraticado.toString().replace('.', ',');
+      
+      // Usa o preço do campo ou o preço do banco de dados (mesma lógica do cálculo)
+      const precoPraticado = parseFloat(b.bonificaPrecoPraticado) || (prodBonif ? prodBonif.preco : 0);
+      const precoFormatado = precoPraticado.toFixed(2).replace('.', ',');
       
       msg += `${nomeVenda} ${precoFormatado} -> BONIF: ${nomeBonif}\n`;
     });
+    
+    // Adiciona a data do dia
+    const dataHoje = new Date().toLocaleDateString('pt-BR');
+    msg += `\nDATA:${dataHoje}`;
+    msg += `\nPRAZO:${headerData.prazo}`;
     
     return msg.trim();
   };
@@ -262,7 +271,8 @@ const App = () => {
         ...headerData,
         vendedor: "",
         cliente: "",
-        pedido: ""
+        pedido: "",
+        prazo: "32"
       });
       setBonusText("");
       setOrderImage(null);
@@ -523,6 +533,18 @@ const App = () => {
                   onChange={e => setHeaderData({...headerData, pedido: e.target.value})} 
                  />
                </div>
+
+               <div className="space-y-1">
+                 <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><Clock size={10}/> PRAZO</label>
+                 <select 
+                   className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20 appearance-none" 
+                   value={headerData.prazo} 
+                   onChange={e => setHeaderData({...headerData, prazo: e.target.value})}
+                 >
+                   <option value="32">1 - 32 DIAS</option>
+                   <option value="22/32/42">2 - 22/32/42 DIAS</option>
+                 </select>
+               </div>
             </div>
           ) : (
             <div className="p-4 bg-blue-50/30">
@@ -538,6 +560,10 @@ const App = () => {
                 <div className="flex gap-2">
                   <span className="text-slate-400 uppercase">Pedido:</span>
                   <span className="text-blue-900 uppercase">{headerData.pedido || "---"}</span>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-slate-400 uppercase">Prazo:</span>
+                  <span className="text-blue-900 uppercase">{headerData.prazo || "---"}</span>
                 </div>
               </div>
             </div>
