@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ShoppingCart, Gift, Trash2, Plus, Share2, CheckCircle2, Search, Calculator, User, Briefcase, Users, RefreshCw, Loader2, Camera, FileText, Sparkles, AlertCircle, Lock, Clock } from 'lucide-react';
+import { ShoppingCart, Gift, Trash2, Plus, Share2, CheckCircle2, Search, Calculator, User, Briefcase, Users, RefreshCw, Loader2, Camera, FileText, Sparkles, AlertCircle, Lock, Clock, BarChart3, TrendingUp, Trophy } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -27,7 +27,43 @@ const App = () => {
   const [supervisorSummary, setSupervisorSummary] = useState("");
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [passwordInput, setPasswordInput] = useState("");
-  const [pendingAction, setPendingAction] = useState<'supervisor' | 'update_db' | null>(null);
+  const [pendingAction, setPendingAction] = useState<'supervisor' | 'update_db' | 'metas' | null>(null);
+  const [isMetasUnlocked, setIsMetasUnlocked] = useState(false);
+  const [activeTab, setActiveTab] = useState<'bonificacao' | 'metas'>('bonificacao');
+  const [rcaSearchTerm, setRcaSearchTerm] = useState("");
+  const [selectedRCA, setSelectedRCA] = useState<any>(null);
+
+  const RCA_METAS_DATA = [
+    { id: "17139", name: "GEOVANE DA SILVA", region: "PAULO RAMOS - MA", volume: 95000, positivacao: 45, pdvsTotal: 120, battles: { poLiq: 30, cif: 25, mayo: 20, amidos: 23 } },
+    { id: "15291", name: "ROSIMARIA CRISTINA", region: "COROATA - MA", volume: 150000, positivacao: 75, pdvsTotal: 120, battles: { poLiq: 36, cif: 30, mayo: 26, amidos: 25 } },
+    { id: "31271", name: "MARCELO V DE SOUSA", region: "PERITORO - MA", volume: 65000, positivacao: 38, pdvsTotal: 120, battles: { poLiq: 22, cif: 23, mayo: 17, amidos: 20 } },
+    { id: "17233", name: "ANTONIO ALVES", region: "CHAPADINHA - MA", volume: 170000, positivacao: 65, pdvsTotal: 120, battles: { poLiq: 34, cif: 30, mayo: 23, amidos: 25 } },
+    { id: "29436", name: "CLEIDIANEÂ SOUSA", region: "TIMONÂ - MA", volume: 145000, positivacao: 80, pdvsTotal: 120, battles: { poLiq: 38, cif: 32, mayo: 26, amidos: 26 } },
+    { id: "36166", name: "LAYSSE SOUSA", region: "BOM LURAGÂ - MA", volume: 80000, positivacao: 43, pdvsTotal: 120, battles: { poLiq: 28, cif: 25, mayo: 20, amidos: 21 } },
+    { id: "20305", name: "GRECY KELLY RIBEIRO", region: "COELHO NETO - MA", volume: 85000, positivacao: 50, pdvsTotal: 120, battles: { poLiq: 33, cif: 25, mayo: 20, amidos: 24 } },
+    { id: "18593", name: "JOCIONE", region: "MATOES - MA", volume: 90000, positivacao: 60, pdvsTotal: 130, battles: { poLiq: 36, cif: 30, mayo: 24, amidos: 25 } },
+    { id: "12252", name: "DOMINGAS CARVALHO", region: "CAXIAS 1 - MA", volume: 155000, positivacao: 53, pdvsTotal: 120, battles: { poLiq: 35, cif: 25, mayo: 20, amidos: 25 } },
+    { id: "26700", name: "JANAINA LIMAS GOMES", region: "CODO 2Â - MA", volume: 95000, positivacao: 33, pdvsTotal: 110, battles: { poLiq: 20, cif: 25, mayo: 20, amidos: 23 } },
+    { id: "23427", name: "MARYANA MONTELES", region: "MATA ROMA - MA", volume: 68000, positivacao: 35, pdvsTotal: 100, battles: { poLiq: 25, cif: 22, mayo: 20, amidos: 20 } },
+    { id: "37032", name: "ISRAEL", region: "SANTA QUITERIA - MA", volume: 75000, positivacao: 45, pdvsTotal: 120, battles: { poLiq: 30, cif: 25, mayo: 20, amidos: 23 } },
+    { id: "18599", name: "DOUGLAS", region: "SENADOR ALEXANDRE COSTA - MA", volume: 130000, positivacao: 55, pdvsTotal: 120, battles: { poLiq: 32, cif: 25, mayo: 22, amidos: 25 } },
+    { id: "37473", name: "EDSON BORGES DA SILVA", region: "LAGO DA PEDRA - MA", volume: 75000, positivacao: 42, pdvsTotal: 115, battles: { poLiq: 36, cif: 25, mayo: 20, amidos: 23 } },
+  ];
+
+  const filteredRCAs = rcaSearchTerm.trim() === "" 
+    ? [] 
+    : RCA_METAS_DATA.filter(rca => 
+        rca.id.includes(rcaSearchTerm) || 
+        rca.name.toLowerCase().includes(rcaSearchTerm.toLowerCase())
+      );
+
+  const [metasData, setMetasData] = useState({
+    volume: "1250",
+    positivacao: "85",
+    PDVsTotal: "120",
+    batalhas: "450.50"
+  });
+  const APP_PASSWORD = "123456789"; 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [headerData, setHeaderData] = useState({
@@ -202,11 +238,12 @@ const App = () => {
 
   const getGeneratedMessage = () => {
     let msg = `EQUIPE:${headerData.equipe}\n`;
-    msg += `SUPERVISOR:${headerData.supervisor}\n`;
     msg += `CD:${headerData.cd}\n`;
     msg += `CLIENTE:${headerData.cliente}\n`;
-    msg += `VENDEDOR:${headerData.vendedor}\n`;
-    msg += `CODIGO DO PEDIDO: ${headerData.pedido}\n\n`;
+    msg += `RCA:${headerData.vendedor}\n`;
+    msg += `Nº DO PEDIDO: ${headerData.pedido}\n`;
+    msg += `SUPERVISOR:${headerData.supervisor}\n`;
+    msg += `PRAZO:${headerData.prazo}\n\n`;
     
     const blocosComBonus = blocos.filter(b => b.res.bonus > 0);
 
@@ -237,7 +274,6 @@ const App = () => {
     // Adiciona a data do dia
     const dataHoje = new Date().toLocaleDateString('pt-BR');
     msg += `\nDATA:${dataHoje}`;
-    msg += `\nPRAZO:${headerData.prazo}`;
     
     return msg.trim();
   };
@@ -442,11 +478,17 @@ const App = () => {
   };
 
   const confirmPassword = () => {
-    if (passwordInput === "SuperUnilever@2026") {
+    const isMasterPass = passwordInput === "SuperUnilever@2026";
+    const isMetasPass = pendingAction === 'metas' && passwordInput === "Vendas@2026";
+
+    if (isMasterPass || isMetasPass) {
       if (pendingAction === 'supervisor') {
         setIsSupervisorMode(true);
       } else if (pendingAction === 'update_db') {
         fetchData();
+      } else if (pendingAction === 'metas') {
+        setIsMetasUnlocked(true);
+        setActiveTab('metas');
       }
       setShowPasswordModal(false);
       setPasswordInput("");
@@ -469,27 +511,64 @@ const App = () => {
     );
   }
 
+
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 pb-24">
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 pb-32">
+      {/* NAVEGAÇÃO SUPERIOR */}
+      <nav className="sticky top-0 z-[100] bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div className="max-w-xl mx-auto px-4 flex items-center justify-around">
+          <button 
+            onClick={() => setActiveTab('bonificacao')}
+            className={`flex-1 py-4 flex flex-col items-center gap-1 transition-all border-b-2 ${activeTab === 'bonificacao' ? 'border-blue-600 text-blue-600' : 'border-transparent text-slate-400'}`}
+          >
+            <Calculator size={18}/>
+            <span className="text-[8px] font-black uppercase tracking-widest">Bonificação</span>
+          </button>
+          <button 
+            onClick={() => {
+              if (isMetasUnlocked) {
+                setActiveTab('metas');
+              } else {
+                setPendingAction('metas');
+                setShowPasswordModal(true);
+              }
+            }}
+            className={`flex-1 py-4 flex flex-col items-center gap-1 transition-all border-b-2 ${activeTab === 'metas' ? 'border-blue-600 text-blue-600' : 'border-transparent text-slate-400'}`}
+          >
+            <div className="relative">
+              <TrendingUp size={18}/>
+              {!isMetasUnlocked && (
+                <div className="absolute -top-1 -right-1 bg-slate-900 border border-white rounded-full p-0.5">
+                  <Lock size={8} className="text-white" />
+                </div>
+              )}
+            </div>
+            <span className="text-[8px] font-black uppercase tracking-widest">Metas RCA</span>
+          </button>
+        </div>
+      </nav>
+
       <div className="max-w-xl mx-auto p-4 space-y-6 pt-6">
-        <section className="bg-white rounded-[2.5rem] shadow-xl shadow-blue-900/5 border-2 border-blue-500/20 overflow-hidden">
+        {activeTab === 'bonificacao' ? (
+          <>
+            <section className="bg-white rounded-[2.5rem] shadow-xl shadow-blue-900/5 border-2 border-blue-500/20 overflow-hidden">
           <div className="bg-slate-50 p-4 border-b border-slate-100 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Users size={16} className="text-blue-800"/>
-              <h2 className="text-[10px] font-black text-slate-600 uppercase tracking-widest">Identificação do Envio</h2>
+              <h2 className="text-[10px] font-black text-slate-600 uppercase tracking-widest leading-none">Identificação do Envio</h2>
             </div>
             <button onClick={limparTudo} className="text-[10px] font-black text-red-600 uppercase hover:opacity-70 transition-opacity">LIMPAR</button>
           </div>
           {!isSupervisorMode ? (
             <div className="p-6 space-y-4">
-               <div className="grid grid-cols-3 gap-2">
+               <div className="grid grid-cols-2 gap-3">
                  <div className="space-y-1">
                    <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Equipe</label>
-                   <input className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200" value={headerData.equipe} onChange={e => setHeaderData({...headerData, equipe: e.target.value})} />
-                 </div>
-                 <div className="space-y-1">
-                   <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Supervisor</label>
-                   <input className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200" value={headerData.supervisor} onChange={e => setHeaderData({...headerData, supervisor: e.target.value})} />
+                   <input 
+                    className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200" 
+                    value={headerData.equipe} 
+                    onChange={e => setHeaderData({...headerData, equipe: e.target.value})} 
+                   />
                  </div>
                  <div className="space-y-1">
                    <label className="text-[8px] font-black text-slate-400 uppercase ml-1">C.D.</label>
@@ -503,16 +582,6 @@ const App = () => {
                     </select>
                  </div>
                </div>
-               
-               <div className="space-y-1">
-                 <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><Briefcase size={10}/> VENDEDOR (CÓDIGO E NOME)</label>
-                 <input 
-                  className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20" 
-                  placeholder="EX: 19855-YURI LIMA-TUTOIA"
-                  value={headerData.vendedor} 
-                  onChange={e => setHeaderData({...headerData, vendedor: e.target.value})} 
-                 />
-               </div>
 
                <div className="space-y-1">
                  <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><User size={10}/> CLIENTE (CÓDIGO E NOME)</label>
@@ -525,7 +594,17 @@ const App = () => {
                </div>
 
                <div className="space-y-1">
-                 <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><Calculator size={10}/> CÓDIGO DO PEDIDO</label>
+                 <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><Briefcase size={10}/> RCA (CÓDIGO E NOME)</label>
+                 <input 
+                  className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20" 
+                  placeholder="EX: 19855-YURI LIMA-TUTOIA"
+                  value={headerData.vendedor} 
+                  onChange={e => setHeaderData({...headerData, vendedor: e.target.value})} 
+                 />
+               </div>
+
+               <div className="space-y-1">
+                 <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><Calculator size={10}/> Nº DO PEDIDO</label>
                  <input 
                   className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20" 
                   placeholder="Ex: 318021-1"
@@ -534,16 +613,26 @@ const App = () => {
                  />
                </div>
 
-               <div className="space-y-1">
-                 <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><Clock size={10}/> PRAZO</label>
-                 <select 
-                   className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20 appearance-none" 
-                   value={headerData.prazo} 
-                   onChange={e => setHeaderData({...headerData, prazo: e.target.value})}
-                 >
-                   <option value="32">1 - 32 DIAS</option>
-                   <option value="22/32/42">2 - 22/32/42 DIAS</option>
-                 </select>
+               <div className="grid grid-cols-2 gap-3">
+                 <div className="space-y-1">
+                   <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Supervisor</label>
+                   <input 
+                    className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200" 
+                    value={headerData.supervisor} 
+                    onChange={e => setHeaderData({...headerData, supervisor: e.target.value})} 
+                   />
+                 </div>
+                 <div className="space-y-1">
+                   <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Prazo</label>
+                   <select 
+                     className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200 outline-none focus:ring-2 ring-blue-500/20 appearance-none" 
+                     value={headerData.prazo} 
+                     onChange={e => setHeaderData({...headerData, prazo: e.target.value})}
+                   >
+                     <option value="32">1 - 32 DIAS</option>
+                     <option value="22/32/42">2 - 22/32/42 DIAS</option>
+                   </select>
+                 </div>
                </div>
             </div>
           ) : (
@@ -568,7 +657,6 @@ const App = () => {
               </div>
             </div>
           )}
-        </section>
 
         {isSupervisorMode && (
           <div className="space-y-4">
@@ -938,38 +1026,252 @@ const App = () => {
               </motion.div>
             ))}
           </AnimatePresence>
+        </div>
 
-          {!isSupervisorMode && (
-            <div className="space-y-4">
-              <button 
-                onClick={addBloco}
-                className="w-full py-6 rounded-[2.5rem] border-2 border-dashed border-slate-200 text-slate-400 font-black text-[10px] uppercase tracking-widest hover:border-blue-300 hover:text-blue-500 hover:bg-blue-50 transition-all flex items-center justify-center gap-2"
-              >
-                <Plus size={16}/> Adicionar Novo Bloco
-              </button>
+        {!isSupervisorMode && (
+          <button 
+            onClick={addBloco}
+            className="w-full py-6 rounded-[2.5rem] border-2 border-dashed border-blue-300 text-blue-500 bg-blue-50 hover:bg-blue-100 shadow-lg font-black text-[10px] uppercase tracking-widest transition-all flex items-center justify-center gap-2 mt-4"
+          >
+            <Plus size={16}/> Adicionar Novo Bloco
+          </button>
+        )}
 
-              {/* PREVIEW DA MENSAGEM */}
-              {isSupervisorMode && (
-                <div className="bg-white rounded-[2.5rem] shadow-sm border border-slate-200 overflow-hidden">
-                  <div className="bg-slate-50 p-4 border-b border-slate-100 flex items-center gap-2">
-                    <Share2 size={14} className="text-blue-600"/>
-                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Resumo da Solicitação</span>
-                  </div>
-                  <div className="p-6">
-                    <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
-                      <pre className="text-[10px] font-bold text-slate-600 whitespace-pre-wrap leading-relaxed">
-                        {getGeneratedMessage()}
-                      </pre>
+        {/* PREVIEW DA MENSAGEM */}
+        <div className="bg-white rounded-[2.5rem] shadow-sm border border-slate-200 overflow-hidden mt-6">
+          <div className="bg-slate-50 p-4 border-b border-slate-100 flex items-center gap-2">
+            <Share2 size={14} className="text-blue-600"/>
+            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Resumo da Solicitação</span>
+          </div>
+          <div className="p-6">
+            <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+              <pre className="text-[10px] font-bold text-slate-600 whitespace-pre-wrap leading-relaxed">
+                {getGeneratedMessage()}
+              </pre>
+            </div>
+            <p className="text-[8px] font-bold text-slate-400 mt-3 uppercase text-center italic">
+              Esta é a mensagem que será enviada ao supervisor para validação.
+            </p>
+          </div>
+        </div>
+      </section>
+    </>
+  ) : (
+    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12">
+            {/* CABEÇALHO METAS */}
+            <div className="bg-[#001E62] rounded-[3rem] p-8 text-white shadow-2xl relative overflow-hidden">
+               <div className="absolute top-0 right-0 w-48 h-48 bg-blue-400/20 rounded-full -mr-24 -mt-24 blur-3xl animate-pulse"></div>
+               <div className="relative z-10">
+                 <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-md">
+                        <TrendingUp size={24} className="text-blue-300"/>
                     </div>
-                    <p className="text-[8px] font-bold text-slate-400 mt-3 uppercase text-center italic">
-                      Esta é a mensagem que será enviada ao supervisor para validação.
-                    </p>
+                    <h2 className="text-3xl font-black italic uppercase tracking-tighter">Metas RCA</h2>
+                 </div>
+                 <p className="text-blue-200 text-[10px] font-bold uppercase tracking-[0.3em] max-w-[200px] leading-relaxed">
+                    Acompanhamento diário de indicadores e projeção de ganhos
+                 </p>
+               </div>
+            </div>
+
+            {/* BUSCA RCA */}
+            <div className="relative group">
+               <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none">
+                 <Search size={18} className="text-slate-400 group-focus-within:text-blue-600 transition-colors" />
+               </div>
+               <input 
+                 type="text"
+                 placeholder="Pesquise seu Código ou Nome..."
+                 className="w-full bg-white border-2 border-slate-100 rounded-[2rem] py-5 pl-14 pr-6 outline-none focus:border-blue-600 shadow-xl shadow-blue-900/5 text-sm font-bold transition-all"
+                 value={rcaSearchTerm}
+                 onChange={(e) => {
+                    setRcaSearchTerm(e.target.value);
+                    if (e.target.value === "") setSelectedRCA(null);
+                 }}
+               />
+               
+               <AnimatePresence>
+                 {filteredRCAs.length > 0 && !selectedRCA && (
+                   <motion.div 
+                     initial={{ opacity: 0, y: -10 }}
+                     animate={{ opacity: 1, y: 0 }}
+                     exit={{ opacity: 0, y: -10 }}
+                     className="absolute top-full left-0 right-0 mt-2 bg-white rounded-3xl shadow-2xl border border-slate-100 z-50 overflow-hidden max-h-60 overflow-y-auto"
+                   >
+                     {filteredRCAs.map((rca) => (
+                       <button
+                         key={rca.id}
+                         onClick={() => {
+                           setSelectedRCA(rca);
+                           setRcaSearchTerm(rca.name);
+                         }}
+                         className="w-full px-6 py-4 text-left hover:bg-slate-50 transition-colors flex items-center justify-between group"
+                       >
+                         <div>
+                            <p className="text-xs font-black text-slate-800 uppercase tracking-tight">{rca.name}</p>
+                            <p className="text-[9px] font-bold text-slate-400 uppercase">{rca.id} • {rca.region}</p>
+                         </div>
+                         <Plus size={16} className="text-slate-300 group-hover:text-blue-600"/>
+                       </button>
+                     ))}
+                   </motion.div>
+                 )}
+               </AnimatePresence>
+            </div>
+
+            {selectedRCA ? (
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="space-y-6"
+              >
+                {/* INDICADORES PRINCIPAIS */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* VOLUME */}
+                  <div className="bg-white rounded-[2.5rem] p-6 shadow-xl shadow-blue-900/5 border-2 border-blue-500/10">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center shadow-inner">
+                        <BarChart3 size={24}/>
+                      </div>
+                      <div>
+                        <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Volume Total</h4>
+                        <p className="text-xs font-black text-slate-800">{formatarMoeda(selectedRCA.volume)}</p>
+                      </div>
+                    </div>
+                    <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                       <motion.div 
+                         initial={{ width: 0 }}
+                         animate={{ width: `${Math.min(100, (selectedRCA.volume / 200000) * 100)}%` }}
+                         className="bg-blue-600 h-full rounded-full shadow-[0_0_10px_rgba(37,99,235,0.5)]"
+                       ></motion.div>
+                    </div>
+                  </div>
+
+                  {/* POSITIVAÇÃO */}
+                  <div className="bg-white rounded-[2.5rem] p-6 shadow-xl shadow-blue-900/5 border-2 border-green-500/10">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center shadow-inner">
+                        <CheckCircle2 size={24}/>
+                      </div>
+                      <div>
+                        <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Positivação</h4>
+                        <p className="text-xs font-black text-slate-800">{selectedRCA.positivacao} / {selectedRCA.pdvsTotal} PDVs</p>
+                      </div>
+                    </div>
+                    <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                       <motion.div 
+                         initial={{ width: 0 }}
+                         animate={{ width: `${Math.min(100, (selectedRCA.positivacao / selectedRCA.pdvsTotal) * 100)}%` }}
+                         className="bg-green-500 h-full rounded-full shadow-[0_0_10px_rgba(34,197,94,0.5)]"
+                       ></motion.div>
+                    </div>
                   </div>
                 </div>
-              )}
+
+                {/* BATALHAS BREAKDOWN */}
+                <div className="bg-white rounded-[2.5rem] p-8 shadow-xl shadow-blue-900/5 border-4 border-yellow-500/10 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-4">
+                        <Trophy size={48} className="text-yellow-500/10 -rotate-12"/>
+                    </div>
+                    
+                    <h3 className="text-sm font-black text-slate-800 uppercase tracking-widest mb-6 flex items-center gap-2">
+                        <span className="w-2 h-6 bg-yellow-500 rounded-full"></span>
+                        Status das Batalhas
+                    </h3>
+
+                    <div className="grid grid-cols-2 gap-4">
+                        {[
+                            { label: "Pó + Líq", value: selectedRCA.battles.poLiq, color: "blue" },
+                            { label: "CIF Especial", value: selectedRCA.battles.cif, color: "teal" },
+                            { label: "Maio + Ketchup", value: selectedRCA.battles.mayo, color: "red" },
+                            { label: "Amidos + Temp", value: selectedRCA.battles.amidos, color: "orange" }
+                        ].map((b, idx) => (
+                            <div key={idx} className="bg-slate-50 rounded-3xl p-4 border border-slate-100">
+                                <p className="text-[9px] font-black text-slate-400 uppercase mb-1">{b.label}</p>
+                                <div className="flex items-center justify-between">
+                                    <span className="text-xl font-black text-slate-800">{b.value}</span>
+                                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-sm font-black bg-${b.color}-100 text-${b.color}-600`}>
+                                        {Math.floor(b.value * 1.5)}%
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* PROJEÇÃO FINANCEIRA */}
+                <div className="bg-[#001E62] rounded-[3rem] p-8 text-white shadow-2xl relative overflow-hidden">
+                    <div className="absolute bottom-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mb-32 blur-3xl"></div>
+                    
+                    <div className="relative z-10">
+                        <div className="flex items-center justify-between mb-8">
+                            <div>
+                                <span className="text-[8px] font-black text-blue-400 uppercase tracking-[0.4em]">Remuneração Parcial</span>
+                                <h3 className="text-4xl font-black tracking-tighter text-green-400 drop-shadow-lg">
+                                    {formatarMoeda(3500 + (selectedRCA.volume * 0.02) + (selectedRCA.battles.poLiq * 10))}
+                                </h3>
+                            </div>
+                            <div className="bg-white/10 p-3 rounded-2xl backdrop-blur-md">
+                                <Sparkles className="text-yellow-400" size={24}/>
+                            </div>
+                        </div>
+
+                        <div className="space-y-3 bg-black/20 rounded-3xl p-6 backdrop-blur-sm border border-white/5">
+                            <div className="flex justify-between items-center">
+                                <span className="text-[10px] font-bold text-blue-200 uppercase tracking-widest">Salário Base + Fixo</span>
+                                <span className="text-xs font-black">R$ 2.500,00</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <span className="text-[10px] font-bold text-blue-200 uppercase tracking-widest">Comissão Estimada</span>
+                                <span className="text-xs font-black">{formatarMoeda(selectedRCA.volume * 0.02)}</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <span className="text-[10px] font-bold text-blue-200 uppercase tracking-widest">Premiação Batalhas</span>
+                                <span className="text-xs font-black">{formatarMoeda(selectedRCA.battles.poLiq * 10 + selectedRCA.battles.cif * 5)}</span>
+                            </div>
+                        </div>
+                        
+                        <p className="text-[8px] font-bold text-blue-300 uppercase italic mt-4 text-center opacity-60">
+                            * Valores aproximados baseados nos indicadores informados no sistema.
+                        </p>
+                    </div>
+                </div>
+                
+                <button 
+                  onClick={() => setSelectedRCA(null)}
+                  className="w-full py-5 bg-white border-2 border-slate-100 rounded-[2.5rem] text-slate-400 font-black uppercase text-xs tracking-widest hover:bg-slate-50 transition-all hover:text-slate-600"
+                >
+                  Limpar Pesquisa
+                </button>
+              </motion.div>
+            ) : (
+                <div className="bg-white rounded-[3rem] p-12 text-center border-2 border-dashed border-slate-200 flex flex-col items-center gap-4">
+                    <div className="w-20 h-20 bg-slate-50 text-slate-300 rounded-[2.5rem] flex items-center justify-center">
+                        <Search size={40}/>
+                    </div>
+                    <div>
+                        <h4 className="text-lg font-black text-slate-800 uppercase tracking-tight">Aguardando Identificação</h4>
+                        <p className="text-xs font-bold text-slate-400 max-w-[200px] mx-auto mt-1">
+                            Utilize a barra de busca acima para carregar seus indicadores diários.
+                        </p>
+                    </div>
+                </div>
+            )}
+            
+            {/* RODAPÉ FEEDBACK */}
+            <div className="bg-slate-50 rounded-[2.5rem] p-8 border-2 border-slate-100/50">
+               <div className="flex items-center gap-4 mb-4">
+                  <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center shadow-sm">
+                    <AlertCircle size={20}/>
+                  </div>
+                  <h4 className="text-[10px] font-black text-slate-800 uppercase tracking-widest italic">Atenção Importante</h4>
+               </div>
+               <p className="text-[10px] font-bold text-slate-500 leading-relaxed text-justify">
+                  Este painel é uma ferramenta de apoio para o RCA acompanhar seu desempenho prévio. Os dados oficiais são validados mensalmente pela equipe de inteligência comercial. Caso identifique alguma divergência, entre em contato com seu Supervisor.
+               </p>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       <footer className="fixed bottom-0 left-0 right-0 p-4 bg-[#001E62] text-white shadow-2xl z-50">
