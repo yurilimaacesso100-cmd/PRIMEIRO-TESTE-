@@ -28,9 +28,6 @@ const App = () => {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [passwordInput, setPasswordInput] = useState("");
   const [pendingAction, setPendingAction] = useState<'supervisor' | 'update_db' | null>(null);
-  const [isAppAuthenticated, setIsAppAuthenticated] = useState(false);
-  const [loginPass, setLoginPass] = useState("");
-  const APP_PASSWORD = "@Ymol6628";
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [headerData, setHeaderData] = useState({
@@ -468,53 +465,6 @@ const App = () => {
         <Loader2 size={48} className="text-blue-600 animate-spin mb-4" />
         <h2 className="text-xl font-black text-slate-800 uppercase tracking-tighter">Carregando Banco de Dados</h2>
         <p className="text-slate-500 text-sm mt-2">Sincronizando preços com o Google Sheets...</p>
-      </div>
-    );
-  }
-
-  if (!isAppAuthenticated) {
-    return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center p-6">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-white w-full max-w-sm rounded-[2.5rem] shadow-2xl p-8 text-center"
-        >
-          <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Lock size={32} />
-          </div>
-          <h2 className="text-xl font-black text-slate-800 mb-2 uppercase tracking-tight">BONIFICAÇÃO UNILEVER</h2>
-          <p className="text-slate-500 text-sm mb-8">Insira a senha de acesso para iniciar os cálculos.</p>
-          
-          <div className="space-y-4">
-            <input 
-              type="password"
-              placeholder="Senha de Acesso"
-              className="w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 outline-none focus:border-blue-500 text-center font-bold tracking-widest"
-              value={loginPass}
-              onChange={(e) => setLoginPass(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && loginPass === APP_PASSWORD && setIsAppAuthenticated(true)}
-            />
-            <button 
-              onClick={() => {
-                if (loginPass === APP_PASSWORD) {
-                  setIsAppAuthenticated(true);
-                } else {
-                   alert("Senha incorreta!");
-                }
-              }}
-              className="w-full py-4 bg-blue-600 text-white rounded-2xl font-black uppercase tracking-widest hover:bg-blue-700 transition-all active:scale-95 shadow-lg shadow-blue-500/20"
-            >
-              Acessar Sistema
-            </button>
-            <div className="mt-8 pt-6 border-t border-slate-100">
-              <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Aviso importante</p>
-              <p className="text-[11px] font-black text-red-600 uppercase leading-tight">
-                SOLICITE AO SEU GESTOR A VERSÃO PAGA DO APLICATIVO
-              </p>
-            </div>
-          </div>
-        </motion.div>
       </div>
     );
   }
