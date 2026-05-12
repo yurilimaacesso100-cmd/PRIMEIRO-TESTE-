@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ShoppingCart, Gift, Trash2, Plus, Share2, CheckCircle2, Search, Calculator, User, Briefcase, Users, RefreshCw, Loader2, Camera, FileText, Sparkles, AlertCircle, Lock, Clock, BarChart3, TrendingUp, Trophy } from 'lucide-react';
-import { GoogleGenAI } from "@google/genai";
+import { ShoppingCart, Gift, Trash2, Plus, Share2, CheckCircle2, Search, Calculator, User, Briefcase, Users, RefreshCw, Loader2, Camera, FileText, Sparkles, AlertCircle, Lock, Clock, BarChart3, TrendingUp, Trophy, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from "motion/react";
+import { RCA_METAS_DATA } from './data/rcaData';
 
 /**
  * BONIFICAÇÃO UNILEVER - v12.0
@@ -11,9 +11,23 @@ import { motion, AnimatePresence } from "motion/react";
 
 const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSu-AB7a5WEcbUwdqYrBbosDZMTXmEqBH-fPWxsairBggIpjz4XmmzXT76maDkCx3ewinpuLWW__-j0/pub?output=csv";
 
+const BATTLE_LABELS = {
+  HF: [
+    "AMIDOS + ARISCO 300G",
+    "CIF ESPECIALISTAS",
+    "MAIONESE + KETCHUP SQZ",
+    "SABAO PO + LIQ"
+  ],
+  BPC: [
+    "DOVE AERO M + F",
+    "ORAL + ENXAGUANTE",
+    "REXONA AERO + SEDA",
+    "SAB LIQ + BARRA"
+  ]
+};
+
 const App = () => {
   const [isSupervisorMode, setIsSupervisorMode] = useState(false);
-  const [isProcessing, setIsProcessing] = useState(false);
   const [isLoadingDB, setIsLoadingDB] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [bonusText, setBonusText] = useState("");
@@ -23,67 +37,44 @@ const App = () => {
   const [lastUpdate, setLastUpdate] = useState<string | null>(null);
   const [showStockModal, setShowStockModal] = useState<{ open: boolean, target: 'venda' | 'bonifica', uid: number | null }>({ open: false, target: 'venda', uid: null });
   const [stockSearchTerm, setStockSearchTerm] = useState("");
-  const [aiAnalysis, setAiAnalysis] = useState<string | null>(null);
-  const [supervisorSummary, setSupervisorSummary] = useState("");
-  const [showPasswordModal, setShowPasswordModal] = useState(false);
-  const [passwordInput, setPasswordInput] = useState("");
-  const [pendingAction, setPendingAction] = useState<'supervisor' | 'update_db' | 'metas' | null>(null);
   const [isMetasUnlocked, setIsMetasUnlocked] = useState(false);
+  const [isConfigExpanded, setIsConfigExpanded] = useState(false);
   const [activeTab, setActiveTab] = useState<'bonificacao' | 'metas'>('bonificacao');
   const [rcaSearchTerm, setRcaSearchTerm] = useState("");
   const [selectedRCA, setSelectedRCA] = useState<any>(null);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
 
-  const RCA_METAS_DATA = [
-    { id: "17139", name: "GEOVANE DA SILVA", region: "PAULO RAMOS - MA", volume: 95000, positivacao: 45, pdvsTotal: 120, battles: { poLiq: 30, cif: 25, mayo: 20, amidos: 23 } },
-    { id: "15291", name: "ROSIMARIA CRISTINA", region: "COROATA - MA", volume: 150000, positivacao: 75, pdvsTotal: 120, battles: { poLiq: 36, cif: 30, mayo: 26, amidos: 25 } },
-    { id: "31271", name: "MARCELO V DE SOUSA", region: "PERITORO - MA", volume: 65000, positivacao: 38, pdvsTotal: 120, battles: { poLiq: 22, cif: 23, mayo: 17, amidos: 20 } },
-    { id: "17233", name: "ANTONIO ALVES", region: "CHAPADINHA - MA", volume: 170000, positivacao: 65, pdvsTotal: 120, battles: { poLiq: 34, cif: 30, mayo: 23, amidos: 25 } },
-    { id: "29436", name: "CLEIDIANEÂ SOUSA", region: "TIMONÂ - MA", volume: 145000, positivacao: 80, pdvsTotal: 120, battles: { poLiq: 38, cif: 32, mayo: 26, amidos: 26 } },
-    { id: "36166", name: "LAYSSE SOUSA", region: "BOM LURAGÂ - MA", volume: 80000, positivacao: 43, pdvsTotal: 120, battles: { poLiq: 28, cif: 25, mayo: 20, amidos: 21 } },
-    { id: "20305", name: "GRECY KELLY RIBEIRO", region: "COELHO NETO - MA", volume: 85000, positivacao: 50, pdvsTotal: 120, battles: { poLiq: 33, cif: 25, mayo: 20, amidos: 24 } },
-    { id: "18593", name: "JOCIONE", region: "MATOES - MA", volume: 90000, positivacao: 60, pdvsTotal: 130, battles: { poLiq: 36, cif: 30, mayo: 24, amidos: 25 } },
-    { id: "12252", name: "DOMINGAS CARVALHO", region: "CAXIAS 1 - MA", volume: 155000, positivacao: 53, pdvsTotal: 120, battles: { poLiq: 35, cif: 25, mayo: 20, amidos: 25 } },
-    { id: "26700", name: "JANAINA LIMAS GOMES", region: "CODO 2Â - MA", volume: 95000, positivacao: 33, pdvsTotal: 110, battles: { poLiq: 20, cif: 25, mayo: 20, amidos: 23 } },
-    { id: "23427", name: "MARYANA MONTELES", region: "MATA ROMA - MA", volume: 68000, positivacao: 35, pdvsTotal: 100, battles: { poLiq: 25, cif: 22, mayo: 20, amidos: 20 } },
-    { id: "37032", name: "ISRAEL", region: "SANTA QUITERIA - MA", volume: 75000, positivacao: 45, pdvsTotal: 120, battles: { poLiq: 30, cif: 25, mayo: 20, amidos: 23 } },
-    { id: "18599", name: "DOUGLAS", region: "SENADOR ALEXANDRE COSTA - MA", volume: 130000, positivacao: 55, pdvsTotal: 120, battles: { poLiq: 32, cif: 25, mayo: 22, amidos: 25 } },
-    { id: "37473", name: "EDSON BORGES DA SILVA", region: "LAGO DA PEDRA - MA", volume: 75000, positivacao: 42, pdvsTotal: 115, battles: { poLiq: 36, cif: 25, mayo: 20, amidos: 23 } },
-  ];
-
-  const filteredRCAs = rcaSearchTerm.trim() === "" 
-    ? [] 
-    : RCA_METAS_DATA.filter(rca => 
+  const filteredRCAs = RCA_METAS_DATA.filter(rca => 
         rca.id.includes(rcaSearchTerm) || 
         rca.name.toLowerCase().includes(rcaSearchTerm.toLowerCase())
       );
 
   const [metasData, setMetasData] = useState({
-    volume: "1250",
-    positivacao: "85",
-    PDVsTotal: "120",
-    batalhas: "450.50"
+    volume: "",
+    positivacao: "",
+    PDVsTotal: "",
+    batalhas: ""
   });
-  const APP_PASSWORD = "123456789"; 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [headerData, setHeaderData] = useState({
-    equipe: "31 COCAIS",
-    supervisor: "YURI LIMA",
-    cd: "CD 87",
-    vendedor: "19855 YURI LIMA",
-    cliente: "50501 ALDERICE V CUNHA",
-    pedido: "318021-1",
-    prazo: "32"
+    equipe: "",
+    supervisor: "",
+    cd: "",
+    vendedor: "",
+    cliente: "",
+    pedido: "",
+    prazo: ""
   });
 
   const [blocos, setBlocos] = useState([
     {
       uid: Date.now(),
-      vendaCod: "524052",
+      vendaCod: "",
       vendaQtd: '',
       vendaPNota: '',
-      bonificaId: "524052",
-      inputBuscaBonifica: "524052",
+      bonificaId: "",
+      inputBuscaBonifica: "",
       bonificaPrecoPraticado: '',
       reportedBonus: '',
       res: { saldo: 0, bonus: 0, valorBonificado: 0, rentabilidade: 0 }
@@ -204,11 +195,11 @@ const App = () => {
   const addBloco = () => {
     setBlocos([...blocos, {
       uid: Date.now() + Math.random(),
-      vendaCod: "524052",
+      vendaCod: "",
       vendaQtd: '',
       vendaPNota: '',
-      bonificaId: "524052",
-      inputBuscaBonifica: "524052",
+      bonificaId: "",
+      inputBuscaBonifica: "",
       bonificaPrecoPraticado: '',
       reportedBonus: '',
       res: { saldo: 0, bonus: 0, valorBonificado: 0, rentabilidade: 0 }
@@ -312,8 +303,6 @@ const App = () => {
       });
       setBonusText("");
       setOrderImage(null);
-      setAiAnalysis(null);
-      setSupervisorSummary("");
       setError(null);
     }
   };
@@ -357,148 +346,15 @@ const App = () => {
     handleImageUpload(e);
   };
 
-  const processValidation = async () => {
-    if (!orderImage || !bonusText) {
-      setError("Por favor, insira a imagem do pedido e o texto de bonificação.");
-      return;
-    }
-
-    setIsProcessing(true);
-    setAiAnalysis(null);
-    setError(null);
-
-    try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-      
-      const imagePart = {
-        inlineData: {
-          mimeType: "image/png",
-          data: orderImage.split(',')[1],
-        }
-      };
-
-      const textPart = {
-        text: `Você é um Supervisor de Vendas especialista em auditoria de pedidos.
-        Analise a imagem do pedido de vendas e o texto de bonificação abaixo para verificar se há inconsistências.
-        
-        Texto de Bonificação:
-        ${bonusText}
-        
-        Instruções de Extração e Auditoria:
-        1. CABEÇALHO: Identifique Equipe, Supervisor, CD, Vendedor, Cliente e Pedido.
-        2. ITENS: Extraia os códigos, quantidades e preços da imagem.
-        3. CONFERÊNCIA: Verifique se o que o vendedor escreveu no texto (bonificação informada) faz sentido com o que está na imagem do pedido.
-        4. ANÁLISE: No campo 'analysis', forneça uma frase curta dizendo se o pedido parece correto ou se há alguma divergência clara (ex: 'Pedido OK', ou 'Atenção: Quantidade no texto difere da imagem').
-        
-        Formato de Saída (JSON APENAS):
-        {
-          "header": {
-            "equipe": "string",
-            "supervisor": "string",
-            "cd": "string",
-            "vendedor": "string",
-            "cliente": "string",
-            "pedido": "string"
-          },
-          "items": [
-            {
-              "vendaCod": "codigo_venda",
-              "vendaQtd": "quantidade_total_venda",
-              "vendaPNota": "preco_unitario",
-              "bonificaId": "codigo_bonus",
-              "reportedBonus": "quantidade_bonus"
-            }
-          ],
-          "analysis": "Sua análise aqui"
-        }
-        
-        Importante: Retorne apenas o JSON.`,
-      };
-
-      const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: [{ parts: [imagePart, textPart] }],
-        config: { responseMimeType: "application/json" }
-      });
-
-      const result = JSON.parse(response.text || "{}");
-      
-      if (result.analysis) {
-        setAiAnalysis(result.analysis);
-      }
-
-      if (result.header) {
-        setHeaderData(prev => ({
-          ...prev,
-          equipe: result.header.equipe || prev.equipe,
-          supervisor: result.header.supervisor || prev.supervisor,
-          cd: result.header.cd || prev.cd,
-          vendedor: result.header.vendedor || prev.vendedor,
-          cliente: result.header.cliente || prev.cliente,
-          pedido: result.header.pedido || prev.pedido,
-        }));
-      }
-
-      if (result.items && result.items.length > 0) {
-        const newBlocos = result.items.map((item: any) => ({
-          uid: Math.random(),
-          vendaCod: item.vendaCod || "524052",
-          vendaQtd: item.vendaQtd || '',
-          vendaPNota: item.vendaPNota || '',
-          bonificaId: item.bonificaId || "2012",
-          inputBuscaBonifica: item.bonificaId || "2012",
-          reportedBonus: item.reportedBonus || '',
-          res: { saldo: 0, bonus: 0, valorBonificado: 0, rentabilidade: 0 }
-        }));
-        setBlocos(newBlocos);
-      } else {
-        setError("Não foi possível extrair dados suficientes da imagem/texto.");
-      }
-
-    } catch (err) {
-      console.error(err);
-      setError("Erro ao processar validação. Verifique a conexão e tente novamente.");
-    } finally {
-      setIsProcessing(false);
-    }
-  };
 
   const handleSupervisorToggle = () => {
-    if (isSupervisorMode) {
-      setIsSupervisorMode(false);
-    } else {
-      setPendingAction('supervisor');
-      setShowPasswordModal(true);
-    }
+    setIsSupervisorMode(!isSupervisorMode);
   };
 
   const handleUpdateClick = () => {
-    setPendingAction('update_db');
-    setShowPasswordModal(true);
+    fetchData();
   };
 
-  const confirmPassword = () => {
-    const isMasterPass = passwordInput === "SuperUnilever@2026";
-    const isMetasPass = pendingAction === 'metas' && passwordInput === "Vendas@2026";
-
-    if (isMasterPass || isMetasPass) {
-      if (pendingAction === 'supervisor') {
-        setIsSupervisorMode(true);
-      } else if (pendingAction === 'update_db') {
-        fetchData();
-      } else if (pendingAction === 'metas') {
-        setIsMetasUnlocked(true);
-        setActiveTab('metas');
-      }
-      setShowPasswordModal(false);
-      setPasswordInput("");
-      setPendingAction(null);
-      setError(null);
-    } else {
-      setError("Senha incorreta!");
-      setTimeout(() => setError(null), 3000);
-    }
-  };
 
 
   if (isLoadingDB) {
@@ -526,22 +382,13 @@ const App = () => {
           </button>
           <button 
             onClick={() => {
-              if (isMetasUnlocked) {
-                setActiveTab('metas');
-              } else {
-                setPendingAction('metas');
-                setShowPasswordModal(true);
-              }
+              setIsMetasUnlocked(true);
+              setActiveTab('metas');
             }}
             className={`flex-1 py-4 flex flex-col items-center gap-1 transition-all border-b-2 ${activeTab === 'metas' ? 'border-blue-600 text-blue-600' : 'border-transparent text-slate-400'}`}
           >
             <div className="relative">
               <TrendingUp size={18}/>
-              {!isMetasUnlocked && (
-                <div className="absolute -top-1 -right-1 bg-slate-900 border border-white rounded-full p-0.5">
-                  <Lock size={8} className="text-white" />
-                </div>
-              )}
             </div>
             <span className="text-[8px] font-black uppercase tracking-widest">Metas RCA</span>
           </button>
@@ -552,111 +399,138 @@ const App = () => {
         {activeTab === 'bonificacao' ? (
           <>
             <section className="bg-white rounded-[2.5rem] shadow-xl shadow-blue-900/5 border-2 border-blue-500/20 overflow-hidden">
-          <div className="bg-slate-50 p-4 border-b border-slate-100 flex items-center justify-between">
+          <div 
+            onClick={() => setIsConfigExpanded(!isConfigExpanded)}
+            className="bg-slate-50 p-4 border-b border-slate-100 flex items-center justify-between cursor-pointer hover:bg-slate-100 transition-colors"
+          >
             <div className="flex items-center gap-2">
               <Users size={16} className="text-blue-800"/>
               <h2 className="text-[10px] font-black text-slate-600 uppercase tracking-widest leading-none">Identificação do Envio</h2>
             </div>
-            <button onClick={limparTudo} className="text-[10px] font-black text-red-600 uppercase hover:opacity-70 transition-opacity">LIMPAR</button>
+            <div className="flex items-center gap-2">
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  limparTudo();
+                }} 
+                className="text-[10px] font-black text-red-600 uppercase hover:opacity-70 transition-opacity"
+              >
+                LIMPAR
+              </button>
+              {isConfigExpanded ? <ChevronUp size={16} className="text-slate-400" /> : <ChevronDown size={16} className="text-slate-400" />}
+            </div>
           </div>
-          {!isSupervisorMode ? (
-            <div className="p-6 space-y-4">
-               <div className="grid grid-cols-2 gap-3">
-                 <div className="space-y-1">
-                   <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Equipe</label>
-                   <input 
-                    className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200" 
-                    value={headerData.equipe} 
-                    onChange={e => setHeaderData({...headerData, equipe: e.target.value})} 
-                   />
-                 </div>
-                 <div className="space-y-1">
-                   <label className="text-[8px] font-black text-slate-400 uppercase ml-1">C.D.</label>
-                   <select 
-                      className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200 outline-none focus:ring-2 ring-blue-500/20 appearance-none" 
-                      value={headerData.cd} 
-                      onChange={e => setHeaderData({...headerData, cd: e.target.value})}
-                    >
-                      <option value="CD 87">CD 87</option>
-                      <option value="CD 116">CD 116</option>
-                    </select>
-                 </div>
-               </div>
+          <AnimatePresence>
+            {isConfigExpanded && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                className="overflow-hidden"
+              >
+                {!isSupervisorMode ? (
+                  <div className="p-6 space-y-4">
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-1">
+                        <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Equipe</label>
+                        <input 
+                          className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200" 
+                          value={headerData.equipe} 
+                          onChange={e => setHeaderData({...headerData, equipe: e.target.value})} 
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-[8px] font-black text-slate-400 uppercase ml-1">C.D.</label>
+                        <select 
+                            className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200 outline-none focus:ring-2 ring-blue-500/20 appearance-none" 
+                            value={headerData.cd} 
+                            onChange={e => setHeaderData({...headerData, cd: e.target.value})}
+                          >
+                            <option value="87">87</option>
+                            <option value="116">116</option>
+                          </select>
+                      </div>
+                    </div>
 
-               <div className="space-y-1">
-                 <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><User size={10}/> CLIENTE (CÓDIGO E NOME)</label>
-                 <input 
-                  className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20" 
-                  placeholder="EX: 50501-ALDERICE V CUNHA"
-                  value={headerData.cliente} 
-                  onChange={e => setHeaderData({...headerData, cliente: e.target.value})} 
-                 />
-               </div>
+                    <div className="space-y-1">
+                      <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><User size={10}/> CLIENTE (CÓDIGO E NOME)</label>
+                      <input 
+                        className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20" 
+                        placeholder="EX: 50501-ALDERICE V CUNHA"
+                        value={headerData.cliente} 
+                        onChange={e => setHeaderData({...headerData, cliente: e.target.value})} 
+                      />
+                    </div>
 
-               <div className="space-y-1">
-                 <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><Briefcase size={10}/> RCA (CÓDIGO E NOME)</label>
-                 <input 
-                  className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20" 
-                  placeholder="EX: 19855-YURI LIMA-TUTOIA"
-                  value={headerData.vendedor} 
-                  onChange={e => setHeaderData({...headerData, vendedor: e.target.value})} 
-                 />
-               </div>
+                    <div className="space-y-1">
+                      <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><Briefcase size={10}/> RCA (CÓDIGO E NOME)</label>
+                      <input 
+                        className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20" 
+                        placeholder="EX: 19855-YURI LIMA-TUTOIA"
+                        value={headerData.vendedor} 
+                        onChange={e => setHeaderData({...headerData, vendedor: e.target.value})} 
+                      />
+                    </div>
 
-               <div className="space-y-1">
-                 <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><Calculator size={10}/> Nº DO PEDIDO</label>
-                 <input 
-                  className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20" 
-                  placeholder="Ex: 318021-1"
-                  value={headerData.pedido} 
-                  onChange={e => setHeaderData({...headerData, pedido: e.target.value})} 
-                 />
-               </div>
+                    <div className="space-y-1">
+                      <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><Calculator size={10}/> Nº DO PEDIDO</label>
+                      <input 
+                        className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20" 
+                        placeholder="Ex: 318021-1"
+                        value={headerData.pedido} 
+                        onChange={e => setHeaderData({...headerData, pedido: e.target.value})} 
+                      />
+                    </div>
 
-               <div className="grid grid-cols-2 gap-3">
-                 <div className="space-y-1">
-                   <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Supervisor</label>
-                   <input 
-                    className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200" 
-                    value={headerData.supervisor} 
-                    onChange={e => setHeaderData({...headerData, supervisor: e.target.value})} 
-                   />
-                 </div>
-                 <div className="space-y-1">
-                   <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Prazo</label>
-                   <select 
-                     className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200 outline-none focus:ring-2 ring-blue-500/20 appearance-none" 
-                     value={headerData.prazo} 
-                     onChange={e => setHeaderData({...headerData, prazo: e.target.value})}
-                   >
-                     <option value="32">1 - 32 DIAS</option>
-                     <option value="22/32/42">2 - 22/32/42 DIAS</option>
-                   </select>
-                 </div>
-               </div>
-            </div>
-          ) : (
-            <div className="p-4 bg-blue-50/30">
-              <div className="flex flex-wrap gap-x-6 gap-y-2 text-[10px] font-bold text-slate-600">
-                <div className="flex gap-2">
-                  <span className="text-slate-400 uppercase">Vendedor:</span>
-                  <span className="text-blue-900 uppercase">{headerData.vendedor || "Não informado"}</span>
-                </div>
-                <div className="flex gap-2">
-                  <span className="text-slate-400 uppercase">Cliente:</span>
-                  <span className="text-blue-900 uppercase">{headerData.cliente || "Não informado"}</span>
-                </div>
-                <div className="flex gap-2">
-                  <span className="text-slate-400 uppercase">Pedido:</span>
-                  <span className="text-blue-900 uppercase">{headerData.pedido || "---"}</span>
-                </div>
-                <div className="flex gap-2">
-                  <span className="text-slate-400 uppercase">Prazo:</span>
-                  <span className="text-blue-900 uppercase">{headerData.prazo || "---"}</span>
-                </div>
-              </div>
-            </div>
-          )}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-1">
+                        <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Supervisor</label>
+                        <input 
+                          className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200" 
+                          value={headerData.supervisor} 
+                          onChange={e => setHeaderData({...headerData, supervisor: e.target.value})} 
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Prazo</label>
+                        <select 
+                          className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200 outline-none focus:ring-2 ring-blue-500/20 appearance-none" 
+                          value={headerData.prazo} 
+                          onChange={e => setHeaderData({...headerData, prazo: e.target.value})}
+                        >
+                          <option value="32">1 - 32 DIAS</option>
+                          <option value="22/32/42">2 - 22/32/42 DIAS</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="p-4 bg-blue-50/30">
+                    <div className="flex flex-wrap gap-x-6 gap-y-2 text-[10px] font-bold text-slate-600">
+                      <div className="flex gap-2">
+                        <span className="text-slate-400 uppercase">Vendedor:</span>
+                        <span className="text-blue-900 uppercase">{headerData.vendedor || "Não informado"}</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <span className="text-slate-400 uppercase">Cliente:</span>
+                        <span className="text-blue-900 uppercase">{headerData.cliente || "Não informado"}</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <span className="text-slate-400 uppercase">Pedido:</span>
+                        <span className="text-blue-900 uppercase">{headerData.pedido || "---"}</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <span className="text-slate-400 uppercase">Prazo:</span>
+                        <span className="text-blue-900 uppercase">{headerData.prazo || "---"}</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </section>
 
         {isSupervisorMode && (
           <div className="space-y-4">
@@ -690,18 +564,6 @@ const App = () => {
               </div>
 
               <div className="p-6 space-y-5">
-                {aiAnalysis && (
-                  <div className="bg-blue-50 border border-blue-100 p-4 rounded-2xl">
-                    <div className="flex items-center gap-2 mb-1 text-blue-800">
-                      <Sparkles size={14}/>
-                      <span className="text-[10px] font-black uppercase tracking-widest">Análise da IA</span>
-                    </div>
-                    <p className="text-xs font-bold text-blue-900 leading-relaxed italic">
-                      "{aiAnalysis}"
-                    </p>
-                  </div>
-                )}
-
                 <div className="grid grid-cols-2 gap-4">
                   {/* UPLOAD DE IMAGEM */}
                   <div 
@@ -769,44 +631,56 @@ const App = () => {
                   </div>
                 </div>
 
-                {/* CAMPO DE DETALHAMENTO RESUMIDO */}
-                <div className="bg-slate-50 rounded-2xl border border-slate-200 p-4">
-                  <div className="flex items-center gap-2 mb-2 text-slate-500">
-                    <FileText size={14}/>
-                    <span className="text-[9px] font-black uppercase tracking-widest">Detalhamento Resumido da Conferência</span>
-                  </div>
-                  <textarea 
-                    className="w-full bg-transparent text-[11px] font-bold text-slate-700 outline-none resize-none min-h-[60px] placeholder:text-slate-300"
-                    placeholder="Descreva o que está sendo feito durante esta conferência..."
-                    value={supervisorSummary}
-                    onChange={(e) => setSupervisorSummary(e.target.value)}
-                  />
-                </div>
+                {/* STATUS DAS BATALHAS (REPLACING OBSERVATIONS) */}
+                {(() => {
+                  const currentRCAId = headerData.vendedor.split('-')[0];
+                  const rca = RCA_METAS_DATA.find(r => r.id === currentRCAId);
+                  if (!rca) return null;
 
-                {error && (
-                  <div className="bg-red-50 border border-red-100 p-3 rounded-2xl flex items-center gap-3 text-red-600 animate-in fade-in slide-in-from-left duration-300">
-                    <AlertCircle size={16}/>
-                    <span className="text-[10px] font-bold uppercase">{error}</span>
-                  </div>
-                )}
+                  const labels = rca.team === 'BPC' ? BATTLE_LABELS.BPC : BATTLE_LABELS.HF;
+                  
+                  // Mapeamento dinâmico baseado no time
+                  const battleEntries = rca.team === 'BPC' ? [
+                    { label: labels[0], data: rca.battles.dove },
+                    { label: labels[1], data: rca.battles.oral },
+                    { label: labels[2], data: rca.battles.rexona },
+                    { label: labels[3], data: rca.battles.sabLiq }
+                  ] : [
+                    { label: labels[0], data: rca.battles.amidos },
+                    { label: labels[1], data: rca.battles.cif },
+                    { label: labels[2], data: rca.battles.mayo },
+                    { label: labels[3], data: rca.battles.poLiq }
+                  ];
 
-                <button 
-                  onClick={processValidation}
-                  disabled={isProcessing}
-                  className={`w-full py-4 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-3 transition-all shadow-lg border-b-4 ${isProcessing ? 'bg-slate-100 text-slate-400 border-slate-200' : 'bg-blue-600 text-white border-blue-800 hover:bg-blue-700 active:scale-95'}`}
-                >
-                  {isProcessing ? (
-                    <>
-                      <Loader2 size={18} className="animate-spin"/>
-                      <span>Processando...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles size={18}/>
-                      <span>Validar Pedido</span>
-                    </>
-                  )}
-                </button>
+                  return (
+                    <div className="bg-slate-50 rounded-2xl border border-slate-200 p-4">
+                      <div className="flex items-center gap-2 mb-3 text-blue-800">
+                        <Trophy size={14}/>
+                        <span className="text-[9px] font-black uppercase tracking-widest">Status das Batalhas do RCA</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2">
+                        {battleEntries.map((battle, idx) => {
+                          const alc = battle.data.meta > 0 ? (battle.data.realizado / battle.data.meta) * 100 : 0;
+                          return (
+                            <div key={idx} className="p-2 bg-white rounded-xl border border-slate-100 flex flex-col gap-1">
+                              <span className="text-[7px] font-black text-slate-400 uppercase leading-none truncate">{battle.label}</span>
+                              <div className="flex items-baseline justify-between">
+                                <span className="text-[10px] font-black text-blue-900">{battle.data.realizado}/{battle.data.meta}</span>
+                                <span className={`text-[8px] font-black ${alc >= 100 ? 'text-green-600' : 'text-blue-500'}`}>{battle.data.reach || alc.toFixed(0) + '%'}</span>
+                              </div>
+                              <div className="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
+                                <div 
+                                  className={`h-full transition-all ${alc >= 100 ? 'bg-green-500' : 'bg-blue-500'}`} 
+                                  style={{ width: `${Math.min(alc, 100)}%` }}
+                                />
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })()}
               </div>
             </motion.div>
           </div>
@@ -1028,6 +902,7 @@ const App = () => {
           </AnimatePresence>
         </div>
 
+
         {!isSupervisorMode && (
           <button 
             onClick={addBloco}
@@ -1036,25 +911,6 @@ const App = () => {
             <Plus size={16}/> Adicionar Novo Bloco
           </button>
         )}
-
-        {/* PREVIEW DA MENSAGEM */}
-        <div className="bg-white rounded-[2.5rem] shadow-sm border border-slate-200 overflow-hidden mt-6">
-          <div className="bg-slate-50 p-4 border-b border-slate-100 flex items-center gap-2">
-            <Share2 size={14} className="text-blue-600"/>
-            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Resumo da Solicitação</span>
-          </div>
-          <div className="p-6">
-            <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
-              <pre className="text-[10px] font-bold text-slate-600 whitespace-pre-wrap leading-relaxed">
-                {getGeneratedMessage()}
-              </pre>
-            </div>
-            <p className="text-[8px] font-bold text-slate-400 mt-3 uppercase text-center italic">
-              Esta é a mensagem que será enviada ao supervisor para validação.
-            </p>
-          </div>
-        </div>
-      </section>
     </>
   ) : (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12">
@@ -1084,6 +940,8 @@ const App = () => {
                  placeholder="Pesquise seu Código ou Nome..."
                  className="w-full bg-white border-2 border-slate-100 rounded-[2rem] py-5 pl-14 pr-6 outline-none focus:border-blue-600 shadow-xl shadow-blue-900/5 text-sm font-bold transition-all"
                  value={rcaSearchTerm}
+                 onFocus={() => setIsSearchFocused(true)}
+                 onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
                  onChange={(e) => {
                     setRcaSearchTerm(e.target.value);
                     if (e.target.value === "") setSelectedRCA(null);
@@ -1091,7 +949,7 @@ const App = () => {
                />
                
                <AnimatePresence>
-                 {filteredRCAs.length > 0 && !selectedRCA && (
+                 {(isSearchFocused || rcaSearchTerm.trim() !== "") && filteredRCAs.length > 0 && !selectedRCA && (
                    <motion.div 
                      initial={{ opacity: 0, y: -10 }}
                      animate={{ opacity: 1, y: 0 }}
@@ -1133,16 +991,22 @@ const App = () => {
                       <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center shadow-inner">
                         <BarChart3 size={24}/>
                       </div>
-                      <div>
-                        <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Volume Total</h4>
-                        <p className="text-xs font-black text-slate-800">{formatarMoeda(selectedRCA.volume)}</p>
+                      <div className="flex flex-col">
+                        <div className="flex justify-between items-center w-full">
+                          <h4 className="text-[7px] font-black text-slate-400 uppercase tracking-widest">OBJETIVO VOLUME</h4>
+                          <span className="text-[9px] font-black text-slate-800">{formatarMoeda(selectedRCA.metaVolume)}</span>
+                        </div>
+                        <div className="flex justify-between items-center w-full mt-1">
+                          <h4 className="text-[7px] font-black text-blue-600 uppercase tracking-widest">VOLUME REALIZADO</h4>
+                          <span className="text-[9px] font-black text-blue-800">{formatarMoeda(selectedRCA.volume)}</span>
+                        </div>
                       </div>
                     </div>
                     <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                        <motion.div 
                          initial={{ width: 0 }}
-                         animate={{ width: `${Math.min(100, (selectedRCA.volume / 200000) * 100)}%` }}
-                         className="bg-blue-600 h-full rounded-full shadow-[0_0_10px_rgba(37,99,235,0.5)]"
+                         animate={{ width: `${Math.min(100, (selectedRCA.volume / selectedRCA.metaVolume) * 100)}%` }}
+                         className={`h-full rounded-full shadow-lg ${selectedRCA.volume >= selectedRCA.metaVolume ? 'bg-green-500 shadow-green-500/50' : 'bg-blue-600 shadow-blue-500/50'}`}
                        ></motion.div>
                     </div>
                   </div>
@@ -1153,9 +1017,15 @@ const App = () => {
                       <div className="w-12 h-12 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center shadow-inner">
                         <CheckCircle2 size={24}/>
                       </div>
-                      <div>
-                        <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Positivação</h4>
-                        <p className="text-xs font-black text-slate-800">{selectedRCA.positivacao} / {selectedRCA.pdvsTotal} PDVs</p>
+                      <div className="flex flex-col">
+                        <div className="flex justify-between items-center w-full">
+                          <h4 className="text-[7px] font-black text-slate-400 uppercase tracking-widest">OBJETIVO POSITIVAÇÃO</h4>
+                          <span className="text-[9px] font-black text-slate-800">{selectedRCA.pdvsTotal} PDVs</span>
+                        </div>
+                        <div className="flex justify-between items-center w-full mt-1">
+                          <h4 className="text-[7px] font-black text-green-600 uppercase tracking-widest">REALIZADO POSITIVAÇÃO</h4>
+                          <span className="text-[9px] font-black text-green-800">{selectedRCA.positivacao} PDVs</span>
+                        </div>
                       </div>
                     </div>
                     <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
@@ -1180,22 +1050,50 @@ const App = () => {
                     </h3>
 
                     <div className="grid grid-cols-2 gap-4">
-                        {[
-                            { label: "Pó + Líq", value: selectedRCA.battles.poLiq, color: "blue" },
-                            { label: "CIF Especial", value: selectedRCA.battles.cif, color: "teal" },
-                            { label: "Maio + Ketchup", value: selectedRCA.battles.mayo, color: "red" },
-                            { label: "Amidos + Temp", value: selectedRCA.battles.amidos, color: "orange" }
-                        ].map((b, idx) => (
-                            <div key={idx} className="bg-slate-50 rounded-3xl p-4 border border-slate-100">
-                                <p className="text-[9px] font-black text-slate-400 uppercase mb-1">{b.label}</p>
-                                <div className="flex items-center justify-between">
-                                    <span className="text-xl font-black text-slate-800">{b.value}</span>
-                                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-sm font-black bg-${b.color}-100 text-${b.color}-600`}>
-                                        {Math.floor(b.value * 1.5)}%
-                                    </div>
+                        {(() => {
+                           const labels = selectedRCA.team === 'BPC' ? BATTLE_LABELS.BPC : BATTLE_LABELS.HF;
+                           
+                           // Mapeamento dinâmico baseado no time
+                           const battleEntries = selectedRCA.team === 'BPC' ? [
+                             { label: labels[0], data: selectedRCA.battles.dove },
+                             { label: labels[1], data: selectedRCA.battles.oral },
+                             { label: labels[2], data: selectedRCA.battles.rexona },
+                             { label: labels[3], data: selectedRCA.battles.sabLiq }
+                           ] : [
+                             { label: labels[0], data: selectedRCA.battles.amidos },
+                             { label: labels[1], data: selectedRCA.battles.cif },
+                             { label: labels[2], data: selectedRCA.battles.mayo },
+                             { label: labels[3], data: selectedRCA.battles.poLiq }
+                           ];
+
+                           return battleEntries.map((b, idx) => (
+                             <div key={idx} className="bg-slate-50 rounded-3xl p-4 border border-slate-100 flex flex-col gap-2">
+                                <div>
+                                  <p className="text-[9px] font-black text-slate-400 uppercase mb-1">{b.label}</p>
+                                  <div className="flex justify-between text-[7px] font-bold uppercase mb-1">
+                                    <span className="text-slate-500">OBJETIVO: {b.data.meta}</span>
+                                    <span className="text-blue-600">POS FAT: {b.data.realizado}</span>
+                                  </div>
+                                  <div className="flex items-center justify-between">
+                                      <span className="text-xl font-black text-slate-800">{b.data.realizado}</span>
+                                      <div className={`px-2 h-6 rounded-lg flex items-center justify-center text-[9px] font-black bg-${idx % 2 === 0 ? 'blue' : 'emerald'}-100 text-${idx % 2 === 0 ? 'blue' : 'emerald'}-600`}>
+                                          ALCA%: {b.data.reach || "0,00%"}
+                                      </div>
+                                  </div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-1 text-[7px] font-bold uppercase text-slate-400 pt-2 border-t border-slate-200/60">
+                                  <div className="flex flex-col">
+                                    <span>Pos Tela</span>
+                                    <span className="text-slate-600">{b.data.posTela}</span>
+                                  </div>
+                                  <div className="flex flex-col text-right">
+                                    <span>Pos Total</span>
+                                    <span className="text-slate-600">{b.data.posTotal}</span>
+                                  </div>
                                 </div>
                             </div>
-                        ))}
+                          ))
+                        })()}
                     </div>
                 </div>
 
@@ -1203,38 +1101,60 @@ const App = () => {
                 <div className="bg-[#001E62] rounded-[3rem] p-8 text-white shadow-2xl relative overflow-hidden">
                     <div className="absolute bottom-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mb-32 blur-3xl"></div>
                     
-                    <div className="relative z-10">
-                        <div className="flex items-center justify-between mb-8">
-                            <div>
-                                <span className="text-[8px] font-black text-blue-400 uppercase tracking-[0.4em]">Remuneração Parcial</span>
-                                <h3 className="text-4xl font-black tracking-tighter text-green-400 drop-shadow-lg">
-                                    {formatarMoeda(3500 + (selectedRCA.volume * 0.02) + (selectedRCA.battles.poLiq * 10))}
-                                </h3>
-                            </div>
-                            <div className="bg-white/10 p-3 rounded-2xl backdrop-blur-md">
-                                <Sparkles className="text-yellow-400" size={24}/>
-                            </div>
-                        </div>
-
-                        <div className="space-y-3 bg-black/20 rounded-3xl p-6 backdrop-blur-sm border border-white/5">
-                            <div className="flex justify-between items-center">
-                                <span className="text-[10px] font-bold text-blue-200 uppercase tracking-widest">Salário Base + Fixo</span>
-                                <span className="text-xs font-black">R$ 2.500,00</span>
-                            </div>
-                            <div className="flex justify-between items-center">
-                                <span className="text-[10px] font-bold text-blue-200 uppercase tracking-widest">Comissão Estimada</span>
-                                <span className="text-xs font-black">{formatarMoeda(selectedRCA.volume * 0.02)}</span>
-                            </div>
-                            <div className="flex justify-between items-center">
-                                <span className="text-[10px] font-bold text-blue-200 uppercase tracking-widest">Premiação Batalhas</span>
-                                <span className="text-xs font-black">{formatarMoeda(selectedRCA.battles.poLiq * 10 + selectedRCA.battles.cif * 5)}</span>
-                            </div>
-                        </div>
+                    {(() => {
+                        const comissionBase = selectedRCA.volume * 0.01;
+                        const reachGoalBonus = selectedRCA.volume >= selectedRCA.metaVolume ? selectedRCA.volume * 0.005 : 0;
+                        const comissionVolume = comissionBase + reachGoalBonus;
                         
-                        <p className="text-[8px] font-bold text-blue-300 uppercase italic mt-4 text-center opacity-60">
-                            * Valores aproximados baseados nos indicadores informados no sistema.
-                        </p>
-                    </div>
+                        // Premiação dinâmica baseada no time
+                        let premBat = 0;
+                        if (selectedRCA.team === 'BPC') {
+                          premBat = ((selectedRCA.battles.dove?.realizado || 0) * 10) + 
+                                    ((selectedRCA.battles.oral?.realizado || 0) * 5) + 
+                                    ((selectedRCA.battles.rexona?.realizado || 0) * 5) + 
+                                    ((selectedRCA.battles.sabLiq?.realizado || 0) * 5);
+                        } else {
+                          premBat = ((selectedRCA.battles.poLiq?.realizado || 0) * 10) + 
+                                    ((selectedRCA.battles.cif?.realizado || 0) * 5) + 
+                                    ((selectedRCA.battles.mayo?.realizado || 0) * 5) + 
+                                    ((selectedRCA.battles.amidos?.realizado || 0) * 5);
+                        }
+                        
+                        const total = comissionVolume + premBat;
+
+                        return (
+                          <div className="relative z-10">
+                              <div className="flex items-center justify-between mb-8">
+                                  <div>
+                                      <span className="text-[8px] font-black text-blue-400 uppercase tracking-[0.4em]">Remuneração Variável Parcial</span>
+                                      <h3 className="text-4xl font-black tracking-tighter text-green-400 drop-shadow-lg">
+                                          {formatarMoeda(total)}
+                                      </h3>
+                                  </div>
+                                  <div className="bg-white/10 p-3 rounded-2xl backdrop-blur-md">
+                                      <Sparkles className="text-yellow-400" size={24}/>
+                                  </div>
+                              </div>
+
+                              <div className="space-y-3 bg-black/20 rounded-3xl p-6 backdrop-blur-sm border border-white/5">
+                                  <div className="flex justify-between items-center">
+                                      <div className="flex flex-col">
+                                        <span className="text-[10px] font-bold text-blue-200 uppercase tracking-widest">Comissão Estimada (Vol)</span>
+                                      </div>
+                                      <span className="text-xs font-black">{formatarMoeda(comissionVolume)}</span>
+                                  </div>
+                                  <div className="flex justify-between items-center">
+                                      <span className="text-[10px] font-bold text-blue-200 uppercase tracking-widest">Premiação Batalhas</span>
+                                      <span className="text-xs font-black">{formatarMoeda(premBat)}</span>
+                                  </div>
+                              </div>
+                              
+                              <p className="text-[8px] font-bold text-blue-300 uppercase italic mt-4 text-center opacity-60">
+                                  * Valores aproximados baseados nos indicadores informados no sistema.
+                              </p>
+                          </div>
+                        );
+                    })()}
                 </div>
                 
                 <button 
@@ -1309,58 +1229,6 @@ const App = () => {
           </div>
         </div>
       </footer>
-
-      {/* MODAL DE SENHA SUPERVISOR */}
-      <AnimatePresence>
-        {showPasswordModal && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[200] flex items-center justify-center p-4"
-          >
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white w-full max-w-sm rounded-[2.5rem] shadow-2xl p-8 text-center"
-            >
-              <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Lock size={32}/>
-              </div>
-              <h2 className="text-lg font-black text-slate-800 uppercase tracking-widest mb-2">Acesso Restrito</h2>
-              <p className="text-[10px] text-slate-400 font-bold uppercase mb-6">Insira a senha de supervisor</p>
-              
-              <input 
-                type="password"
-                autoFocus
-                className="w-full p-4 bg-slate-50 rounded-2xl border border-slate-200 text-center text-lg font-black outline-none focus:ring-2 ring-blue-500/20 mb-4"
-                placeholder="••••••••"
-                value={passwordInput}
-                onChange={(e) => setPasswordInput(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && confirmPassword()}
-              />
-
-              {error && <p className="text-red-500 text-[10px] font-bold uppercase mb-4">{error}</p>}
-
-              <div className="grid grid-cols-2 gap-3">
-                <button 
-                  onClick={() => { setShowPasswordModal(false); setPasswordInput(""); setError(null); }}
-                  className="py-3 rounded-xl font-black text-[10px] uppercase text-slate-400 hover:bg-slate-50 transition-colors"
-                >
-                  Cancelar
-                </button>
-                <button 
-                  onClick={confirmPassword}
-                  className="py-3 bg-blue-600 text-white rounded-xl font-black text-[10px] uppercase shadow-lg border-b-4 border-blue-800 active:scale-95 transition-all"
-                >
-                  Confirmar
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* MODAL DE ESTOQUE */}
       <AnimatePresence>
