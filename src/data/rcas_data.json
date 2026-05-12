@@ -1,0 +1,9287 @@
+[
+  {
+    "id": "33708",
+    "name": "ANA RITA",
+    "region": "PASTOS BONS- MA",
+    "volume": 2477.61,
+    "metaVolume": 16103.45,
+    "positivacao": 0,
+    "pdvsTotal": 59,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 5,
+        "reach": "25,00%",
+        "posTela": 4,
+        "posTotal": 9
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 26,
+        "realizado": 5,
+        "reach": "19,23%",
+        "posTela": 4,
+        "posTotal": 9
+      }
+    }
+  },
+  {
+    "id": "20906",
+    "name": "JAIRO REIS",
+    "region": "SANTA LUZIA P - MA",
+    "volume": 17600.04,
+    "metaVolume": 63590.19,
+    "positivacao": 0,
+    "pdvsTotal": 53,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 7,
+        "reach": "36,84%",
+        "posTela": 2,
+        "posTotal": 9
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 2,
+        "reach": "9,09%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "mayo": {
+        "meta": 18,
+        "realizado": 7,
+        "reach": "38,89%",
+        "posTela": 0,
+        "posTotal": 7
+      },
+      "poLiq": {
+        "meta": 25,
+        "realizado": 8,
+        "reach": "32,00%",
+        "posTela": 3,
+        "posTotal": 11
+      }
+    }
+  },
+  {
+    "id": "17233",
+    "name": "ANTONIO ALVES",
+    "region": "CHAPADINHA - MA",
+    "volume": 17738.88,
+    "metaVolume": 47973.48,
+    "positivacao": 0,
+    "pdvsTotal": 58,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "cif": {
+        "meta": 30,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "mayo": {
+        "meta": 23,
+        "realizado": 1,
+        "reach": "4,35%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 34,
+        "realizado": 10,
+        "reach": "29,41%",
+        "posTela": 9,
+        "posTotal": 19
+      }
+    }
+  },
+  {
+    "id": "34403",
+    "name": "FLAVIANE",
+    "region": "SAO DOMINGOS DO AZEITAO - MA",
+    "volume": 4696.73,
+    "metaVolume": 20414.41,
+    "positivacao": 0,
+    "pdvsTotal": 50,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 2,
+        "reach": "10,00%",
+        "posTela": 3,
+        "posTotal": 5
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 2,
+        "reach": "9,52%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "poLiq": {
+        "meta": 26,
+        "realizado": 3,
+        "reach": "11,54%",
+        "posTela": 1,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "17350",
+    "name": "AUZILANE DA COSTA",
+    "region": "VARGEM GRANDE-MA",
+    "volume": 28559.9,
+    "metaVolume": 77136.06,
+    "positivacao": 0,
+    "pdvsTotal": 52,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 45,
+        "realizado": 4,
+        "reach": "8,89%",
+        "posTela": 5,
+        "posTotal": 9
+      },
+      "oral": {
+        "meta": 28,
+        "realizado": 7,
+        "reach": "24,56%",
+        "posTela": 9,
+        "posTotal": 16
+      },
+      "rexona": {
+        "meta": 43,
+        "realizado": 13,
+        "reach": "29,89%",
+        "posTela": 6,
+        "posTotal": 19
+      },
+      "sabLiq": {
+        "meta": 35,
+        "realizado": 8,
+        "reach": "22,70%",
+        "posTela": 9,
+        "posTotal": 17
+      }
+    }
+  },
+  {
+    "id": "17215",
+    "name": "EUDES L DA SILVA",
+    "region": "DOM PEDRO - MA",
+    "volume": 26266.94,
+    "metaVolume": 22071.84,
+    "positivacao": 0,
+    "pdvsTotal": 49,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 30,
+        "realizado": 6,
+        "reach": "20,00%",
+        "posTela": 2,
+        "posTotal": 8
+      },
+      "oral": {
+        "meta": 18,
+        "realizado": 1,
+        "reach": "5,56%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 29,
+        "realizado": 3,
+        "reach": "10,34%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "sabLiq": {
+        "meta": 23,
+        "realizado": 4,
+        "reach": "17,39%",
+        "posTela": 2,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "29823",
+    "name": "MANOEL LOURENCO",
+    "region": "GRAJAU 1 - MA",
+    "volume": 2368.9,
+    "metaVolume": 27928.29,
+    "positivacao": 0,
+    "pdvsTotal": 46,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 3,
+        "reach": "15,79%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "cif": {
+        "meta": 19,
+        "realizado": 2,
+        "reach": "10,53%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 3,
+        "reach": "17,65%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "poLiq": {
+        "meta": 23,
+        "realizado": 7,
+        "reach": "30,43%",
+        "posTela": 1,
+        "posTotal": 8
+      }
+    }
+  },
+  {
+    "id": "33805",
+    "name": "M R DA COSTA",
+    "region": "",
+    "volume": 5376.05,
+    "metaVolume": 34234.21,
+    "positivacao": 0,
+    "pdvsTotal": 48,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 27,
+        "realizado": 4,
+        "reach": "14,81%",
+        "posTela": 1,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "23892",
+    "name": "DAILSON COSTA",
+    "region": "SAO DOMINGOS DO MARANHAO - MA",
+    "volume": 20286.17,
+    "metaVolume": 33582.88,
+    "positivacao": 0,
+    "pdvsTotal": 53,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 4,
+        "reach": "20,00%",
+        "posTela": 2,
+        "posTotal": 6
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 2,
+        "reach": "9,09%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 27,
+        "realizado": 6,
+        "reach": "22,22%",
+        "posTela": 5,
+        "posTotal": 11
+      }
+    }
+  },
+  {
+    "id": "20000",
+    "name": "ALESSANDRA PEREIRA",
+    "region": "PAULO RAMOS - MA",
+    "volume": 3878.64,
+    "metaVolume": 24344.41,
+    "positivacao": 0,
+    "pdvsTotal": 44,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 27,
+        "realizado": 4,
+        "reach": "14,81%",
+        "posTela": 2,
+        "posTotal": 6
+      },
+      "oral": {
+        "meta": 17,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 26,
+        "realizado": 6,
+        "reach": "22,99%",
+        "posTela": 2,
+        "posTotal": 8
+      },
+      "sabLiq": {
+        "meta": 21,
+        "realizado": 3,
+        "reach": "14,18%",
+        "posTela": 2,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "14601",
+    "name": "ANGELA MARIA FARIAS DOS SANTOS",
+    "region": "PARAIBANO - MA",
+    "volume": 9257.78,
+    "metaVolume": 32826.54,
+    "positivacao": 0,
+    "pdvsTotal": 44,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 4,
+        "reach": "20,00%",
+        "posTela": 1,
+        "posTotal": 5
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 2,
+        "reach": "9,52%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "poLiq": {
+        "meta": 25,
+        "realizado": 4,
+        "reach": "16,00%",
+        "posTela": 9,
+        "posTotal": 13
+      }
+    }
+  },
+  {
+    "id": "18063",
+    "name": "VANDERLAN DA S ARAUJO",
+    "region": "ESTREITO- MA",
+    "volume": 5295.07,
+    "metaVolume": 30831.77,
+    "positivacao": 0,
+    "pdvsTotal": 43,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 18,
+        "realizado": 9,
+        "reach": "50,00%",
+        "posTela": 1,
+        "posTotal": 10
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 15,
+        "realizado": 1,
+        "reach": "6,67%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 25,
+        "realizado": 13,
+        "reach": "52,00%",
+        "posTela": 2,
+        "posTotal": 15
+      }
+    }
+  },
+  {
+    "id": "31360",
+    "name": "MARIA EDUARDA",
+    "region": "S R MANGABEIRA - MA",
+    "volume": 6798.81,
+    "metaVolume": 15513.3,
+    "positivacao": 0,
+    "pdvsTotal": 48,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 7,
+        "reach": "35,00%",
+        "posTela": 1,
+        "posTotal": 8
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,55%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 1,
+        "reach": "4,76%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "poLiq": {
+        "meta": 25,
+        "realizado": 6,
+        "reach": "24,00%",
+        "posTela": 3,
+        "posTotal": 9
+      }
+    }
+  },
+  {
+    "id": "17186",
+    "name": "MARIA RODRIGUES",
+    "region": "PRESIDENTE DUTRA 1 - MA",
+    "volume": 14095.31,
+    "metaVolume": 41630.75,
+    "positivacao": 0,
+    "pdvsTotal": 46,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 2,
+        "reach": "10,00%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 2,
+        "reach": "9,09%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 1,
+        "reach": "4,76%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 27,
+        "realizado": 2,
+        "reach": "7,41%",
+        "posTela": 0,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "15701",
+    "name": "ILANA RIOS CONCEICAO",
+    "region": "MIRADOR MA",
+    "volume": 0,
+    "metaVolume": 28301.37,
+    "positivacao": 0,
+    "pdvsTotal": 47,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 5,
+        "reach": "25,00%",
+        "posTela": 0,
+        "posTotal": 5
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 4,
+        "reach": "19,05%",
+        "posTela": 0,
+        "posTotal": 4
+      },
+      "poLiq": {
+        "meta": 26,
+        "realizado": 5,
+        "reach": "19,23%",
+        "posTela": 0,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "12069",
+    "name": "ROSIANE ALVES",
+    "region": "PRESIDENTE DUTRA-MA",
+    "volume": 36657.64,
+    "metaVolume": 84035.65,
+    "positivacao": 0,
+    "pdvsTotal": 42,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 34,
+        "realizado": 2,
+        "reach": "5,88%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "oral": {
+        "meta": 20,
+        "realizado": 2,
+        "reach": "10,00%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "rexona": {
+        "meta": 30,
+        "realizado": 4,
+        "reach": "13,33%",
+        "posTela": 3,
+        "posTotal": 7
+      },
+      "sabLiq": {
+        "meta": 26,
+        "realizado": 1,
+        "reach": "3,85%",
+        "posTela": 1,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "30677",
+    "name": "MARDONES DE BRITO",
+    "region": "BOM LUGAR-MA",
+    "volume": 992.37,
+    "metaVolume": 16960.86,
+    "positivacao": 0,
+    "pdvsTotal": 50,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 24,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 12,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 19,
+        "realizado": 3,
+        "reach": "15,21%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "sabLiq": {
+        "meta": 15,
+        "realizado": 2,
+        "reach": "12,52%",
+        "posTela": 0,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "10718",
+    "name": "DELMA FERNANDA FERREIR BARROSO ALVES",
+    "region": "MIRADOR MA",
+    "volume": 10587.38,
+    "metaVolume": 22828.02,
+    "positivacao": 0,
+    "pdvsTotal": 44,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 32,
+        "realizado": 3,
+        "reach": "9,38%",
+        "posTela": 5,
+        "posTotal": 8
+      },
+      "oral": {
+        "meta": 18,
+        "realizado": 3,
+        "reach": "16,67%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "rexona": {
+        "meta": 29,
+        "realizado": 10,
+        "reach": "34,48%",
+        "posTela": 1,
+        "posTotal": 11
+      },
+      "sabLiq": {
+        "meta": 22,
+        "realizado": 4,
+        "reach": "18,18%",
+        "posTela": 4,
+        "posTotal": 8
+      }
+    }
+  },
+  {
+    "id": "15291",
+    "name": "ROSIMARIA CRISTINA",
+    "region": "COROATA -MA",
+    "volume": 4014.4,
+    "metaVolume": 58863.74,
+    "positivacao": 0,
+    "pdvsTotal": 48,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 4,
+        "posTotal": 6
+      },
+      "cif": {
+        "meta": 30,
+        "realizado": 1,
+        "reach": "3,33%",
+        "posTela": 2,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 26,
+        "realizado": 1,
+        "reach": "3,85%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 36,
+        "realizado": 15,
+        "reach": "41,67%",
+        "posTela": 3,
+        "posTotal": 18
+      }
+    }
+  },
+  {
+    "id": "29436",
+    "name": "CLEIDIANEÂ SOUSA",
+    "region": "TIMONÂ - MA",
+    "volume": 7840.18,
+    "metaVolume": 63506.59,
+    "positivacao": 0,
+    "pdvsTotal": 50,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 26,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 32,
+        "realizado": 5,
+        "reach": "15,63%",
+        "posTela": 3,
+        "posTotal": 8
+      },
+      "mayo": {
+        "meta": 26,
+        "realizado": 3,
+        "reach": "11,54%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "poLiq": {
+        "meta": 38,
+        "realizado": 12,
+        "reach": "31,58%",
+        "posTela": 4,
+        "posTotal": 16
+      }
+    }
+  },
+  {
+    "id": "32489",
+    "name": "IRLENE",
+    "region": "TIMBIRAS",
+    "volume": 1251.53,
+    "metaVolume": 6635.08,
+    "positivacao": 0,
+    "pdvsTotal": 43,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 18,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 20,
+        "realizado": 5,
+        "reach": "25,00%",
+        "posTela": 1,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "33589",
+    "name": "ANA MARTA",
+    "region": "JENIPAPO DOS VIEIRAS- MA",
+    "volume": 2686.82,
+    "metaVolume": 25167.06,
+    "positivacao": 0,
+    "pdvsTotal": 39,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 18,
+        "realizado": 2,
+        "reach": "11,11%",
+        "posTela": 3,
+        "posTotal": 5
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 23,
+        "realizado": 4,
+        "reach": "17,39%",
+        "posTela": 3,
+        "posTotal": 7
+      }
+    }
+  },
+  {
+    "id": "26685",
+    "name": "CLEITIANE DA SILVA",
+    "region": "NOVA OLINDA - MA",
+    "volume": 7350.11,
+    "metaVolume": 16357.57,
+    "positivacao": 0,
+    "pdvsTotal": 43,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 2,
+        "reach": "10,53%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 16,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 3,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "20711",
+    "name": "JOAO PAULO",
+    "region": "FORTUNA - MA",
+    "volume": 3529.17,
+    "metaVolume": 38940.12,
+    "positivacao": 0,
+    "pdvsTotal": 38,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 27,
+        "realizado": 2,
+        "reach": "7,41%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "oral": {
+        "meta": 16,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 2,
+        "posTotal": 5
+      },
+      "sabLiq": {
+        "meta": 18,
+        "realizado": 6,
+        "reach": "33,33%",
+        "posTela": 3,
+        "posTotal": 9
+      }
+    }
+  },
+  {
+    "id": "26700",
+    "name": "JANAINA LIMAS GOMES",
+    "region": "CODO 2Â - MA",
+    "volume": 2798.52,
+    "metaVolume": 44907.84,
+    "positivacao": 0,
+    "pdvsTotal": 39,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 23,
+        "realizado": 2,
+        "reach": "8,70%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "cif": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "poLiq": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 2,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "24319",
+    "name": "LAYDE DAYANNE",
+    "region": "BACABAL - MA",
+    "volume": 22411.67,
+    "metaVolume": 152000.8,
+    "positivacao": 0,
+    "pdvsTotal": 41,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 58,
+        "realizado": 4,
+        "reach": "6,90%",
+        "posTela": 1,
+        "posTotal": 5
+      },
+      "oral": {
+        "meta": 32,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 46,
+        "realizado": 7,
+        "reach": "15,09%",
+        "posTela": 3,
+        "posTotal": 10
+      },
+      "sabLiq": {
+        "meta": 37,
+        "realizado": 3,
+        "reach": "7,98%",
+        "posTela": 1,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "31055",
+    "name": "MARCIA CARVALHO ALVES",
+    "region": "BARAO DE GRAJAU - MA",
+    "volume": 4586.21,
+    "metaVolume": 8778.13,
+    "positivacao": 0,
+    "pdvsTotal": 38,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 4,
+        "reach": "20,00%",
+        "posTela": 3,
+        "posTotal": 7
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 26,
+        "realizado": 2,
+        "reach": "7,69%",
+        "posTela": 1,
+        "posTotal": 3
+      }
+    }
+  },
+  {
+    "id": "21524",
+    "name": "RAIANE FERREIRA",
+    "region": "CODO 1 - MA",
+    "volume": 6099.31,
+    "metaVolume": 64842.46,
+    "positivacao": 0,
+    "pdvsTotal": 36,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 23,
+        "realizado": 3,
+        "reach": "13,04%",
+        "posTela": 6,
+        "posTotal": 9
+      },
+      "cif": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 2,
+        "reach": "10,00%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "poLiq": {
+        "meta": 30,
+        "realizado": 3,
+        "reach": "10,00%",
+        "posTela": 5,
+        "posTotal": 8
+      }
+    }
+  },
+  {
+    "id": "37508",
+    "name": "DELNILCA DOS ANJOS SANTOS DANTAS",
+    "region": "",
+    "volume": 912.42,
+    "metaVolume": 12738.47,
+    "positivacao": 0,
+    "pdvsTotal": 36,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 1,
+        "reach": "5,26%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,55%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 1,
+        "reach": "5,88%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 25,
+        "realizado": 8,
+        "reach": "32,00%",
+        "posTela": 0,
+        "posTotal": 8
+      }
+    }
+  },
+  {
+    "id": "22320",
+    "name": "FRANCI GRACA",
+    "region": "PACO DO LUMIAR-MA",
+    "volume": 22372.01,
+    "metaVolume": 17324.72,
+    "positivacao": 0,
+    "pdvsTotal": 42,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 42,
+        "realizado": 4,
+        "reach": "9,32%",
+        "posTela": 2,
+        "posTotal": 6
+      },
+      "oral": {
+        "meta": 26,
+        "realizado": 4,
+        "reach": "15,38%",
+        "posTela": 3,
+        "posTotal": 7
+      },
+      "rexona": {
+        "meta": 39,
+        "realizado": 5,
+        "reach": "12,82%",
+        "posTela": 5,
+        "posTotal": 10
+      },
+      "sabLiq": {
+        "meta": 32,
+        "realizado": 1,
+        "reach": "3,08%",
+        "posTela": 3,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "5113",
+    "name": "BETIANA SOARES DA SILVA LIMA ME",
+    "region": "COROATA MA",
+    "volume": 18305.37,
+    "metaVolume": 95246.24,
+    "positivacao": 0,
+    "pdvsTotal": 46,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 50,
+        "realizado": 2,
+        "reach": "4,00%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "oral": {
+        "meta": 28,
+        "realizado": 6,
+        "reach": "21,34%",
+        "posTela": 2,
+        "posTotal": 8
+      },
+      "rexona": {
+        "meta": 42,
+        "realizado": 13,
+        "reach": "30,29%",
+        "posTela": 5,
+        "posTotal": 18
+      },
+      "sabLiq": {
+        "meta": 34,
+        "realizado": 9,
+        "reach": "25,88%",
+        "posTela": 4,
+        "posTotal": 13
+      }
+    }
+  },
+  {
+    "id": "25007",
+    "name": "FELIPE RODRIGUES",
+    "region": "ESPERANTINOPOLIS - MA",
+    "volume": 7468.71,
+    "metaVolume": 14669.07,
+    "positivacao": 0,
+    "pdvsTotal": 43,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 5,
+        "posTotal": 6
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 2,
+        "reach": "9,52%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "poLiq": {
+        "meta": 26,
+        "realizado": 12,
+        "reach": "46,15%",
+        "posTela": 5,
+        "posTotal": 16
+      }
+    }
+  },
+  {
+    "id": "28078",
+    "name": "GIZELY SOUSA",
+    "region": "ARAME-MA",
+    "volume": 23501.77,
+    "metaVolume": 27747.01,
+    "positivacao": 0,
+    "pdvsTotal": 36,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 30,
+        "realizado": 3,
+        "reach": "10,00%",
+        "posTela": 2,
+        "posTotal": 5
+      },
+      "oral": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,55%",
+        "posTela": 2,
+        "posTotal": 3
+      },
+      "rexona": {
+        "meta": 28,
+        "realizado": 5,
+        "reach": "17,86%",
+        "posTela": 2,
+        "posTotal": 7
+      },
+      "sabLiq": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 2,
+        "posTotal": 3
+      }
+    }
+  },
+  {
+    "id": "27363",
+    "name": "CLESIO",
+    "region": "COLINAS - MA",
+    "volume": 3341.18,
+    "metaVolume": 20432.75,
+    "positivacao": 0,
+    "pdvsTotal": 40,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 4,
+        "reach": "20,00%",
+        "posTela": 2,
+        "posTotal": 6
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 5,
+        "reach": "25,00%",
+        "posTela": 0,
+        "posTotal": 5
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 1,
+        "reach": "4,76%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 20,
+        "realizado": 5,
+        "reach": "25,00%",
+        "posTela": 1,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "34290",
+    "name": "RENAN TEIXEIRA",
+    "region": "GONCALVES DIAS - MA",
+    "volume": 4129.97,
+    "metaVolume": 19246.03,
+    "positivacao": 0,
+    "pdvsTotal": 34,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 23,
+        "realizado": 2,
+        "reach": "8,70%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "cif": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 2,
+        "reach": "9,52%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "poLiq": {
+        "meta": 27,
+        "realizado": 4,
+        "reach": "14,81%",
+        "posTela": 1,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "1909",
+    "name": "LEONARDO RESPRES",
+    "region": "COLINAS-MA",
+    "volume": 1289.64,
+    "metaVolume": 99165.92,
+    "positivacao": 0,
+    "pdvsTotal": 38,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 32,
+        "realizado": 8,
+        "reach": "25,00%",
+        "posTela": 2,
+        "posTotal": 10
+      },
+      "oral": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 30,
+        "realizado": 10,
+        "reach": "33,33%",
+        "posTela": 0,
+        "posTotal": 10
+      },
+      "sabLiq": {
+        "meta": 26,
+        "realizado": 10,
+        "reach": "38,46%",
+        "posTela": 1,
+        "posTotal": 11
+      }
+    }
+  },
+  {
+    "id": "11973",
+    "name": "CLARA CELIA SILVA",
+    "region": "S JOAO DOS PATOS-MA",
+    "volume": 3869.72,
+    "metaVolume": 53252.93,
+    "positivacao": 0,
+    "pdvsTotal": 45,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 11,
+        "reach": "55,00%",
+        "posTela": 1,
+        "posTotal": 12
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 7,
+        "reach": "31,82%",
+        "posTela": 1,
+        "posTotal": 8
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 4,
+        "reach": "19,05%",
+        "posTela": 1,
+        "posTotal": 5
+      },
+      "poLiq": {
+        "meta": 27,
+        "realizado": 12,
+        "reach": "44,44%",
+        "posTela": 2,
+        "posTotal": 14
+      }
+    }
+  },
+  {
+    "id": "34193",
+    "name": "KEZIA SOUSA ALENCAR",
+    "region": "GONCALVES DIAS - MA",
+    "volume": 3426.05,
+    "metaVolume": 29258.71,
+    "positivacao": 0,
+    "pdvsTotal": 35,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 32,
+        "realizado": 6,
+        "reach": "18,75%",
+        "posTela": 1,
+        "posTotal": 7
+      },
+      "oral": {
+        "meta": 21,
+        "realizado": 3,
+        "reach": "14,29%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "rexona": {
+        "meta": 30,
+        "realizado": 7,
+        "reach": "23,33%",
+        "posTela": 1,
+        "posTotal": 8
+      },
+      "sabLiq": {
+        "meta": 23,
+        "realizado": 3,
+        "reach": "13,04%",
+        "posTela": 1,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "21774",
+    "name": "JOSE DEYVISON S SOUSA",
+    "region": "PRESIDENTE DUTRA - MA",
+    "volume": 2241.2,
+    "metaVolume": 16546.82,
+    "positivacao": 0,
+    "pdvsTotal": 38,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 29,
+        "realizado": 1,
+        "reach": "3,45%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 3,
+        "reach": "12,00%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "sabLiq": {
+        "meta": 16,
+        "realizado": 1,
+        "reach": "6,25%",
+        "posTela": 1,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "16771",
+    "name": "RENAIA DE LIMA",
+    "region": "SANTA LUZIA DO TIDE-MA",
+    "volume": 27216.96,
+    "metaVolume": 8512.12,
+    "positivacao": 0,
+    "pdvsTotal": 35,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 30,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 3,
+        "posTotal": 3
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 3,
+        "posTotal": 3
+      },
+      "rexona": {
+        "meta": 28,
+        "realizado": 6,
+        "reach": "21,43%",
+        "posTela": 3,
+        "posTotal": 8
+      },
+      "sabLiq": {
+        "meta": 24,
+        "realizado": 1,
+        "reach": "4,17%",
+        "posTela": 3,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "16255",
+    "name": "MEIREJANE LEITE",
+    "region": "DIVINEIA-SLZ",
+    "volume": 26696.37,
+    "metaVolume": 46933.16,
+    "positivacao": 0,
+    "pdvsTotal": 41,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 48,
+        "realizado": 5,
+        "reach": "10,42%",
+        "posTela": 6,
+        "posTotal": 11
+      },
+      "oral": {
+        "meta": 30,
+        "realizado": 6,
+        "reach": "20,00%",
+        "posTela": 1,
+        "posTotal": 7
+      },
+      "rexona": {
+        "meta": 45,
+        "realizado": 9,
+        "reach": "20,00%",
+        "posTela": 9,
+        "posTotal": 18
+      },
+      "sabLiq": {
+        "meta": 37,
+        "realizado": 10,
+        "reach": "26,67%",
+        "posTela": 5,
+        "posTotal": 15
+      }
+    }
+  },
+  {
+    "id": "17139",
+    "name": "GEOVANE DA SILVA",
+    "region": "PAULO RAMOS - MA",
+    "volume": 5412.22,
+    "metaVolume": 15864.06,
+    "positivacao": 0,
+    "pdvsTotal": 33,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 23,
+        "realizado": 1,
+        "reach": "4,35%",
+        "posTela": 2,
+        "posTotal": 3
+      },
+      "cif": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 30,
+        "realizado": 6,
+        "reach": "20,00%",
+        "posTela": 2,
+        "posTotal": 8
+      }
+    }
+  },
+  {
+    "id": "21897",
+    "name": "RIAN COELHO MARANHAO",
+    "region": "SAO VICENTE FERRER - MA",
+    "volume": 22408.64,
+    "metaVolume": 32413.7,
+    "positivacao": 0,
+    "pdvsTotal": 33,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 1,
+        "reach": "5,88%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "poLiq": {
+        "meta": 25,
+        "realizado": 3,
+        "reach": "12,00%",
+        "posTela": 2,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "12200",
+    "name": "EDILENE FREIRE",
+    "region": "SANTA INES-MA",
+    "volume": 8686.03,
+    "metaVolume": 56749.86,
+    "positivacao": 0,
+    "pdvsTotal": 41,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 6,
+        "reach": "31,58%",
+        "posTela": 0,
+        "posTotal": 6
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 1,
+        "reach": "5,88%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 26,
+        "realizado": 13,
+        "reach": "50,00%",
+        "posTela": 2,
+        "posTotal": 15
+      }
+    }
+  },
+  {
+    "id": "12206",
+    "name": "DIANA LIMA DIAS",
+    "region": "SAO JOAO DOS PATOS",
+    "volume": 277.53,
+    "metaVolume": 184385.92,
+    "positivacao": 0,
+    "pdvsTotal": 38,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 33,
+        "realizado": 7,
+        "reach": "21,21%",
+        "posTela": 1,
+        "posTotal": 8
+      },
+      "oral": {
+        "meta": 18,
+        "realizado": 2,
+        "reach": "11,11%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "rexona": {
+        "meta": 30,
+        "realizado": 12,
+        "reach": "40,00%",
+        "posTela": 1,
+        "posTotal": 13
+      },
+      "sabLiq": {
+        "meta": 25,
+        "realizado": 5,
+        "reach": "20,00%",
+        "posTela": 1,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "36166",
+    "name": "LAYSSE SOUSA",
+    "region": "BOM LUGARÂ - MA",
+    "volume": 9210.67,
+    "metaVolume": 18066.27,
+    "positivacao": 0,
+    "pdvsTotal": 33,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 21,
+        "realizado": 7,
+        "reach": "33,33%",
+        "posTela": 6,
+        "posTotal": 12
+      },
+      "cif": {
+        "meta": 25,
+        "realizado": 8,
+        "reach": "32,00%",
+        "posTela": 5,
+        "posTotal": 13
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 4,
+        "reach": "20,00%",
+        "posTela": 2,
+        "posTotal": 5
+      },
+      "poLiq": {
+        "meta": 28,
+        "realizado": 4,
+        "reach": "14,29%",
+        "posTela": 5,
+        "posTotal": 9
+      }
+    }
+  },
+  {
+    "id": "21004",
+    "name": "JHEYNA OLIVEIRA",
+    "region": "BOM JARDIM",
+    "volume": 15522.38,
+    "metaVolume": 43876.85,
+    "positivacao": 0,
+    "pdvsTotal": 34,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 1,
+        "reach": "6,67%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 15,
+        "realizado": 6,
+        "reach": "40,00%",
+        "posTela": 2,
+        "posTotal": 8
+      },
+      "sabLiq": {
+        "meta": 15,
+        "realizado": 5,
+        "reach": "33,33%",
+        "posTela": 0,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "22255",
+    "name": "HERIO MACHADO",
+    "region": "RIACHAO-MA",
+    "volume": 1174.92,
+    "metaVolume": 10649.62,
+    "positivacao": 0,
+    "pdvsTotal": 32,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 18,
+        "realizado": 1,
+        "reach": "5,56%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 18,
+        "realizado": 1,
+        "reach": "5,56%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 16,
+        "realizado": 1,
+        "reach": "6,25%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 17,
+        "realizado": 1,
+        "reach": "5,88%",
+        "posTela": 0,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "35619",
+    "name": "CARLOS MIGUEL",
+    "region": "COLINAS - MA",
+    "volume": 21266.58,
+    "metaVolume": 28632.18,
+    "positivacao": 0,
+    "pdvsTotal": 34,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 23,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "16687",
+    "name": "MARIA BARBARA",
+    "region": "SAO VICENTE FERRER-MA",
+    "volume": 5703.76,
+    "metaVolume": 53236.76,
+    "positivacao": 0,
+    "pdvsTotal": 31,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 1,
+        "reach": "6,67%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "sabLiq": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "37373",
+    "name": "LUCAS RAPHAEL MENDONÇA",
+    "region": "ROTA 1",
+    "volume": 7241.16,
+    "metaVolume": 42320.81,
+    "positivacao": 0,
+    "pdvsTotal": 40,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 18,
+        "realizado": 4,
+        "reach": "22,22%",
+        "posTela": 2,
+        "posTotal": 6
+      },
+      "cif": {
+        "meta": 19,
+        "realizado": 4,
+        "reach": "21,05%",
+        "posTela": 2,
+        "posTotal": 6
+      },
+      "mayo": {
+        "meta": 16,
+        "realizado": 3,
+        "reach": "18,75%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "poLiq": {
+        "meta": 28,
+        "realizado": 13,
+        "reach": "46,43%",
+        "posTela": 3,
+        "posTotal": 16
+      }
+    }
+  },
+  {
+    "id": "21506",
+    "name": "RAFAEL LOPES",
+    "region": "IMPERATRIZ-MA ROTA 4",
+    "volume": 0,
+    "metaVolume": 32816.39,
+    "positivacao": 0,
+    "pdvsTotal": 44,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 18,
+        "realizado": 2,
+        "reach": "11,11%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "cif": {
+        "meta": 19,
+        "realizado": 5,
+        "reach": "26,32%",
+        "posTela": 0,
+        "posTotal": 5
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 3,
+        "reach": "17,65%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "poLiq": {
+        "meta": 28,
+        "realizado": 8,
+        "reach": "28,57%",
+        "posTela": 0,
+        "posTotal": 8
+      }
+    }
+  },
+  {
+    "id": "34320",
+    "name": "H K N DE BRITO FARIAS",
+    "region": "POCAO DE PEDRA - MA",
+    "volume": 17562.71,
+    "metaVolume": 29867.43,
+    "positivacao": 0,
+    "pdvsTotal": 34,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 30,
+        "realizado": 8,
+        "reach": "26,67%",
+        "posTela": 4,
+        "posTotal": 12
+      },
+      "oral": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 30,
+        "realizado": 6,
+        "reach": "20,00%",
+        "posTela": 3,
+        "posTotal": 9
+      },
+      "sabLiq": {
+        "meta": 24,
+        "realizado": 6,
+        "reach": "25,00%",
+        "posTela": 2,
+        "posTotal": 8
+      }
+    }
+  },
+  {
+    "id": "13384",
+    "name": "WALKYRIA DOS SANTOS",
+    "region": "BARAO DE GRAJAU - MA",
+    "volume": 11714.46,
+    "metaVolume": 17654.04,
+    "positivacao": 0,
+    "pdvsTotal": 38,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 26,
+        "realizado": 2,
+        "reach": "7,69%",
+        "posTela": 3,
+        "posTotal": 5
+      },
+      "oral": {
+        "meta": 16,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 5,
+        "reach": "20,00%",
+        "posTela": 2,
+        "posTotal": 7
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 2,
+        "reach": "10,00%",
+        "posTela": 0,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "20587",
+    "name": "KASSIO KRISTIAN DE S CARVALHO",
+    "region": "SAO DOMINGOS DO AZEITAO-MA",
+    "volume": 12655.16,
+    "metaVolume": 22637.21,
+    "positivacao": 0,
+    "pdvsTotal": 30,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 29,
+        "realizado": 4,
+        "reach": "13,79%",
+        "posTela": 2,
+        "posTotal": 5
+      },
+      "oral": {
+        "meta": 16,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 22,
+        "realizado": 7,
+        "reach": "31,82%",
+        "posTela": 2,
+        "posTotal": 9
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 4,
+        "reach": "20,00%",
+        "posTela": 3,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "9403",
+    "name": "EDNA SILVA",
+    "region": "BARRA DO CORDA",
+    "volume": 7164.69,
+    "metaVolume": 120655.39,
+    "positivacao": 0,
+    "pdvsTotal": 29,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 35,
+        "realizado": 3,
+        "reach": "8,57%",
+        "posTela": 3,
+        "posTotal": 6
+      },
+      "oral": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 2,
+        "posTotal": 5
+      },
+      "rexona": {
+        "meta": 31,
+        "realizado": 6,
+        "reach": "19,35%",
+        "posTela": 3,
+        "posTotal": 9
+      },
+      "sabLiq": {
+        "meta": 25,
+        "realizado": 4,
+        "reach": "16,00%",
+        "posTela": 2,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "17486",
+    "name": "DANIEL DE GOIS",
+    "region": "SAO BERNARDO-MA",
+    "volume": 18863.04,
+    "metaVolume": 20708.71,
+    "positivacao": 0,
+    "pdvsTotal": 29,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 32,
+        "realizado": 4,
+        "reach": "12,50%",
+        "posTela": 2,
+        "posTotal": 6
+      },
+      "oral": {
+        "meta": 18,
+        "realizado": 1,
+        "reach": "5,48%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 27,
+        "realizado": 8,
+        "reach": "28,74%",
+        "posTela": 1,
+        "posTotal": 9
+      },
+      "sabLiq": {
+        "meta": 22,
+        "realizado": 4,
+        "reach": "17,73%",
+        "posTela": 0,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "32420",
+    "name": "ARAO OLIVEIRA",
+    "region": "CARUTAPERA - MA",
+    "volume": 5446.66,
+    "metaVolume": 26010.67,
+    "positivacao": 0,
+    "pdvsTotal": 31,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,55%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 1,
+        "reach": "5,88%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 30,
+        "realizado": 8,
+        "reach": "26,67%",
+        "posTela": 4,
+        "posTotal": 12
+      }
+    }
+  },
+  {
+    "id": "38866",
+    "name": "IRANILDE COSTA MARTINS",
+    "region": "BURITICUPU",
+    "volume": 2377.29,
+    "metaVolume": 18832.03,
+    "positivacao": 0,
+    "pdvsTotal": 47,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 18,
+        "realizado": 6,
+        "reach": "33,33%",
+        "posTela": 0,
+        "posTotal": 6
+      },
+      "cif": {
+        "meta": 18,
+        "realizado": 7,
+        "reach": "38,89%",
+        "posTela": 1,
+        "posTotal": 8
+      },
+      "mayo": {
+        "meta": 15,
+        "realizado": 4,
+        "reach": "26,67%",
+        "posTela": 0,
+        "posTotal": 4
+      },
+      "poLiq": {
+        "meta": 20,
+        "realizado": 13,
+        "reach": "65,00%",
+        "posTela": 1,
+        "posTotal": 14
+      }
+    }
+  },
+  {
+    "id": "28293",
+    "name": "ALLESSANDRA",
+    "region": "ITINGA -MA",
+    "volume": 0,
+    "metaVolume": 10327.89,
+    "positivacao": 0,
+    "pdvsTotal": 29,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 15,
+        "realizado": 4,
+        "reach": "26,67%",
+        "posTela": 0,
+        "posTotal": 4
+      },
+      "cif": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 12,
+        "realizado": 2,
+        "reach": "16,67%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "poLiq": {
+        "meta": 17,
+        "realizado": 2,
+        "reach": "11,76%",
+        "posTela": 0,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "16039",
+    "name": "ANTONIA CLEUMA DE ARAUJO",
+    "region": "ARAME - MA",
+    "volume": 5506.01,
+    "metaVolume": 38807.86,
+    "positivacao": 0,
+    "pdvsTotal": 36,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 18,
+        "realizado": 1,
+        "reach": "5,56%",
+        "posTela": 2,
+        "posTotal": 3
+      },
+      "cif": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "mayo": {
+        "meta": 16,
+        "realizado": 3,
+        "reach": "18,75%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "poLiq": {
+        "meta": 30,
+        "realizado": 6,
+        "reach": "20,00%",
+        "posTela": 4,
+        "posTotal": 9
+      }
+    }
+  },
+  {
+    "id": "22066",
+    "name": "FRANCISCA JAQUELINE",
+    "region": "BURITI-MA",
+    "volume": 4427.75,
+    "metaVolume": -1030.67,
+    "positivacao": 0,
+    "pdvsTotal": 29,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 18,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 3,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "21976",
+    "name": "AURENICIA BARROS",
+    "region": "TIMBIRAS -MA",
+    "volume": 14256.62,
+    "metaVolume": 8711.73,
+    "positivacao": 0,
+    "pdvsTotal": 36,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 9,
+        "realizado": 1,
+        "reach": "10,53%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 14,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "sabLiq": {
+        "meta": 11,
+        "realizado": 1,
+        "reach": "8,51%",
+        "posTela": 1,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "37609",
+    "name": "JUNIELMA LIMA",
+    "region": "BARRA DO CORDA - MA",
+    "volume": 5062.65,
+    "metaVolume": 37977.49,
+    "positivacao": 0,
+    "pdvsTotal": 28,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 26,
+        "realizado": 3,
+        "reach": "11,54%",
+        "posTela": 3,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "25090",
+    "name": "EDNA DE LORDES",
+    "region": "PINHEIRO - MA",
+    "volume": 4042.58,
+    "metaVolume": 40255.23,
+    "positivacao": 0,
+    "pdvsTotal": 36,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 2,
+        "reach": "9,09%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 16,
+        "realizado": 1,
+        "reach": "6,25%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 25,
+        "realizado": 4,
+        "reach": "16,00%",
+        "posTela": 2,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "24203",
+    "name": "VITORIA PORTO",
+    "region": "VITORINO FREIRE",
+    "volume": 23386.59,
+    "metaVolume": 22081.2,
+    "positivacao": 0,
+    "pdvsTotal": 28,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 23,
+        "realizado": 2,
+        "reach": "8,70%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "cif": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 24,
+        "realizado": 4,
+        "reach": "16,67%",
+        "posTela": 2,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "30453",
+    "name": "ADRYELLE CAVALCANTE Â",
+    "region": "DOM PEDRO - MA",
+    "volume": 13535.82,
+    "metaVolume": 6038.86,
+    "positivacao": 0,
+    "pdvsTotal": 28,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 2,
+        "reach": "10,00%",
+        "posTela": 2,
+        "posTotal": 4
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 2,
+        "reach": "10,00%",
+        "posTela": 2,
+        "posTotal": 4
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 3,
+        "reach": "14,29%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "poLiq": {
+        "meta": 26,
+        "realizado": 4,
+        "reach": "15,38%",
+        "posTela": 3,
+        "posTotal": 7
+      }
+    }
+  },
+  {
+    "id": "5197",
+    "name": "JOAO ELIAS COIMBRA NETO",
+    "region": "MATOES-MA",
+    "volume": 35139.97,
+    "metaVolume": 39468.6,
+    "positivacao": 0,
+    "pdvsTotal": 29,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 28,
+        "realizado": 2,
+        "reach": "6,94%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "oral": {
+        "meta": 18,
+        "realizado": 3,
+        "reach": "16,45%",
+        "posTela": 3,
+        "posTotal": 6
+      },
+      "rexona": {
+        "meta": 27,
+        "realizado": 3,
+        "reach": "10,78%",
+        "posTela": 2,
+        "posTotal": 5
+      },
+      "sabLiq": {
+        "meta": 22,
+        "realizado": 3,
+        "reach": "13,30%",
+        "posTela": 3,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "38347",
+    "name": "FRANCISCA JOSIELDA SOUSA FREITAS",
+    "region": "",
+    "volume": 24132.8,
+    "metaVolume": 14293.26,
+    "positivacao": 0,
+    "pdvsTotal": 27,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 38,
+        "realizado": 2,
+        "reach": "5,26%",
+        "posTela": 2,
+        "posTotal": 4
+      },
+      "oral": {
+        "meta": 30,
+        "realizado": 2,
+        "reach": "6,67%",
+        "posTela": 4,
+        "posTotal": 6
+      },
+      "rexona": {
+        "meta": 36,
+        "realizado": 8,
+        "reach": "22,22%",
+        "posTela": 4,
+        "posTotal": 12
+      },
+      "sabLiq": {
+        "meta": 32,
+        "realizado": 8,
+        "reach": "25,00%",
+        "posTela": 4,
+        "posTotal": 10
+      }
+    }
+  },
+  {
+    "id": "37310",
+    "name": "RAILENE",
+    "region": "FORMOSA DA S NEGRA - MA",
+    "volume": 5632.54,
+    "metaVolume": 7569.7,
+    "positivacao": 0,
+    "pdvsTotal": 27,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 2,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 23,
+        "realizado": 4,
+        "reach": "17,39%",
+        "posTela": 2,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "27622",
+    "name": "RENATA CARDOZO",
+    "region": "BOM JARDIM-MA",
+    "volume": 6214.6,
+    "metaVolume": 19202.35,
+    "positivacao": 0,
+    "pdvsTotal": 26,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 2,
+        "reach": "10,53%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 2,
+        "reach": "11,76%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "poLiq": {
+        "meta": 25,
+        "realizado": 5,
+        "reach": "20,00%",
+        "posTela": 2,
+        "posTotal": 7
+      }
+    }
+  },
+  {
+    "id": "32629",
+    "name": "SANDRO",
+    "region": "RAPOSA-MA",
+    "volume": 8769.46,
+    "metaVolume": 9759.59,
+    "positivacao": 0,
+    "pdvsTotal": 39,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 9,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 13,
+        "realizado": 1,
+        "reach": "7,25%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "sabLiq": {
+        "meta": 11,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "18301",
+    "name": "FELIPE VIEIRA DA SILVA",
+    "region": "CIDELANDIA",
+    "volume": 708.83,
+    "metaVolume": 27703.92,
+    "positivacao": 0,
+    "pdvsTotal": 30,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 30,
+        "realizado": 1,
+        "reach": "3,33%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 18,
+        "realizado": 1,
+        "reach": "5,56%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 29,
+        "realizado": 6,
+        "reach": "20,69%",
+        "posTela": 1,
+        "posTotal": 7
+      },
+      "sabLiq": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 0,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "35647",
+    "name": "BRUNO RAFAEL",
+    "region": "SAO CRISTOVAO-SLZ",
+    "volume": 4845.59,
+    "metaVolume": 6149.58,
+    "positivacao": 0,
+    "pdvsTotal": 26,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 33,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 30,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "sabLiq": {
+        "meta": 25,
+        "realizado": 4,
+        "reach": "16,00%",
+        "posTela": 2,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "4137",
+    "name": "ADRIANA DA C PEREIRA REPR ME",
+    "region": "ZE DOCA MA",
+    "volume": 21530.4,
+    "metaVolume": 27357.24,
+    "positivacao": 0,
+    "pdvsTotal": 32,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 3,
+        "reach": "12,00%",
+        "posTela": 3,
+        "posTotal": 6
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "sabLiq": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 2,
+        "posTotal": 3
+      }
+    }
+  },
+  {
+    "id": "21731",
+    "name": "ANILETH ALMEIDA",
+    "region": "BEQUIMAO - MA",
+    "volume": 3807.02,
+    "metaVolume": 40153.79,
+    "positivacao": 0,
+    "pdvsTotal": 26,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 1,
+        "reach": "5,88%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 25,
+        "realizado": 5,
+        "reach": "20,00%",
+        "posTela": 1,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "16332",
+    "name": "RAIANY ALVES",
+    "region": "B J DA SELVA - MA",
+    "volume": 1816.44,
+    "metaVolume": 7361.4,
+    "positivacao": 0,
+    "pdvsTotal": 26,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 13,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "sabLiq": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "18599",
+    "name": "DOUGLAS",
+    "region": "SENADOR ALEXANDRE COSTA - MA",
+    "volume": 5316.56,
+    "metaVolume": 33125,
+    "positivacao": 0,
+    "pdvsTotal": 27,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 32,
+        "realizado": 3,
+        "reach": "9,38%",
+        "posTela": 0,
+        "posTotal": 3
+      }
+    }
+  },
+  {
+    "id": "33794",
+    "name": "DARA LUSTOSA",
+    "region": "ALTO PARNAIBA MA",
+    "volume": 9371.21,
+    "metaVolume": 25958.53,
+    "positivacao": 0,
+    "pdvsTotal": 32,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 6,
+        "reach": "24,00%",
+        "posTela": 2,
+        "posTotal": 8
+      },
+      "oral": {
+        "meta": 16,
+        "realizado": 1,
+        "reach": "6,25%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "rexona": {
+        "meta": 26,
+        "realizado": 5,
+        "reach": "19,23%",
+        "posTela": 5,
+        "posTotal": 10
+      },
+      "sabLiq": {
+        "meta": 18,
+        "realizado": 1,
+        "reach": "5,56%",
+        "posTela": 0,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "20288",
+    "name": "ROSIANE FREITAS",
+    "region": "RIACHAO-MA",
+    "volume": 8752.95,
+    "metaVolume": 19372.67,
+    "positivacao": 0,
+    "pdvsTotal": 32,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 28,
+        "realizado": 8,
+        "reach": "28,57%",
+        "posTela": 1,
+        "posTotal": 9
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 1,
+        "reach": "6,67%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 7,
+        "reach": "28,00%",
+        "posTela": 2,
+        "posTotal": 9
+      },
+      "sabLiq": {
+        "meta": 22,
+        "realizado": 3,
+        "reach": "13,64%",
+        "posTela": 1,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "14324",
+    "name": "JANAINA DE MELO FERNANDES",
+    "region": "BARRA DO CORDA-MA",
+    "volume": 13879.09,
+    "metaVolume": 63924.84,
+    "positivacao": 0,
+    "pdvsTotal": 29,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 2,
+        "reach": "10,00%",
+        "posTela": 4,
+        "posTotal": 6
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 4,
+        "posTotal": 4
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 1,
+        "reach": "4,76%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 27,
+        "realizado": 7,
+        "reach": "25,93%",
+        "posTela": 4,
+        "posTotal": 11
+      }
+    }
+  },
+  {
+    "id": "23824",
+    "name": "AURIVANIA SILVA",
+    "region": "JOSELANDIA - MA",
+    "volume": 2871.39,
+    "metaVolume": 6964.42,
+    "positivacao": 0,
+    "pdvsTotal": 25,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 18,
+        "realizado": 2,
+        "reach": "11,11%",
+        "posTela": 2,
+        "posTotal": 4
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 20,
+        "realizado": 2,
+        "reach": "10,00%",
+        "posTela": 0,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "9742",
+    "name": "LUCIENNE FERREIRA",
+    "region": "RAPOSA",
+    "volume": 12598.44,
+    "metaVolume": 14663.83,
+    "positivacao": 0,
+    "pdvsTotal": 27,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 28,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "cif": {
+        "meta": 30,
+        "realizado": 2,
+        "reach": "6,67%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 24,
+        "realizado": 4,
+        "reach": "16,67%",
+        "posTela": 0,
+        "posTotal": 4
+      },
+      "poLiq": {
+        "meta": 35,
+        "realizado": 7,
+        "reach": "20,00%",
+        "posTela": 4,
+        "posTotal": 11
+      }
+    }
+  },
+  {
+    "id": "16852",
+    "name": "LUCIANA SARAIVA",
+    "region": "PINHEIRO - MA",
+    "volume": 6732.32,
+    "metaVolume": 70186.83,
+    "positivacao": 0,
+    "pdvsTotal": 38,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 1,
+        "reach": "5,26%",
+        "posTela": 5,
+        "posTotal": 6
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 4,
+        "reach": "18,18%",
+        "posTela": 3,
+        "posTotal": 7
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 4,
+        "reach": "23,53%",
+        "posTela": 0,
+        "posTotal": 4
+      },
+      "poLiq": {
+        "meta": 30,
+        "realizado": 12,
+        "reach": "40,00%",
+        "posTela": 3,
+        "posTotal": 15
+      }
+    }
+  },
+  {
+    "id": "12252",
+    "name": "DOMINGAS CARVALHO",
+    "region": "CAXIAS 1 - MA",
+    "volume": 14093.66,
+    "metaVolume": 60458.67,
+    "positivacao": 0,
+    "pdvsTotal": 30,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 35,
+        "realizado": 3,
+        "reach": "8,57%",
+        "posTela": 1,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "30276",
+    "name": "ANA BEATRIZ COSTA CAMPOS",
+    "region": "",
+    "volume": 4143.99,
+    "metaVolume": 17334.6,
+    "positivacao": 0,
+    "pdvsTotal": 27,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 4,
+        "reach": "16,00%",
+        "posTela": 4,
+        "posTotal": 8
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 3,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "27214",
+    "name": "EDILENE SANTANA",
+    "region": "IGARAPE DO MEIO - MA",
+    "volume": 13501.68,
+    "metaVolume": 21469.21,
+    "positivacao": 0,
+    "pdvsTotal": 32,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 3,
+        "reach": "12,00%",
+        "posTela": 5,
+        "posTotal": 8
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 2,
+        "reach": "13,33%",
+        "posTela": 4,
+        "posTotal": 6
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 5,
+        "reach": "20,00%",
+        "posTela": 5,
+        "posTotal": 10
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 5,
+        "reach": "25,00%",
+        "posTela": 5,
+        "posTotal": 10
+      }
+    }
+  },
+  {
+    "id": "38616",
+    "name": "JOYCE MARTINS",
+    "region": "FORTUNA - MA",
+    "volume": 8743.99,
+    "metaVolume": 8046.34,
+    "positivacao": 0,
+    "pdvsTotal": 30,
+    "team": "HF",
+    "battles": {}
+  },
+  {
+    "id": "14076",
+    "name": "MADALENA DAS MERCES",
+    "region": "BEQUIMAO - MA",
+    "volume": 12427.5,
+    "metaVolume": 46911.7,
+    "positivacao": 0,
+    "pdvsTotal": 24,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 3,
+        "reach": "12,00%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 1,
+        "reach": "6,67%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 6,
+        "reach": "24,00%",
+        "posTela": 0,
+        "posTotal": 6
+      },
+      "sabLiq": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 0,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "20305",
+    "name": "GRECY KELLY RIBEIRO",
+    "region": "COELHO NETO - MA",
+    "volume": 6483.46,
+    "metaVolume": 35710.16,
+    "positivacao": 0,
+    "pdvsTotal": 28,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 24,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 3,
+        "posTotal": 3
+      },
+      "cif": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 33,
+        "realizado": 6,
+        "reach": "18,18%",
+        "posTela": 2,
+        "posTotal": 8
+      }
+    }
+  },
+  {
+    "id": "32490",
+    "name": "VANDERLI",
+    "region": "SANTA RITA",
+    "volume": 5644.13,
+    "metaVolume": 25418.23,
+    "positivacao": 0,
+    "pdvsTotal": 24,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 23,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 26,
+        "realizado": 1,
+        "reach": "3,85%",
+        "posTela": 2,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 29,
+        "realizado": 3,
+        "reach": "10,29%",
+        "posTela": 1,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "14408",
+    "name": "DAYANE R LAURINDO",
+    "region": "GOV. NUNES FREIRE",
+    "volume": 6340.24,
+    "metaVolume": 25719.29,
+    "positivacao": 0,
+    "pdvsTotal": 32,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 1,
+        "reach": "5,26%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,55%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 3,
+        "reach": "17,65%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "poLiq": {
+        "meta": 30,
+        "realizado": 6,
+        "reach": "20,00%",
+        "posTela": 2,
+        "posTotal": 8
+      }
+    }
+  },
+  {
+    "id": "15323",
+    "name": "DHEIMSON DHONNES",
+    "region": "VIANA-MA",
+    "volume": 1705.01,
+    "metaVolume": 34456.54,
+    "positivacao": 0,
+    "pdvsTotal": 28,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 18,
+        "realizado": 1,
+        "reach": "5,56%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 25,
+        "realizado": 5,
+        "reach": "20,00%",
+        "posTela": 0,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "24626",
+    "name": "IGOR LEONARD",
+    "region": "RIBAMAR 2",
+    "volume": 4514.76,
+    "metaVolume": 27833.61,
+    "positivacao": 0,
+    "pdvsTotal": 31,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 37,
+        "realizado": 1,
+        "reach": "2,70%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "cif": {
+        "meta": 40,
+        "realizado": 2,
+        "reach": "5,00%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 32,
+        "realizado": 3,
+        "reach": "9,38%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "poLiq": {
+        "meta": 46,
+        "realizado": 11,
+        "reach": "23,57%",
+        "posTela": 3,
+        "posTotal": 14
+      }
+    }
+  },
+  {
+    "id": "12070",
+    "name": "ADIGLEY NUNES MAIA",
+    "region": "PORTO FRANCO-MA",
+    "volume": 23529.36,
+    "metaVolume": 20812.37,
+    "positivacao": 0,
+    "pdvsTotal": 29,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 18,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "cif": {
+        "meta": 19,
+        "realizado": 4,
+        "reach": "21,05%",
+        "posTela": 3,
+        "posTotal": 7
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 28,
+        "realizado": 3,
+        "reach": "10,71%",
+        "posTela": 3,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "30484",
+    "name": "FELIPE DOMINGOS",
+    "region": "AMAPA - MA",
+    "volume": 13625.25,
+    "metaVolume": 14315.82,
+    "positivacao": 0,
+    "pdvsTotal": 25,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 4,
+        "posTotal": 4
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 3,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "poLiq": {
+        "meta": 27,
+        "realizado": 8,
+        "reach": "29,63%",
+        "posTela": 6,
+        "posTotal": 14
+      }
+    }
+  },
+  {
+    "id": "17348",
+    "name": "NEANDRO COUTINHO",
+    "region": "CAROLINA - MA",
+    "volume": 2522.82,
+    "metaVolume": 16216.58,
+    "positivacao": 0,
+    "pdvsTotal": 23,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 30,
+        "realizado": 3,
+        "reach": "10,00%",
+        "posTela": 3,
+        "posTotal": 6
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 2,
+        "reach": "13,33%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "rexona": {
+        "meta": 29,
+        "realizado": 7,
+        "reach": "24,14%",
+        "posTela": 3,
+        "posTotal": 10
+      },
+      "sabLiq": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 0,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "23974",
+    "name": "GILDEANE ROCHA",
+    "region": "AMARANTE-MA",
+    "volume": 318.34,
+    "metaVolume": 21372.66,
+    "positivacao": 0,
+    "pdvsTotal": 23,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 1,
+        "reach": "5,26%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,55%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 18,
+        "realizado": 2,
+        "reach": "11,11%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "poLiq": {
+        "meta": 26,
+        "realizado": 4,
+        "reach": "15,38%",
+        "posTela": 1,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "18307",
+    "name": "EVANEZA LOPES",
+    "region": "URBANO SANTOS",
+    "volume": 12770.25,
+    "metaVolume": 14542.45,
+    "positivacao": 0,
+    "pdvsTotal": 25,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 3,
+        "posTotal": 3
+      },
+      "cif": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "mayo": {
+        "meta": 23,
+        "realizado": 1,
+        "reach": "4,35%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 35,
+        "realizado": 2,
+        "reach": "5,71%",
+        "posTela": 4,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "21032",
+    "name": "JANIELE",
+    "region": "MARACACUME",
+    "volume": 427.04,
+    "metaVolume": 17233.84,
+    "positivacao": 0,
+    "pdvsTotal": 28,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 5,
+        "reach": "20,00%",
+        "posTela": 1,
+        "posTotal": 6
+      },
+      "sabLiq": {
+        "meta": 15,
+        "realizado": 1,
+        "reach": "6,67%",
+        "posTela": 0,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "26694",
+    "name": "WALDJANE OLIVEIRA",
+    "region": "PIO XII - MA",
+    "volume": 1500.33,
+    "metaVolume": 21965.52,
+    "positivacao": 0,
+    "pdvsTotal": 23,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 2,
+        "reach": "10,53%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 27,
+        "realizado": 3,
+        "reach": "11,11%",
+        "posTela": 1,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "20664",
+    "name": "RYCELLE MENDES",
+    "region": "S R MANGABEIRA - MA",
+    "volume": 8762.16,
+    "metaVolume": 13354.33,
+    "positivacao": 0,
+    "pdvsTotal": 25,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 32,
+        "realizado": 5,
+        "reach": "15,63%",
+        "posTela": 2,
+        "posTotal": 7
+      },
+      "oral": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 2,
+        "posTotal": 5
+      },
+      "rexona": {
+        "meta": 31,
+        "realizado": 7,
+        "reach": "22,58%",
+        "posTela": 3,
+        "posTotal": 10
+      },
+      "sabLiq": {
+        "meta": 26,
+        "realizado": 2,
+        "reach": "7,69%",
+        "posTela": 2,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "21256",
+    "name": "ALANA CAVALCANTE DA SILVA",
+    "region": "PASSAGEM FRANCA - MA",
+    "volume": 3561.67,
+    "metaVolume": 22504.29,
+    "positivacao": 0,
+    "pdvsTotal": 31,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 23,
+        "realizado": 4,
+        "reach": "17,39%",
+        "posTela": 0,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "37766",
+    "name": "M E P DO N RIBEIRO REPRESENTACOES",
+    "region": "ESPERANTINOPOLIS",
+    "volume": 1553.31,
+    "metaVolume": 28881.24,
+    "positivacao": 0,
+    "pdvsTotal": 23,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 16,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "sabLiq": {
+        "meta": 18,
+        "realizado": 1,
+        "reach": "5,56%",
+        "posTela": 1,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "37702",
+    "name": "IDNA PATRICIA MENDES CUTRIM",
+    "region": "JOÃO PAULO-MA",
+    "volume": 65211.15,
+    "metaVolume": 17803.52,
+    "positivacao": 0,
+    "pdvsTotal": 28,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 1,
+        "reach": "6,58%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,39%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "sabLiq": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "18406",
+    "name": "RICARDO DE ARAUJO",
+    "region": "DIVINEIA",
+    "volume": 9262.36,
+    "metaVolume": 27325.39,
+    "positivacao": 0,
+    "pdvsTotal": 29,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 38,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 40,
+        "realizado": 3,
+        "reach": "7,50%",
+        "posTela": 4,
+        "posTotal": 7
+      },
+      "mayo": {
+        "meta": 32,
+        "realizado": 1,
+        "reach": "3,13%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "poLiq": {
+        "meta": 48,
+        "realizado": 11,
+        "reach": "22,92%",
+        "posTela": 4,
+        "posTotal": 15
+      }
+    }
+  },
+  {
+    "id": "11306",
+    "name": "YARA FERREIRA LIMA",
+    "region": "SAO MATEUS MA",
+    "volume": 6914.89,
+    "metaVolume": 14608.61,
+    "positivacao": 0,
+    "pdvsTotal": 22,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 32,
+        "realizado": 1,
+        "reach": "3,09%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "4,87%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "rexona": {
+        "meta": 31,
+        "realizado": 2,
+        "reach": "6,39%",
+        "posTela": 2,
+        "posTotal": 4
+      },
+      "sabLiq": {
+        "meta": 28,
+        "realizado": 4,
+        "reach": "14,29%",
+        "posTela": 2,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "16820",
+    "name": "KARINA MIKAELA DA SILVA",
+    "region": "JOAO LISBOA",
+    "volume": 384.33,
+    "metaVolume": 14637.07,
+    "positivacao": 0,
+    "pdvsTotal": 22,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 2,
+        "reach": "13,33%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "rexona": {
+        "meta": 20,
+        "realizado": 4,
+        "reach": "20,00%",
+        "posTela": 1,
+        "posTotal": 5
+      },
+      "sabLiq": {
+        "meta": 16,
+        "realizado": 2,
+        "reach": "12,50%",
+        "posTela": 1,
+        "posTotal": 3
+      }
+    }
+  },
+  {
+    "id": "36449",
+    "name": "JARDEANE OLIVEIRA SILVA",
+    "region": "JOAO LISBOA",
+    "volume": 4086.15,
+    "metaVolume": 15944.05,
+    "positivacao": 0,
+    "pdvsTotal": 22,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 18,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 18,
+        "realizado": 1,
+        "reach": "5,56%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 1,
+        "reach": "5,88%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "poLiq": {
+        "meta": 20,
+        "realizado": 2,
+        "reach": "10,00%",
+        "posTela": 1,
+        "posTotal": 3
+      }
+    }
+  },
+  {
+    "id": "38716",
+    "name": "JALLYS CARREIRO",
+    "region": "AMARANTE",
+    "volume": 24913.12,
+    "metaVolume": 12620.63,
+    "positivacao": 0,
+    "pdvsTotal": 22,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 30,
+        "realizado": 4,
+        "reach": "13,33%",
+        "posTela": 10,
+        "posTotal": 14
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 3,
+        "posTotal": 3
+      },
+      "rexona": {
+        "meta": 28,
+        "realizado": 5,
+        "reach": "17,86%",
+        "posTela": 14,
+        "posTotal": 19
+      },
+      "sabLiq": {
+        "meta": 22,
+        "realizado": 3,
+        "reach": "13,64%",
+        "posTela": 8,
+        "posTotal": 11
+      }
+    }
+  },
+  {
+    "id": "37711",
+    "name": "MARYNALVA DE OLIVEIRA PIMENTA",
+    "region": "BAIRRO DE FATIMA-MA",
+    "volume": 7519.12,
+    "metaVolume": 24579.6,
+    "positivacao": 0,
+    "pdvsTotal": 26,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 33,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 30,
+        "realizado": 6,
+        "reach": "20,00%",
+        "posTela": 2,
+        "posTotal": 8
+      },
+      "sabLiq": {
+        "meta": 25,
+        "realizado": 5,
+        "reach": "20,00%",
+        "posTela": 3,
+        "posTotal": 8
+      }
+    }
+  },
+  {
+    "id": "37393",
+    "name": "LAYRA LORRANE PEIXOTO VILELA",
+    "region": "",
+    "volume": 15564.59,
+    "metaVolume": 11903.73,
+    "positivacao": 0,
+    "pdvsTotal": 26,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 30,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 18,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 15,
+        "realizado": 6,
+        "reach": "40,00%",
+        "posTela": 1,
+        "posTotal": 7
+      },
+      "sabLiq": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 1,
+        "posTotal": 3
+      }
+    }
+  },
+  {
+    "id": "22274",
+    "name": "SERGIO LIMA",
+    "region": "JENIPAPO DOS VIEIRAS - MA",
+    "volume": 14984.61,
+    "metaVolume": 7992.62,
+    "positivacao": 0,
+    "pdvsTotal": 22,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 19,
+        "realizado": 2,
+        "reach": "10,53%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "sabLiq": {
+        "meta": 18,
+        "realizado": 1,
+        "reach": "5,56%",
+        "posTela": 2,
+        "posTotal": 3
+      }
+    }
+  },
+  {
+    "id": "21576",
+    "name": "VIRGINIA DA SILVA",
+    "region": "TIMON - MA",
+    "volume": 22624.43,
+    "metaVolume": 17497.24,
+    "positivacao": 0,
+    "pdvsTotal": 24,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 44,
+        "realizado": 1,
+        "reach": "2,25%",
+        "posTela": 2,
+        "posTotal": 3
+      },
+      "oral": {
+        "meta": 28,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 4,
+        "posTotal": 4
+      },
+      "rexona": {
+        "meta": 42,
+        "realizado": 3,
+        "reach": "6,99%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "sabLiq": {
+        "meta": 34,
+        "realizado": 3,
+        "reach": "8,63%",
+        "posTela": 1,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "13620",
+    "name": "ARLEIA DA SILVA RAMOS",
+    "region": "BURITCUPU -MA",
+    "volume": 0,
+    "metaVolume": 13743.44,
+    "positivacao": 0,
+    "pdvsTotal": 29,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 23,
+        "realizado": 1,
+        "reach": "4,35%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 4,
+        "reach": "20,00%",
+        "posTela": 0,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "31271",
+    "name": "MARCELO V DE SOUSA",
+    "region": "PERITORO",
+    "volume": 5131.75,
+    "metaVolume": 24219.27,
+    "positivacao": 0,
+    "pdvsTotal": 47,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 8,
+        "reach": "40,00%",
+        "posTela": 1,
+        "posTotal": 9
+      },
+      "cif": {
+        "meta": 23,
+        "realizado": 2,
+        "reach": "8,70%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 3,
+        "reach": "17,65%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "poLiq": {
+        "meta": 22,
+        "realizado": 6,
+        "reach": "27,27%",
+        "posTela": 1,
+        "posTotal": 7
+      }
+    }
+  },
+  {
+    "id": "38416",
+    "name": "ELLAINE MARIA DE ARAUJO PINHEIRO",
+    "region": "SANTA INÊS",
+    "volume": 13440.5,
+    "metaVolume": 10479.39,
+    "positivacao": 0,
+    "pdvsTotal": 25,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 2,
+        "posTotal": 3
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 1,
+        "reach": "6,67%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 3,
+        "reach": "12,00%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "sabLiq": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 1,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "18398",
+    "name": "GLEISON RODRIGUES",
+    "region": "LAGOA DO MATO - MA",
+    "volume": 11240.64,
+    "metaVolume": 4139.17,
+    "positivacao": 0,
+    "pdvsTotal": 23,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 28,
+        "realizado": 1,
+        "reach": "3,57%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "sabLiq": {
+        "meta": 18,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "6242",
+    "name": "DAIANA DE SOUZA F DE SOUSA",
+    "region": "CODO-MA",
+    "volume": 4392.51,
+    "metaVolume": 22541.39,
+    "positivacao": 0,
+    "pdvsTotal": 24,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 27,
+        "realizado": 3,
+        "reach": "11,11%",
+        "posTela": 2,
+        "posTotal": 5
+      },
+      "oral": {
+        "meta": 17,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 26,
+        "realizado": 4,
+        "reach": "15,33%",
+        "posTela": 2,
+        "posTotal": 6
+      },
+      "sabLiq": {
+        "meta": 21,
+        "realizado": 2,
+        "reach": "9,46%",
+        "posTela": 2,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "35204",
+    "name": "DANIEL MEIRELES DA SILVA",
+    "region": "BREJO",
+    "volume": 10205.38,
+    "metaVolume": 7139.98,
+    "positivacao": 0,
+    "pdvsTotal": 24,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 27,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "oral": {
+        "meta": 17,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 26,
+        "realizado": 3,
+        "reach": "11,49%",
+        "posTela": 4,
+        "posTotal": 7
+      },
+      "sabLiq": {
+        "meta": 21,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "14660",
+    "name": "GUSTAVO SILVA DA COSTA",
+    "region": "PEDREIRAS - MA",
+    "volume": 10307.83,
+    "metaVolume": 27487.46,
+    "positivacao": 0,
+    "pdvsTotal": 22,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 33,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 32,
+        "realizado": 1,
+        "reach": "3,13%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "sabLiq": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "15787",
+    "name": "JOANA DOS SANTOS",
+    "region": "ALTO ALEGUE PINDARE-MA",
+    "volume": 8979.62,
+    "metaVolume": 7650.41,
+    "positivacao": 0,
+    "pdvsTotal": 20,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 18,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 18,
+        "realizado": 5,
+        "reach": "27,78%",
+        "posTela": 3,
+        "posTotal": 8
+      },
+      "sabLiq": {
+        "meta": 16,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "30052",
+    "name": "LEIDIANE PAZ SILVA",
+    "region": "",
+    "volume": 21147.81,
+    "metaVolume": 9324.85,
+    "positivacao": 0,
+    "pdvsTotal": 23,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 2,
+        "posTotal": 4
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 1,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "20614",
+    "name": "EVA LORRANE SILVA",
+    "region": "SANTA LUZIA TIDE- MA",
+    "volume": 7899.92,
+    "metaVolume": 27143.08,
+    "positivacao": 0,
+    "pdvsTotal": 25,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 18,
+        "realizado": 2,
+        "reach": "11,11%",
+        "posTela": 4,
+        "posTotal": 6
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 3,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 5,
+        "reach": "29,41%",
+        "posTela": 2,
+        "posTotal": 7
+      },
+      "poLiq": {
+        "meta": 30,
+        "realizado": 4,
+        "reach": "13,33%",
+        "posTela": 4,
+        "posTotal": 7
+      }
+    }
+  },
+  {
+    "id": "36238",
+    "name": "ROBERTA ROTA 03",
+    "region": "",
+    "volume": 3433.71,
+    "metaVolume": 7820.09,
+    "positivacao": 0,
+    "pdvsTotal": 20,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 15,
+        "realizado": 1,
+        "reach": "6,67%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 13,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 12,
+        "realizado": 1,
+        "reach": "8,33%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "poLiq": {
+        "meta": 18,
+        "realizado": 1,
+        "reach": "5,56%",
+        "posTela": 1,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "37032",
+    "name": "ISRAEL",
+    "region": "SANTA QUITERIA",
+    "volume": 7271.65,
+    "metaVolume": 17508.68,
+    "positivacao": 0,
+    "pdvsTotal": 27,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 23,
+        "realizado": 2,
+        "reach": "8,70%",
+        "posTela": 5,
+        "posTotal": 7
+      },
+      "cif": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 4,
+        "posTotal": 6
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 30,
+        "realizado": 7,
+        "reach": "23,33%",
+        "posTela": 4,
+        "posTotal": 11
+      }
+    }
+  },
+  {
+    "id": "28036",
+    "name": "ANA BUCELES",
+    "region": "BAIRRO DE FATMA",
+    "volume": 11918.73,
+    "metaVolume": 23081.38,
+    "positivacao": 0,
+    "pdvsTotal": 20,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 23,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 26,
+        "realizado": 3,
+        "reach": "11,54%",
+        "posTela": 3,
+        "posTotal": 6
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "poLiq": {
+        "meta": 29,
+        "realizado": 4,
+        "reach": "13,71%",
+        "posTela": 3,
+        "posTotal": 7
+      }
+    }
+  },
+  {
+    "id": "21800",
+    "name": "KADJA MILENE",
+    "region": "CANDIDO MENDES - MA",
+    "volume": 5728.63,
+    "metaVolume": 34698.52,
+    "positivacao": 0,
+    "pdvsTotal": 24,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 2,
+        "reach": "9,09%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 18,
+        "realizado": 3,
+        "reach": "16,67%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "poLiq": {
+        "meta": 26,
+        "realizado": 6,
+        "reach": "23,08%",
+        "posTela": 0,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "27293",
+    "name": "FLORISVALDO MORAES",
+    "region": "PENALVA - MA",
+    "volume": 18485.17,
+    "metaVolume": 15086.29,
+    "positivacao": 0,
+    "pdvsTotal": 20,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,55%",
+        "posTela": 3,
+        "posTotal": 4
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 1,
+        "reach": "5,88%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 2,
+        "posTotal": 3
+      }
+    }
+  },
+  {
+    "id": "17223",
+    "name": "NAYARA FERREIRA",
+    "region": "SANTA HELENA MA",
+    "volume": 1683.27,
+    "metaVolume": 37850.07,
+    "positivacao": 0,
+    "pdvsTotal": 19,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 1,
+        "reach": "5,26%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 18,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 0,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "21937",
+    "name": "MARIA C COSTA",
+    "region": "ARAIOSES",
+    "volume": 5653.63,
+    "metaVolume": 40866,
+    "positivacao": 0,
+    "pdvsTotal": 26,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 38,
+        "realizado": 1,
+        "reach": "2,63%",
+        "posTela": 2,
+        "posTotal": 3
+      },
+      "cif": {
+        "meta": 40,
+        "realizado": 4,
+        "reach": "10,00%",
+        "posTela": 3,
+        "posTotal": 7
+      },
+      "mayo": {
+        "meta": 32,
+        "realizado": 1,
+        "reach": "3,13%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 46,
+        "realizado": 7,
+        "reach": "15,00%",
+        "posTela": 3,
+        "posTotal": 10
+      }
+    }
+  },
+  {
+    "id": "36609",
+    "name": "JULIANA DOS SANTOS DO ESPIRITO SANTO",
+    "region": "",
+    "volume": 17496.66,
+    "metaVolume": 3579.52,
+    "positivacao": 0,
+    "pdvsTotal": 19,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 2,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "15234",
+    "name": "ROGERIO RIBEIRO SENADOR ALEXANDRE COSTA",
+    "region": "MA",
+    "volume": 11953.26,
+    "metaVolume": 18111.37,
+    "positivacao": 0,
+    "pdvsTotal": 30,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 7,
+        "reach": "35,00%",
+        "posTela": 0,
+        "posTotal": 7
+      },
+      "cif": {
+        "meta": 23,
+        "realizado": 1,
+        "reach": "4,35%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 27,
+        "realizado": 6,
+        "reach": "22,22%",
+        "posTela": 1,
+        "posTotal": 7
+      }
+    }
+  },
+  {
+    "id": "17284",
+    "name": "MICHELANE DO NASCIMENTO",
+    "region": "SAO DOMINGOS DO MARANHAO-MA",
+    "volume": 1128.84,
+    "metaVolume": 8647.05,
+    "positivacao": 0,
+    "pdvsTotal": 20,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 29,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 18,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 28,
+        "realizado": 3,
+        "reach": "10,71%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "sabLiq": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,55%",
+        "posTela": 0,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "12052",
+    "name": "ALANA GARCIA MARTINS",
+    "region": "ME- SANTA HELENA",
+    "volume": 3870.01,
+    "metaVolume": 6816.14,
+    "positivacao": 0,
+    "pdvsTotal": 18,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 3,
+        "posTotal": 3
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "22011",
+    "name": "ANTONIO GUSTAVO",
+    "region": "PRESIDENTE DUTRA 2 - MA",
+    "volume": 0,
+    "metaVolume": 33202.42,
+    "positivacao": 0,
+    "pdvsTotal": 22,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 3,
+        "reach": "13,64%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "poLiq": {
+        "meta": 27,
+        "realizado": 3,
+        "reach": "11,11%",
+        "posTela": 0,
+        "posTotal": 3
+      }
+    }
+  },
+  {
+    "id": "28109",
+    "name": "ROSANA KARLA",
+    "region": "ROSARIO-MA",
+    "volume": 6815.75,
+    "metaVolume": 6977.55,
+    "positivacao": 0,
+    "pdvsTotal": 18,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 23,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 5,
+        "posTotal": 5
+      },
+      "cif": {
+        "meta": 26,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 29,
+        "realizado": 4,
+        "reach": "13,71%",
+        "posTela": 5,
+        "posTotal": 9
+      }
+    }
+  },
+  {
+    "id": "17331",
+    "name": "SABRINA DA SILVA",
+    "region": "ITINGA-MA",
+    "volume": 25446.75,
+    "metaVolume": 4928.4,
+    "positivacao": 0,
+    "pdvsTotal": 18,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "oral": {
+        "meta": 12,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "rexona": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "sabLiq": {
+        "meta": 18,
+        "realizado": 1,
+        "reach": "5,56%",
+        "posTela": 1,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "33435",
+    "name": "S T DE OLIVEIRA COSTA",
+    "region": "",
+    "volume": 18463.13,
+    "metaVolume": 24390.78,
+    "positivacao": 0,
+    "pdvsTotal": 27,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 27,
+        "realizado": 2,
+        "reach": "7,41%",
+        "posTela": 2,
+        "posTotal": 4
+      },
+      "oral": {
+        "meta": 17,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 4,
+        "posTotal": 4
+      },
+      "rexona": {
+        "meta": 26,
+        "realizado": 5,
+        "reach": "19,16%",
+        "posTela": 5,
+        "posTotal": 10
+      },
+      "sabLiq": {
+        "meta": 22,
+        "realizado": 2,
+        "reach": "9,09%",
+        "posTela": 4,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "25008",
+    "name": "JHON ALLYSON",
+    "region": "NOVA OLINDA - MA",
+    "volume": 2485.35,
+    "metaVolume": 6861.71,
+    "positivacao": 0,
+    "pdvsTotal": 18,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "sabLiq": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "23555",
+    "name": "NADIA ALMEIDA",
+    "region": "SAO BERNARDO - MA",
+    "volume": 1347.23,
+    "metaVolume": 8750.19,
+    "positivacao": 0,
+    "pdvsTotal": 17,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 30,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 23,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 33,
+        "realizado": 6,
+        "reach": "18,18%",
+        "posTela": 1,
+        "posTotal": 7
+      }
+    }
+  },
+  {
+    "id": "27445",
+    "name": "THAUNE",
+    "region": "ALTO ALEGRE DO PINDARE-MA",
+    "volume": 6963.75,
+    "metaVolume": 5073.09,
+    "positivacao": 0,
+    "pdvsTotal": 17,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 12,
+        "realizado": 1,
+        "reach": "8,33%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 11,
+        "realizado": 3,
+        "reach": "27,27%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "mayo": {
+        "meta": 10,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 15,
+        "realizado": 2,
+        "reach": "13,33%",
+        "posTela": 3,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "29756",
+    "name": "RODRIGO GOMES",
+    "region": "BREJO",
+    "volume": 4245.71,
+    "metaVolume": 14345.62,
+    "positivacao": 0,
+    "pdvsTotal": 22,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 30,
+        "realizado": 1,
+        "reach": "3,33%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 23,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 35,
+        "realizado": 7,
+        "reach": "20,00%",
+        "posTela": 4,
+        "posTotal": 11
+      }
+    }
+  },
+  {
+    "id": "26737",
+    "name": "KATIANY FRNCO DE SA",
+    "region": "CAXIAS - MA",
+    "volume": 28048.43,
+    "metaVolume": 39485.12,
+    "positivacao": 0,
+    "pdvsTotal": 20,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 36,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 23,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 35,
+        "realizado": 2,
+        "reach": "5,65%",
+        "posTela": 2,
+        "posTotal": 4
+      },
+      "sabLiq": {
+        "meta": 28,
+        "realizado": 2,
+        "reach": "6,98%",
+        "posTela": 0,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "39309",
+    "name": "FLORA FERREIRA DOS S",
+    "region": "MARACAÇUMÉ",
+    "volume": 20068.65,
+    "metaVolume": 22318.74,
+    "positivacao": 0,
+    "pdvsTotal": 35,
+    "team": "HF",
+    "battles": {}
+  },
+  {
+    "id": "11074",
+    "name": "ANTONIO JOSE CADETE PIRES",
+    "region": "CURURUPU MA",
+    "volume": 7737.43,
+    "metaVolume": 12543.8,
+    "positivacao": 0,
+    "pdvsTotal": 16,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 18,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 3,
+        "posTotal": 4
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "28443",
+    "name": "JHONATAN",
+    "region": "ACAILANDIA-MA",
+    "volume": 1917.23,
+    "metaVolume": 36947.99,
+    "positivacao": 0,
+    "pdvsTotal": 26,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 18,
+        "realizado": 5,
+        "reach": "27,78%",
+        "posTela": 2,
+        "posTotal": 7
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,55%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 2,
+        "reach": "11,76%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "poLiq": {
+        "meta": 30,
+        "realizado": 5,
+        "reach": "16,67%",
+        "posTela": 0,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "27650",
+    "name": "CHARLEANE",
+    "region": "CIDELANDIA-MA",
+    "volume": 2858.21,
+    "metaVolume": 14402.18,
+    "positivacao": 0,
+    "pdvsTotal": 22,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 18,
+        "realizado": 4,
+        "reach": "22,22%",
+        "posTela": 0,
+        "posTotal": 4
+      },
+      "cif": {
+        "meta": 19,
+        "realizado": 3,
+        "reach": "15,79%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 14,
+        "realizado": 2,
+        "reach": "14,29%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "poLiq": {
+        "meta": 24,
+        "realizado": 6,
+        "reach": "25,00%",
+        "posTela": 1,
+        "posTotal": 7
+      }
+    }
+  },
+  {
+    "id": "25130",
+    "name": "THAYANE CRISTINA",
+    "region": "VITORIA DO MEARIM",
+    "volume": 6027.3,
+    "metaVolume": 12511.08,
+    "positivacao": 0,
+    "pdvsTotal": 26,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 2,
+        "reach": "11,76%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "poLiq": {
+        "meta": 26,
+        "realizado": 5,
+        "reach": "19,23%",
+        "posTela": 1,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "21165",
+    "name": "MARIA ALVES",
+    "region": "VITORINO FREIRE-MA",
+    "volume": 26208.49,
+    "metaVolume": 17379.07,
+    "positivacao": 0,
+    "pdvsTotal": 16,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,39%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 14,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 22,
+        "realizado": 3,
+        "reach": "13,61%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "sabLiq": {
+        "meta": 17,
+        "realizado": 3,
+        "reach": "16,80%",
+        "posTela": 4,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "21478",
+    "name": "POLLYANA COELHO",
+    "region": "FORTALEZA DOS NOGUEIRAS -MA",
+    "volume": 7785.49,
+    "metaVolume": 11702.45,
+    "positivacao": 0,
+    "pdvsTotal": 18,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 23,
+        "realizado": 4,
+        "reach": "17,39%",
+        "posTela": 1,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "12401",
+    "name": "DIEGO DE ARAUJO",
+    "region": "GOV NUNES FREIRE",
+    "volume": 19705.24,
+    "metaVolume": 32092.61,
+    "positivacao": 0,
+    "pdvsTotal": 24,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 20,
+        "realizado": 5,
+        "reach": "25,00%",
+        "posTela": 0,
+        "posTotal": 5
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 3,
+        "reach": "12,00%",
+        "posTela": 2,
+        "posTotal": 5
+      },
+      "sabLiq": {
+        "meta": 25,
+        "realizado": 3,
+        "reach": "12,00%",
+        "posTela": 2,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "20605",
+    "name": "ELZA MARIA",
+    "region": "CAXIAS -MA",
+    "volume": 0,
+    "metaVolume": 11136.13,
+    "positivacao": 0,
+    "pdvsTotal": 17,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 34,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 33,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "sabLiq": {
+        "meta": 27,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "35064",
+    "name": "YLANNA BARROS DE ALMEIDA",
+    "region": "GRAJAU 1",
+    "volume": 10978.32,
+    "metaVolume": 8495.52,
+    "positivacao": 0,
+    "pdvsTotal": 15,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 28,
+        "realizado": 1,
+        "reach": "3,57%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 28,
+        "realizado": 3,
+        "reach": "10,71%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "sabLiq": {
+        "meta": 22,
+        "realizado": 4,
+        "reach": "18,18%",
+        "posTela": 1,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "18668",
+    "name": "JOAO VITOR",
+    "region": "SAO MATEUS - MA",
+    "volume": 20349.02,
+    "metaVolume": 15501.53,
+    "positivacao": 0,
+    "pdvsTotal": 17,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 4,
+        "posTotal": 4
+      },
+      "cif": {
+        "meta": 30,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 24,
+        "realizado": 1,
+        "reach": "4,17%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 35,
+        "realizado": 3,
+        "reach": "8,57%",
+        "posTela": 3,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "22124",
+    "name": "MARIA DE JESUS DA SILVA PAZ",
+    "region": "TURIACU -MA",
+    "volume": 7422.94,
+    "metaVolume": 12873.4,
+    "positivacao": 0,
+    "pdvsTotal": 17,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,55%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 16,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 23,
+        "realizado": 3,
+        "reach": "13,04%",
+        "posTela": 1,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "18100",
+    "name": "ANTONIO CARLOS",
+    "region": "BURITI BRAVO - MA",
+    "volume": 6998.88,
+    "metaVolume": 16174.67,
+    "positivacao": 0,
+    "pdvsTotal": 23,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 3,
+        "posTotal": 4
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 1,
+        "reach": "4,76%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 26,
+        "realizado": 1,
+        "reach": "3,85%",
+        "posTela": 3,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "15247",
+    "name": "MEYRE REIS SANTOS SILVA",
+    "region": "CODO",
+    "volume": 35651.93,
+    "metaVolume": 1610.28,
+    "positivacao": 0,
+    "pdvsTotal": 24,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 24,
+        "realizado": 1,
+        "reach": "4,17%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "oral": {
+        "meta": 12,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 19,
+        "realizado": 2,
+        "reach": "10,14%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "sabLiq": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "21152",
+    "name": "BEATRIZ AIRES DA SILVA",
+    "region": "BURITI BRAVO",
+    "volume": 25648.93,
+    "metaVolume": 8476.47,
+    "positivacao": 0,
+    "pdvsTotal": 20,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 4,
+        "posTotal": 5
+      },
+      "oral": {
+        "meta": 17,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 3,
+        "reach": "12,00%",
+        "posTela": 6,
+        "posTotal": 9
+      },
+      "sabLiq": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,55%",
+        "posTela": 4,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "36486",
+    "name": "KENNEDY DA SILVA BARROS",
+    "region": "GOV EDSON LOB.",
+    "volume": 2220.05,
+    "metaVolume": 12046.83,
+    "positivacao": 0,
+    "pdvsTotal": 17,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 17,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 17,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 14,
+        "realizado": 1,
+        "reach": "7,14%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 20,
+        "realizado": 4,
+        "reach": "20,00%",
+        "posTela": 0,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "36551",
+    "name": "HILARY",
+    "region": "ANJO DA GUARDA-SLZ",
+    "volume": 1862.53,
+    "metaVolume": 13497.63,
+    "positivacao": 0,
+    "pdvsTotal": 22,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 36,
+        "realizado": 1,
+        "reach": "2,75%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 33,
+        "realizado": 2,
+        "reach": "6,06%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "sabLiq": {
+        "meta": 27,
+        "realizado": 2,
+        "reach": "7,27%",
+        "posTela": 0,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "30631",
+    "name": "JULIANA SANTOS DE SOUSA",
+    "region": "",
+    "volume": 16874.29,
+    "metaVolume": 30043.67,
+    "positivacao": 0,
+    "pdvsTotal": 14,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 30,
+        "realizado": 1,
+        "reach": "3,33%",
+        "posTela": 4,
+        "posTotal": 5
+      },
+      "oral": {
+        "meta": 18,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 4,
+        "posTotal": 4
+      },
+      "rexona": {
+        "meta": 28,
+        "realizado": 2,
+        "reach": "7,14%",
+        "posTela": 2,
+        "posTotal": 4
+      },
+      "sabLiq": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,55%",
+        "posTela": 3,
+        "posTotal": 3
+      }
+    }
+  },
+  {
+    "id": "14662",
+    "name": "JOSE DE RIBAMAR DE SOUSA",
+    "region": "SENADOR ALEXANDRE COSTA - MA",
+    "volume": 7180.86,
+    "metaVolume": 17270.98,
+    "positivacao": 0,
+    "pdvsTotal": 16,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 34,
+        "realizado": 4,
+        "reach": "11,76%",
+        "posTela": 4,
+        "posTotal": 8
+      },
+      "oral": {
+        "meta": 22,
+        "realizado": 2,
+        "reach": "9,09%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "rexona": {
+        "meta": 32,
+        "realizado": 4,
+        "reach": "12,50%",
+        "posTela": 4,
+        "posTotal": 8
+      },
+      "sabLiq": {
+        "meta": 25,
+        "realizado": 6,
+        "reach": "24,00%",
+        "posTela": 5,
+        "posTotal": 11
+      }
+    }
+  },
+  {
+    "id": "38332",
+    "name": "EDVANDO DA SILVA LIMA",
+    "region": "",
+    "volume": 0,
+    "metaVolume": 3849.51,
+    "positivacao": 0,
+    "pdvsTotal": 14,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "sabLiq": {
+        "meta": 15,
+        "realizado": 1,
+        "reach": "6,67%",
+        "posTela": 0,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "38867",
+    "name": "MARIA LUZINEIDE ROTA 2",
+    "region": "",
+    "volume": 1839.99,
+    "metaVolume": 4675.26,
+    "positivacao": 0,
+    "pdvsTotal": 20,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 18,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 16,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 23,
+        "realizado": 2,
+        "reach": "8,70%",
+        "posTela": 0,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "11258",
+    "name": "CRISTIANE PEREIRA DA SILVA",
+    "region": "COELHO NETO MA",
+    "volume": 10719.5,
+    "metaVolume": 18793.13,
+    "positivacao": 0,
+    "pdvsTotal": 16,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 30,
+        "realizado": 1,
+        "reach": "3,33%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 29,
+        "realizado": 5,
+        "reach": "17,24%",
+        "posTela": 8,
+        "posTotal": 13
+      },
+      "sabLiq": {
+        "meta": 23,
+        "realizado": 2,
+        "reach": "8,51%",
+        "posTela": 4,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "20466",
+    "name": "LETICIA MADEIRO DE SA",
+    "region": "PARAIBANO-MA",
+    "volume": 20117.68,
+    "metaVolume": 5106.15,
+    "positivacao": 0,
+    "pdvsTotal": 14,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 28,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 3,
+        "posTotal": 3
+      },
+      "rexona": {
+        "meta": 28,
+        "realizado": 2,
+        "reach": "7,14%",
+        "posTela": 4,
+        "posTotal": 6
+      },
+      "sabLiq": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 4,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "15303",
+    "name": "WILLIAM ROSA",
+    "region": "FORTALEZA DOS NOGUEIRAS",
+    "volume": 6006.56,
+    "metaVolume": 16291.35,
+    "positivacao": 0,
+    "pdvsTotal": 14,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 32,
+        "realizado": 3,
+        "reach": "9,38%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "oral": {
+        "meta": 20,
+        "realizado": 2,
+        "reach": "10,00%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "rexona": {
+        "meta": 28,
+        "realizado": 4,
+        "reach": "14,29%",
+        "posTela": 2,
+        "posTotal": 6
+      },
+      "sabLiq": {
+        "meta": 24,
+        "realizado": 2,
+        "reach": "8,33%",
+        "posTela": 2,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "16980",
+    "name": "ALEX SANTOS BALSAS",
+    "region": "MA",
+    "volume": 2135.67,
+    "metaVolume": 6891.54,
+    "positivacao": 0,
+    "pdvsTotal": 16,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 17,
+        "realizado": 2,
+        "reach": "11,76%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 3,
+        "reach": "13,64%",
+        "posTela": 2,
+        "posTotal": 5
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 1,
+        "posTotal": 3
+      }
+    }
+  },
+  {
+    "id": "33734",
+    "name": "WILLIAN",
+    "region": "ANJO DA GUARDA- SAO LUIS",
+    "volume": 1572.45,
+    "metaVolume": 6841.11,
+    "positivacao": 0,
+    "pdvsTotal": 18,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 23,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 26,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 29,
+        "realizado": 3,
+        "reach": "10,29%",
+        "posTela": 1,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "29921",
+    "name": "KAROLYNE",
+    "region": "JOAO PAULO",
+    "volume": 15855.59,
+    "metaVolume": 26766.05,
+    "positivacao": 0,
+    "pdvsTotal": 16,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 23,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "cif": {
+        "meta": 26,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 29,
+        "realizado": 4,
+        "reach": "13,71%",
+        "posTela": 3,
+        "posTotal": 7
+      }
+    }
+  },
+  {
+    "id": "33196",
+    "name": "ANA PAULA PINHEIRO MELO",
+    "region": "",
+    "volume": 22607.09,
+    "metaVolume": 17201.43,
+    "positivacao": 0,
+    "pdvsTotal": 13,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 15,
+        "realizado": 1,
+        "reach": "6,67%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 27,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "33725",
+    "name": "D G S DOS SANTOS",
+    "region": "",
+    "volume": 8029.45,
+    "metaVolume": 1170.38,
+    "positivacao": 0,
+    "pdvsTotal": 17,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 18,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 11,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 17,
+        "realizado": 1,
+        "reach": "5,75%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "sabLiq": {
+        "meta": 14,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "38222",
+    "name": "EMERSON BOTELHO MOREIRA",
+    "region": "CIDADE OPERARIA -SLZ",
+    "volume": 5173.15,
+    "metaVolume": 15063.93,
+    "positivacao": 0,
+    "pdvsTotal": 15,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 39,
+        "realizado": 2,
+        "reach": "5,05%",
+        "posTela": 2,
+        "posTotal": 4
+      },
+      "oral": {
+        "meta": 24,
+        "realizado": 1,
+        "reach": "4,17%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 36,
+        "realizado": 4,
+        "reach": "11,11%",
+        "posTela": 1,
+        "posTotal": 5
+      },
+      "sabLiq": {
+        "meta": 30,
+        "realizado": 4,
+        "reach": "13,33%",
+        "posTela": 0,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "38903",
+    "name": "ABRAAO LEITE CASTRO",
+    "region": "",
+    "volume": 10619.82,
+    "metaVolume": 14333.14,
+    "positivacao": 0,
+    "pdvsTotal": 23,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 39,
+        "realizado": 4,
+        "reach": "10,10%",
+        "posTela": 2,
+        "posTotal": 6
+      },
+      "oral": {
+        "meta": 24,
+        "realizado": 3,
+        "reach": "12,50%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "rexona": {
+        "meta": 36,
+        "realizado": 7,
+        "reach": "19,44%",
+        "posTela": 3,
+        "posTotal": 10
+      },
+      "sabLiq": {
+        "meta": 30,
+        "realizado": 6,
+        "reach": "20,00%",
+        "posTela": 2,
+        "posTotal": 8
+      }
+    }
+  },
+  {
+    "id": "30494",
+    "name": "VANDICLEIA DE SOUSA",
+    "region": "PEDREIRAS - MA",
+    "volume": 7306.32,
+    "metaVolume": 20299.87,
+    "positivacao": 0,
+    "pdvsTotal": 27,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 21,
+        "realizado": 1,
+        "reach": "4,76%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 26,
+        "realizado": 3,
+        "reach": "11,54%",
+        "posTela": 1,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "23842",
+    "name": "RODRIGO VALE",
+    "region": "ANGELIM",
+    "volume": 14728.12,
+    "metaVolume": 26058.58,
+    "positivacao": 0,
+    "pdvsTotal": 15,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 28,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 40,
+        "realizado": 6,
+        "reach": "15,00%",
+        "posTela": 0,
+        "posTotal": 6
+      },
+      "mayo": {
+        "meta": 24,
+        "realizado": 1,
+        "reach": "4,17%",
+        "posTela": 3,
+        "posTotal": 4
+      },
+      "poLiq": {
+        "meta": 35,
+        "realizado": 1,
+        "reach": "2,86%",
+        "posTela": 3,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "36563",
+    "name": "FERNANDO",
+    "region": "RAPOSA",
+    "volume": 17011.68,
+    "metaVolume": 2493.13,
+    "positivacao": 0,
+    "pdvsTotal": 13,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 14,
+        "realizado": 1,
+        "reach": "6,79%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 13,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 17,
+        "realizado": 1,
+        "reach": "5,71%",
+        "posTela": 1,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "38778",
+    "name": "MARILIA APARECIDA ABREU",
+    "region": "",
+    "volume": 2814.65,
+    "metaVolume": 2798.96,
+    "positivacao": 0,
+    "pdvsTotal": 13,
+    "team": "HF",
+    "battles": {}
+  },
+  {
+    "id": "28575",
+    "name": "DANIELA DA SILVA CRUZ CASTRO",
+    "region": "",
+    "volume": 3234.6,
+    "metaVolume": 9340.94,
+    "positivacao": 0,
+    "pdvsTotal": 13,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 20,
+        "realizado": 2,
+        "reach": "10,00%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 20,
+        "realizado": 2,
+        "reach": "10,00%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "sabLiq": {
+        "meta": 18,
+        "realizado": 2,
+        "reach": "11,11%",
+        "posTela": 0,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "16909",
+    "name": "FERNANDA PINHO",
+    "region": "ARAIOSES MA",
+    "volume": 16926.17,
+    "metaVolume": 6870.38,
+    "positivacao": 0,
+    "pdvsTotal": 18,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 36,
+        "realizado": 2,
+        "reach": "5,41%",
+        "posTela": 6,
+        "posTotal": 8
+      },
+      "oral": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,46%",
+        "posTela": 6,
+        "posTotal": 7
+      },
+      "rexona": {
+        "meta": 33,
+        "realizado": 4,
+        "reach": "11,90%",
+        "posTela": 9,
+        "posTotal": 13
+      },
+      "sabLiq": {
+        "meta": 28,
+        "realizado": 4,
+        "reach": "14,29%",
+        "posTela": 6,
+        "posTotal": 10
+      }
+    }
+  },
+  {
+    "id": "30310",
+    "name": "CRISTIANE",
+    "region": "ANGELIM-SLZ",
+    "volume": 2457.34,
+    "metaVolume": 27266.34,
+    "positivacao": 0,
+    "pdvsTotal": 15,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 26,
+        "realizado": 4,
+        "reach": "15,15%",
+        "posTela": 5,
+        "posTotal": 9
+      },
+      "oral": {
+        "meta": 16,
+        "realizado": 2,
+        "reach": "12,50%",
+        "posTela": 2,
+        "posTotal": 4
+      },
+      "rexona": {
+        "meta": 24,
+        "realizado": 3,
+        "reach": "12,50%",
+        "posTela": 3,
+        "posTotal": 6
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 4,
+        "reach": "20,00%",
+        "posTela": 0,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "39034",
+    "name": "NIELSON CALAND",
+    "region": "MAINHA - MA",
+    "volume": 2943.3,
+    "metaVolume": 4071.74,
+    "positivacao": 0,
+    "pdvsTotal": 13,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "sabLiq": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "38989",
+    "name": "RUIVANIA TORRES SOUSA",
+    "region": "",
+    "volume": 20231.85,
+    "metaVolume": 4721.57,
+    "positivacao": 0,
+    "pdvsTotal": 13,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "28707",
+    "name": "ELLEN CRISTINA LOPES",
+    "region": "APICUM-ACU - MA",
+    "volume": 4418.77,
+    "metaVolume": 8686.6,
+    "positivacao": 0,
+    "pdvsTotal": 13,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,55%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 2,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "34249",
+    "name": "JAIRES ANDRADE ACAILANDIA",
+    "region": "MA",
+    "volume": 3478.96,
+    "metaVolume": 23001.13,
+    "positivacao": 0,
+    "pdvsTotal": 12,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 28,
+        "realizado": 3,
+        "reach": "10,71%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "oral": {
+        "meta": 18,
+        "realizado": 1,
+        "reach": "5,56%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 28,
+        "realizado": 5,
+        "reach": "17,86%",
+        "posTela": 1,
+        "posTotal": 6
+      },
+      "sabLiq": {
+        "meta": 22,
+        "realizado": 5,
+        "reach": "22,73%",
+        "posTela": 1,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "30344",
+    "name": "MALRY LORANNY",
+    "region": "PARQUE VITORIA",
+    "volume": 1834.69,
+    "metaVolume": 11532.7,
+    "positivacao": 0,
+    "pdvsTotal": 18,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 23,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 26,
+        "realizado": 2,
+        "reach": "7,69%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 29,
+        "realizado": 4,
+        "reach": "13,71%",
+        "posTela": 3,
+        "posTotal": 7
+      }
+    }
+  },
+  {
+    "id": "32837",
+    "name": "ARIEL",
+    "region": "MORROS",
+    "volume": 6917.9,
+    "metaVolume": 10573.46,
+    "positivacao": 0,
+    "pdvsTotal": 12,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 23,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 26,
+        "realizado": 1,
+        "reach": "3,85%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 29,
+        "realizado": 1,
+        "reach": "3,43%",
+        "posTela": 1,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "36292",
+    "name": "AMANDA CRISTINA CAMARA LOPES",
+    "region": "",
+    "volume": 19403.49,
+    "metaVolume": 13701.2,
+    "positivacao": 0,
+    "pdvsTotal": 12,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 23,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 26,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 29,
+        "realizado": 5,
+        "reach": "17,14%",
+        "posTela": 3,
+        "posTotal": 8
+      }
+    }
+  },
+  {
+    "id": "16613",
+    "name": "TAESIO OLIVEIRA S J PARAISO",
+    "region": "MA",
+    "volume": 7015.79,
+    "metaVolume": 2754.59,
+    "positivacao": 0,
+    "pdvsTotal": 14,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 18,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 18,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 23,
+        "realizado": 1,
+        "reach": "4,35%",
+        "posTela": 4,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "23981",
+    "name": "ANTONIO CARLOS",
+    "region": "SAO FRANCISCO",
+    "volume": 1213.28,
+    "metaVolume": 10732.43,
+    "positivacao": 0,
+    "pdvsTotal": 12,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 28,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 30,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 24,
+        "realizado": 1,
+        "reach": "4,17%",
+        "posTela": 4,
+        "posTotal": 5
+      },
+      "poLiq": {
+        "meta": 27,
+        "realizado": 3,
+        "reach": "11,11%",
+        "posTela": 2,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "33779",
+    "name": "CLICE LOPES",
+    "region": "CIDADE OPERARIA- SAO LUIS",
+    "volume": 4700.72,
+    "metaVolume": 15990.97,
+    "positivacao": 0,
+    "pdvsTotal": 12,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 28,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 30,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 24,
+        "realizado": 2,
+        "reach": "8,33%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "poLiq": {
+        "meta": 38,
+        "realizado": 2,
+        "reach": "5,26%",
+        "posTela": 1,
+        "posTotal": 3
+      }
+    }
+  },
+  {
+    "id": "38312",
+    "name": "RENILTON S DA SILVA",
+    "region": "IMPERATRIZ ROTA 2",
+    "volume": 2181.56,
+    "metaVolume": 4425.58,
+    "positivacao": 0,
+    "pdvsTotal": 11,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 22,
+        "realizado": 2,
+        "reach": "9,09%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "sabLiq": {
+        "meta": 18,
+        "realizado": 2,
+        "reach": "11,11%",
+        "posTela": 2,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "23427",
+    "name": "MARYANA MONTELES",
+    "region": "MATA ROMA",
+    "volume": 4259.87,
+    "metaVolume": 8030.44,
+    "positivacao": 0,
+    "pdvsTotal": 23,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 3,
+        "posTotal": 3
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 2,
+        "reach": "9,09%",
+        "posTela": 4,
+        "posTotal": 6
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 2,
+        "reach": "10,00%",
+        "posTela": 2,
+        "posTotal": 4
+      },
+      "poLiq": {
+        "meta": 25,
+        "realizado": 3,
+        "reach": "12,00%",
+        "posTela": 4,
+        "posTotal": 7
+      }
+    }
+  },
+  {
+    "id": "17289",
+    "name": "NAIANA DOS SANTOS",
+    "region": "STA QUITERIA -MA",
+    "volume": 9328.42,
+    "metaVolume": 2725.71,
+    "positivacao": 0,
+    "pdvsTotal": 11,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 27,
+        "realizado": 1,
+        "reach": "3,70%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 17,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 26,
+        "realizado": 2,
+        "reach": "7,66%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "sabLiq": {
+        "meta": 24,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "21947",
+    "name": "ANA PAULA",
+    "region": "BOM JESUS DAS SELVAS-MA",
+    "volume": 395.82,
+    "metaVolume": 31379.31,
+    "positivacao": 0,
+    "pdvsTotal": 15,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 12,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 12,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 10,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 17,
+        "realizado": 1,
+        "reach": "5,88%",
+        "posTela": 0,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "37425",
+    "name": "ROMULO",
+    "region": "CANTANHEDE - MA",
+    "volume": 24468,
+    "metaVolume": 13585.29,
+    "positivacao": 0,
+    "pdvsTotal": 29,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 27,
+        "realizado": 1,
+        "reach": "3,70%",
+        "posTela": 1,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "38378",
+    "name": "SAMUEL HONAISER",
+    "region": "GRAJAÚ 2 - MA",
+    "volume": 3671.38,
+    "metaVolume": 19140.33,
+    "positivacao": 0,
+    "pdvsTotal": 10,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 19,
+        "realizado": 3,
+        "reach": "15,79%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 2,
+        "reach": "11,76%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "poLiq": {
+        "meta": 23,
+        "realizado": 3,
+        "reach": "13,04%",
+        "posTela": 0,
+        "posTotal": 3
+      }
+    }
+  },
+  {
+    "id": "21938",
+    "name": "DANIELA",
+    "region": "ALTO PARNAILBA-MA",
+    "volume": 6392.45,
+    "metaVolume": 6194.29,
+    "positivacao": 0,
+    "pdvsTotal": 13,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 13,
+        "realizado": 3,
+        "reach": "23,08%",
+        "posTela": 1,
+        "posTotal": 4
+      },
+      "cif": {
+        "meta": 18,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 17,
+        "realizado": 1,
+        "reach": "5,88%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 15,
+        "realizado": 1,
+        "reach": "6,67%",
+        "posTela": 1,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "18593",
+    "name": "JOCIONE",
+    "region": "MATOES - MA",
+    "volume": 20300.48,
+    "metaVolume": 11296.82,
+    "positivacao": 0,
+    "pdvsTotal": 13,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 4,
+        "posTotal": 4
+      },
+      "cif": {
+        "meta": 30,
+        "realizado": 1,
+        "reach": "3,33%",
+        "posTela": 4,
+        "posTotal": 5
+      },
+      "mayo": {
+        "meta": 24,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 36,
+        "realizado": 1,
+        "reach": "2,78%",
+        "posTela": 3,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "30596",
+    "name": "ELIAS",
+    "region": "TUTOIA-MA",
+    "volume": 8343.22,
+    "metaVolume": 23116.09,
+    "positivacao": 0,
+    "pdvsTotal": 10,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 38,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 40,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 5,
+        "posTotal": 5
+      },
+      "mayo": {
+        "meta": 32,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "poLiq": {
+        "meta": 46,
+        "realizado": 4,
+        "reach": "8,57%",
+        "posTela": 9,
+        "posTotal": 13
+      }
+    }
+  },
+  {
+    "id": "36997",
+    "name": "LUCELAYNE FERNANDES DE BRITO",
+    "region": "",
+    "volume": 16771.72,
+    "metaVolume": 15879.7,
+    "positivacao": 0,
+    "pdvsTotal": 17,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 1,
+        "reach": "6,67%",
+        "posTela": 2,
+        "posTotal": 3
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 4,
+        "reach": "16,00%",
+        "posTela": 2,
+        "posTotal": 6
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 2,
+        "reach": "10,00%",
+        "posTela": 2,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "22049",
+    "name": "EQUIBERDISON ARAUJO",
+    "region": "MIRINZAL - MA",
+    "volume": 2693.61,
+    "metaVolume": 7689.1,
+    "positivacao": 0,
+    "pdvsTotal": 11,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 19,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "cif": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 16,
+        "realizado": 2,
+        "reach": "12,50%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "poLiq": {
+        "meta": 25,
+        "realizado": 3,
+        "reach": "12,00%",
+        "posTela": 2,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "23428",
+    "name": "VANDO",
+    "region": "ROSARIO-MA",
+    "volume": 1494.51,
+    "metaVolume": 4605.96,
+    "positivacao": 0,
+    "pdvsTotal": 9,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 36,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,55%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 33,
+        "realizado": 2,
+        "reach": "6,06%",
+        "posTela": 5,
+        "posTotal": 7
+      },
+      "sabLiq": {
+        "meta": 27,
+        "realizado": 1,
+        "reach": "3,64%",
+        "posTela": 1,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "36396",
+    "name": "RICKSON",
+    "region": "SAO BENTO",
+    "volume": 0,
+    "metaVolume": 5706.89,
+    "positivacao": 0,
+    "pdvsTotal": 9,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 30,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 10,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "29550",
+    "name": "NAIARA DA SILVA OLIVEIRA",
+    "region": "IMPERATRIZ ROTA 01",
+    "volume": 6564.04,
+    "metaVolume": 9573.24,
+    "positivacao": 0,
+    "pdvsTotal": 13,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 28,
+        "realizado": 1,
+        "reach": "3,57%",
+        "posTela": 1,
+        "posTotal": 2
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 28,
+        "realizado": 1,
+        "reach": "3,57%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 1,
+        "posTotal": 4
+      }
+    }
+  },
+  {
+    "id": "20576",
+    "name": "EDILSON ARAUJO",
+    "region": "ITAPECURU - MA",
+    "volume": 10836.87,
+    "metaVolume": 51142.12,
+    "positivacao": 0,
+    "pdvsTotal": 10,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 41,
+        "realizado": 1,
+        "reach": "2,44%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 45,
+        "realizado": 2,
+        "reach": "4,44%",
+        "posTela": 2,
+        "posTotal": 3
+      },
+      "mayo": {
+        "meta": 36,
+        "realizado": 4,
+        "reach": "11,11%",
+        "posTela": 2,
+        "posTotal": 6
+      },
+      "poLiq": {
+        "meta": 52,
+        "realizado": 1,
+        "reach": "1,90%",
+        "posTela": 1,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "34120",
+    "name": "RAFAEL DE JESUS C NOGUEIRA",
+    "region": "",
+    "volume": 22296.44,
+    "metaVolume": 12646.85,
+    "positivacao": 0,
+    "pdvsTotal": 13,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 35,
+        "realizado": 1,
+        "reach": "2,86%",
+        "posTela": 2,
+        "posTotal": 3
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 2,
+        "reach": "13,33%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 4,
+        "reach": "16,00%",
+        "posTela": 3,
+        "posTotal": 7
+      },
+      "sabLiq": {
+        "meta": 15,
+        "realizado": 2,
+        "reach": "13,33%",
+        "posTela": 4,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "25126",
+    "name": "LAIANE ARAUJO SOUSA",
+    "region": "IMPERATRIZ - ROTA 04",
+    "volume": 0,
+    "metaVolume": 1982.7,
+    "positivacao": 0,
+    "pdvsTotal": 14,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 20,
+        "realizado": 3,
+        "reach": "15,00%",
+        "posTela": 0,
+        "posTotal": 3
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "sabLiq": {
+        "meta": 15,
+        "realizado": 2,
+        "reach": "13,33%",
+        "posTela": 0,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "12905",
+    "name": "DAIANE ALVES",
+    "region": "MORROS-MA",
+    "volume": 34474.32,
+    "metaVolume": 4298.73,
+    "positivacao": 0,
+    "pdvsTotal": 8,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 39,
+        "realizado": 1,
+        "reach": "2,53%",
+        "posTela": 6,
+        "posTotal": 7
+      },
+      "oral": {
+        "meta": 24,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "rexona": {
+        "meta": 36,
+        "realizado": 4,
+        "reach": "11,11%",
+        "posTela": 9,
+        "posTotal": 13
+      },
+      "sabLiq": {
+        "meta": 30,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 3,
+        "posTotal": 3
+      }
+    }
+  },
+  {
+    "id": "20852",
+    "name": "LEONARDO",
+    "region": "CANDIDO MENDES-MA",
+    "volume": 13016.14,
+    "metaVolume": 3870.05,
+    "positivacao": 0,
+    "pdvsTotal": 8,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 30,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 2,
+        "posTotal": 4
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "29673",
+    "name": "VALERIA SOUSA SILVA",
+    "region": "IMPERATRIZ - ROTA 03",
+    "volume": 5955.75,
+    "metaVolume": 6869.94,
+    "positivacao": 0,
+    "pdvsTotal": 12,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 20,
+        "realizado": 1,
+        "reach": "5,00%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 12,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 18,
+        "realizado": 1,
+        "reach": "5,56%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "sabLiq": {
+        "meta": 15,
+        "realizado": 1,
+        "reach": "6,67%",
+        "posTela": 0,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "21936",
+    "name": "MATEUS SILVA",
+    "region": "CHAPADINHA",
+    "volume": 17688.96,
+    "metaVolume": 14728.33,
+    "positivacao": 0,
+    "pdvsTotal": 9,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 39,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 24,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 37,
+        "realizado": 2,
+        "reach": "5,31%",
+        "posTela": 3,
+        "posTotal": 5
+      },
+      "sabLiq": {
+        "meta": 33,
+        "realizado": 2,
+        "reach": "6,06%",
+        "posTela": 3,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "20875",
+    "name": "ARIADNA TORRES",
+    "region": "GRAJAU MA 2",
+    "volume": 26089.5,
+    "metaVolume": 12117.14,
+    "positivacao": 0,
+    "pdvsTotal": 8,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 28,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 28,
+        "realizado": 2,
+        "reach": "7,14%",
+        "posTela": 0,
+        "posTotal": 2
+      },
+      "sabLiq": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 1,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "20768",
+    "name": "KAGILA",
+    "region": "AMAPA DO MARANHAO",
+    "volume": 8301.15,
+    "metaVolume": 5899.14,
+    "positivacao": 0,
+    "pdvsTotal": 10,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 3,
+        "posTotal": 4
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 2,
+        "posTotal": 3
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      }
+    }
+  },
+  {
+    "id": "20828",
+    "name": "BRENDA RAICIELLY",
+    "region": "BARREIRINHAS - MA",
+    "volume": 6976.13,
+    "metaVolume": 13505.66,
+    "positivacao": 0,
+    "pdvsTotal": 7,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 44,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 27,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 40,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "sabLiq": {
+        "meta": 34,
+        "realizado": 1,
+        "reach": "2,94%",
+        "posTela": 0,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "21934",
+    "name": "MAYCON",
+    "region": "SAO JOAO DO PARAISO - MA",
+    "volume": 17031.87,
+    "metaVolume": 981.31,
+    "positivacao": 0,
+    "pdvsTotal": 7,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 28,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 5,
+        "posTotal": 5
+      },
+      "oral": {
+        "meta": 12,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 3,
+        "posTotal": 3
+      },
+      "rexona": {
+        "meta": 28,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 5,
+        "posTotal": 5
+      },
+      "sabLiq": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 6,
+        "posTotal": 6
+      }
+    }
+  },
+  {
+    "id": "36405",
+    "name": "CLAUDIO DE SOUSA JUNIOR",
+    "region": "MONTES ALTOS",
+    "volume": 604.92,
+    "metaVolume": 3643.59,
+    "positivacao": 0,
+    "pdvsTotal": 9,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 2,
+        "reach": "8,00%",
+        "posTela": 2,
+        "posTotal": 4
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "17190",
+    "name": "PABLO FERREIRA",
+    "region": "LAGO DA PEDRA- MA",
+    "volume": 26894.91,
+    "metaVolume": 28613.44,
+    "positivacao": 0,
+    "pdvsTotal": 13,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 28,
+        "realizado": 2,
+        "reach": "6,94%",
+        "posTela": 2,
+        "posTotal": 4
+      },
+      "oral": {
+        "meta": 18,
+        "realizado": 2,
+        "reach": "10,96%",
+        "posTela": 2,
+        "posTotal": 4
+      },
+      "rexona": {
+        "meta": 27,
+        "realizado": 2,
+        "reach": "7,18%",
+        "posTela": 1,
+        "posTotal": 3
+      },
+      "sabLiq": {
+        "meta": 22,
+        "realizado": 3,
+        "reach": "13,30%",
+        "posTela": 2,
+        "posTotal": 5
+      }
+    }
+  },
+  {
+    "id": "38876",
+    "name": "ERIKLES NUNES CUTRIM",
+    "region": "",
+    "volume": 112.34,
+    "metaVolume": 2085.1,
+    "positivacao": 0,
+    "pdvsTotal": 5,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 38,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 23,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 34,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "sabLiq": {
+        "meta": 29,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "15268",
+    "name": "BRUNO HENRIQUE",
+    "region": "ITAPECURU -MA",
+    "volume": 24718.89,
+    "metaVolume": 1735.28,
+    "positivacao": 0,
+    "pdvsTotal": 5,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 46,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 28,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 42,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 2,
+        "posTotal": 2
+      },
+      "sabLiq": {
+        "meta": 35,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "30437",
+    "name": "CESAR AUGUSTO MORAIS DOS SANTOS FILHO",
+    "region": "",
+    "volume": 876.82,
+    "metaVolume": 15770.31,
+    "positivacao": 0,
+    "pdvsTotal": 21,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 1,
+        "reach": "4,00%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "sabLiq": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "9929",
+    "name": "RUYSLANA INGRED CONCEICAO",
+    "region": "TUTOIA MA",
+    "volume": 30778.7,
+    "metaVolume": 1181.2,
+    "positivacao": 0,
+    "pdvsTotal": 4,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 36,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 4,
+        "posTotal": 4
+      },
+      "oral": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 33,
+        "realizado": 1,
+        "reach": "3,03%",
+        "posTela": 3,
+        "posTotal": 4
+      },
+      "sabLiq": {
+        "meta": 27,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 3,
+        "posTotal": 3
+      }
+    }
+  },
+  {
+    "id": "33938",
+    "name": "FARIAS",
+    "region": "SANTA RITA-MA",
+    "volume": 26491.26,
+    "metaVolume": 109.65,
+    "positivacao": 0,
+    "pdvsTotal": 4,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 36,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 3,
+        "posTotal": 3
+      },
+      "oral": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "rexona": {
+        "meta": 33,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 7,
+        "posTotal": 7
+      },
+      "sabLiq": {
+        "meta": 27,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 7,
+        "posTotal": 7
+      }
+    }
+  },
+  {
+    "id": "38875",
+    "name": "JOELMA ALICE LOPES SOUSA",
+    "region": "",
+    "volume": 6575.35,
+    "metaVolume": 1469.29,
+    "positivacao": 0,
+    "pdvsTotal": 3,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 39,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 24,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 36,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      },
+      "sabLiq": {
+        "meta": 30,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "18300",
+    "name": "VANESSA NASCIMENTO",
+    "region": "MATA ROMA",
+    "volume": 49842.24,
+    "metaVolume": 6107.14,
+    "positivacao": 0,
+    "pdvsTotal": 17,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 24,
+        "realizado": 1,
+        "reach": "4,17%",
+        "posTela": 3,
+        "posTotal": 4
+      },
+      "oral": {
+        "meta": 14,
+        "realizado": 4,
+        "reach": "28,57%",
+        "posTela": 5,
+        "posTotal": 9
+      },
+      "rexona": {
+        "meta": 20,
+        "realizado": 4,
+        "reach": "19,70%",
+        "posTela": 8,
+        "posTotal": 12
+      },
+      "sabLiq": {
+        "meta": 16,
+        "realizado": 3,
+        "reach": "18,24%",
+        "posTela": 6,
+        "posTotal": 9
+      }
+    }
+  },
+  {
+    "id": "30431",
+    "name": "MARIA RITA FROZINA SILVA",
+    "region": "PORTO FRANCO-MA",
+    "volume": 0,
+    "metaVolume": 9251.61,
+    "positivacao": 0,
+    "pdvsTotal": 3,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 28,
+        "realizado": 1,
+        "reach": "3,57%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 28,
+        "realizado": 1,
+        "reach": "3,57%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "sabLiq": {
+        "meta": 22,
+        "realizado": 1,
+        "reach": "4,55%",
+        "posTela": 0,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "37473",
+    "name": "EDSON BORGES DA SILVA",
+    "region": "LAGO DA PEDRA",
+    "volume": 3664.87,
+    "metaVolume": 7126.28,
+    "positivacao": 0,
+    "pdvsTotal": 2,
+    "team": "HF",
+    "battles": {
+      "amidos": {
+        "meta": 23,
+        "realizado": 1,
+        "reach": "4,35%",
+        "posTela": 0,
+        "posTotal": 1
+      },
+      "cif": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "mayo": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "poLiq": {
+        "meta": 36,
+        "realizado": 1,
+        "reach": "2,78%",
+        "posTela": 1,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "29899",
+    "name": "VANDERLEA DO NASCIMENTO",
+    "region": "PERITORO/MA",
+    "volume": 7724.07,
+    "metaVolume": -808.14,
+    "positivacao": 0,
+    "pdvsTotal": 0,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 28,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 18,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 27,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "sabLiq": {
+        "meta": 22,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 1,
+        "posTotal": 1
+      }
+    }
+  },
+  {
+    "id": "21216",
+    "name": "DANIEL AMARAL",
+    "region": "PINHEIRO-MA",
+    "volume": 0,
+    "metaVolume": 0,
+    "positivacao": 0,
+    "pdvsTotal": 0,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 0,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 0,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 0,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "sabLiq": {
+        "meta": 0,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "24062",
+    "name": "ARIELMA CURURUPU",
+    "region": "MA",
+    "volume": 0,
+    "metaVolume": 0,
+    "positivacao": 0,
+    "pdvsTotal": 0,
+    "team": "BPC",
+    "battles": {
+      "dove": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "oral": {
+        "meta": 15,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "rexona": {
+        "meta": 25,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      },
+      "sabLiq": {
+        "meta": 20,
+        "realizado": 0,
+        "reach": "0,00%",
+        "posTela": 0,
+        "posTotal": 0
+      }
+    }
+  },
+  {
+    "id": "39294",
+    "name": "ILCILENE FELIX DA SILVA",
+    "region": "",
+    "volume": 0,
+    "metaVolume": 0,
+    "positivacao": 0,
+    "pdvsTotal": 0,
+    "team": "HF",
+    "battles": {}
+  },
+  {
+    "id": "15428",
+    "name": "MARINETH DO NASCIMENTO LIMA",
+    "region": "ZE DOCA - MA",
+    "volume": 0,
+    "metaVolume": 0,
+    "positivacao": 0,
+    "pdvsTotal": 0,
+    "team": "HF",
+    "battles": {}
+  },
+  {
+    "id": "185",
+    "name": "DISTRIBUICAO UNILEVER",
+    "region": "COCAIS PC - MA",
+    "volume": 0,
+    "metaVolume": 0,
+    "positivacao": 0,
+    "pdvsTotal": 0,
+    "team": "HF",
+    "battles": {}
+  },
+  {
+    "id": "190",
+    "name": "DISTRIBUICAO UNILEVER",
+    "region": "IMPERATRIZ/METROPOLITANA HF - MA",
+    "volume": 0,
+    "metaVolume": 0,
+    "positivacao": 0,
+    "pdvsTotal": 0,
+    "team": "HF",
+    "battles": {}
+  },
+  {
+    "id": "31",
+    "name": "DISTRIBUICAO UNILEVER",
+    "region": "COCAIS HF - MA",
+    "volume": 0,
+    "metaVolume": 0,
+    "positivacao": 0,
+    "pdvsTotal": 0,
+    "team": "HF",
+    "battles": {}
+  },
+  {
+    "id": "408",
+    "name": "DISTRIBUICAO UNILEVER",
+    "region": "SUL PC - MA",
+    "volume": 0,
+    "metaVolume": 0,
+    "positivacao": 0,
+    "pdvsTotal": 0,
+    "team": "HF",
+    "battles": {}
+  },
+  {
+    "id": "423",
+    "name": "DISTRIBUICAO UNILEVER",
+    "region": "IMPERATRIZ/METROPOLITANA PC - MA",
+    "volume": 0,
+    "metaVolume": 0,
+    "positivacao": 0,
+    "pdvsTotal": 0,
+    "team": "HF",
+    "battles": {}
+  },
+  {
+    "id": "515",
+    "name": "DISTRIBUICAO UNILEVER",
+    "region": "LENCOIS/BAIXO PARNAIBA PC - MA",
+    "volume": 0,
+    "metaVolume": 0,
+    "positivacao": 0,
+    "pdvsTotal": 0,
+    "team": "HF",
+    "battles": {}
+  },
+  {
+    "id": "576",
+    "name": "DISTRIBUICAO UNILEVER",
+    "region": "CAPITAL/METROPOLITANA HF - MA",
+    "volume": 0,
+    "metaVolume": 0,
+    "positivacao": 0,
+    "pdvsTotal": 0,
+    "team": "HF",
+    "battles": {}
+  },
+  {
+    "id": "591",
+    "name": "DISTRIBUICAO UNILEVER",
+    "region": "CAPITAL/METROPOLITANA PC - MA",
+    "volume": 0,
+    "metaVolume": 0,
+    "positivacao": 0,
+    "pdvsTotal": 0,
+    "team": "HF",
+    "battles": {}
+  },
+  {
+    "id": "622",
+    "name": "DISTRIBUICAO UNILEVER",
+    "region": "BAIXADA PC - MA",
+    "volume": 0,
+    "metaVolume": 0,
+    "positivacao": 0,
+    "pdvsTotal": 0,
+    "team": "HF",
+    "battles": {}
+  },
+  {
+    "id": "623",
+    "name": "DISTRIBUICAO UNILEVER",
+    "region": "BAIXADA HF - MA",
+    "volume": 0,
+    "metaVolume": 0,
+    "positivacao": 0,
+    "pdvsTotal": 0,
+    "team": "HF",
+    "battles": {}
+  }
+]

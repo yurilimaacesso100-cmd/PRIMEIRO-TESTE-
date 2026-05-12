@@ -637,19 +637,20 @@ const App = () => {
                   const rca = RCA_METAS_DATA.find(r => r.id === currentRCAId);
                   if (!rca) return null;
 
-                  const labels = rca.team === 'BPC' ? BATTLE_LABELS.BPC : BATTLE_LABELS.HF;
+                  const labels = (rca.battles.dove || rca.battles.oral || rca.battles.rexona || rca.battles.sabLiq) ? BATTLE_LABELS.BPC : BATTLE_LABELS.HF;
+                  const isBPC = (rca.battles.dove || rca.battles.oral || rca.battles.rexona || rca.battles.sabLiq);
                   
                   // Mapeamento dinâmico baseado no time
-                  const battleEntries = rca.team === 'BPC' ? [
-                    { label: labels[0], data: rca.battles.dove },
-                    { label: labels[1], data: rca.battles.oral },
-                    { label: labels[2], data: rca.battles.rexona },
-                    { label: labels[3], data: rca.battles.sabLiq }
+                  const battleEntries = isBPC ? [
+                    { label: labels[0], data: rca.battles.dove || { meta: 0, realizado: 0, reach: "0%", posTela: 0, posTotal: 0 } },
+                    { label: labels[1], data: rca.battles.oral || { meta: 0, realizado: 0, reach: "0%", posTela: 0, posTotal: 0 } },
+                    { label: labels[2], data: rca.battles.rexona || { meta: 0, realizado: 0, reach: "0%", posTela: 0, posTotal: 0 } },
+                    { label: labels[3], data: rca.battles.sabLiq || { meta: 0, realizado: 0, reach: "0%", posTela: 0, posTotal: 0 } }
                   ] : [
-                    { label: labels[0], data: rca.battles.amidos },
-                    { label: labels[1], data: rca.battles.cif },
-                    { label: labels[2], data: rca.battles.mayo },
-                    { label: labels[3], data: rca.battles.poLiq }
+                    { label: labels[0], data: rca.battles.amidos || { meta: 0, realizado: 0, reach: "0%", posTela: 0, posTotal: 0 } },
+                    { label: labels[1], data: rca.battles.cif || { meta: 0, realizado: 0, reach: "0%", posTela: 0, posTotal: 0 } },
+                    { label: labels[2], data: rca.battles.mayo || { meta: 0, realizado: 0, reach: "0%", posTela: 0, posTotal: 0 } },
+                    { label: labels[3], data: rca.battles.poLiq || { meta: 0, realizado: 0, reach: "0%", posTela: 0, posTotal: 0 } }
                   ];
 
                   return (
@@ -1051,20 +1052,21 @@ const App = () => {
 
                     <div className="grid grid-cols-2 gap-4">
                         {(() => {
-                           const labels = selectedRCA.team === 'BPC' ? BATTLE_LABELS.BPC : BATTLE_LABELS.HF;
-                           
-                           // Mapeamento dinâmico baseado no time
-                           const battleEntries = selectedRCA.team === 'BPC' ? [
-                             { label: labels[0], data: selectedRCA.battles.dove },
-                             { label: labels[1], data: selectedRCA.battles.oral },
-                             { label: labels[2], data: selectedRCA.battles.rexona },
-                             { label: labels[3], data: selectedRCA.battles.sabLiq }
-                           ] : [
-                             { label: labels[0], data: selectedRCA.battles.amidos },
-                             { label: labels[1], data: selectedRCA.battles.cif },
-                             { label: labels[2], data: selectedRCA.battles.mayo },
-                             { label: labels[3], data: selectedRCA.battles.poLiq }
-                           ];
+                        const labels = (selectedRCA.battles.dove || selectedRCA.battles.oral || selectedRCA.battles.rexona || selectedRCA.battles.sabLiq) ? BATTLE_LABELS.BPC : BATTLE_LABELS.HF;
+                        const isBPC = (selectedRCA.battles.dove || selectedRCA.battles.oral || selectedRCA.battles.rexona || selectedRCA.battles.sabLiq);
+                        
+                        // Mapeamento dinâmico baseado no time
+                        const battleEntries = isBPC ? [
+                          { label: labels[0], data: selectedRCA.battles.dove || { meta: 0, realizado: 0, reach: "0,00%", posTela: 0, posTotal: 0 } },
+                          { label: labels[1], data: selectedRCA.battles.oral || { meta: 0, realizado: 0, reach: "0,00%", posTela: 0, posTotal: 0 } },
+                          { label: labels[2], data: selectedRCA.battles.rexona || { meta: 0, realizado: 0, reach: "0,00%", posTela: 0, posTotal: 0 } },
+                          { label: labels[3], data: selectedRCA.battles.sabLiq || { meta: 0, realizado: 0, reach: "0,00%", posTela: 0, posTotal: 0 } }
+                        ] : [
+                          { label: labels[0], data: selectedRCA.battles.amidos || { meta: 0, realizado: 0, reach: "0,00%", posTela: 0, posTotal: 0 } },
+                          { label: labels[1], data: selectedRCA.battles.cif || { meta: 0, realizado: 0, reach: "0,00%", posTela: 0, posTotal: 0 } },
+                          { label: labels[2], data: selectedRCA.battles.mayo || { meta: 0, realizado: 0, reach: "0,00%", posTela: 0, posTotal: 0 } },
+                          { label: labels[3], data: selectedRCA.battles.poLiq || { meta: 0, realizado: 0, reach: "0,00%", posTela: 0, posTotal: 0 } }
+                        ];
 
                            return battleEntries.map((b, idx) => (
                              <div key={idx} className="bg-slate-50 rounded-3xl p-4 border border-slate-100 flex flex-col gap-2">
@@ -1092,7 +1094,7 @@ const App = () => {
                                   </div>
                                 </div>
                             </div>
-                          ))
+                          ));
                         })()}
                     </div>
                 </div>
@@ -1107,8 +1109,9 @@ const App = () => {
                         const comissionVolume = comissionBase + reachGoalBonus;
                         
                         // Premiação dinâmica baseada no time
+                        const isBPC = (selectedRCA.battles.dove || selectedRCA.battles.oral || selectedRCA.battles.rexona || selectedRCA.battles.sabLiq);
                         let premBat = 0;
-                        if (selectedRCA.team === 'BPC') {
+                        if (isBPC) {
                           premBat = ((selectedRCA.battles.dove?.realizado || 0) * 10) + 
                                     ((selectedRCA.battles.oral?.realizado || 0) * 5) + 
                                     ((selectedRCA.battles.rexona?.realizado || 0) * 5) + 
