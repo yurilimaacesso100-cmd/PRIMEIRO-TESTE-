@@ -60,11 +60,11 @@ const App = () => {
   const [headerData, setHeaderData] = useState({
     equipe: "",
     supervisor: "",
-    cd: "",
+    cd: "87",
     vendedor: "",
     cliente: "",
     pedido: "",
-    prazo: ""
+    prazo: "32"
   });
 
   const [blocos, setBlocos] = useState([
@@ -228,11 +228,14 @@ const App = () => {
   };
 
   const getGeneratedMessage = () => {
+    const totalBonificado = blocos.reduce((acc, b) => acc + (b.res.valorBonificado || 0), 0);
+
     let msg = `EQUIPE:${headerData.equipe}\n`;
     msg += `CD:${headerData.cd}\n`;
     msg += `CLIENTE:${headerData.cliente}\n`;
     msg += `RCA:${headerData.vendedor}\n`;
     msg += `Nº DO PEDIDO: ${headerData.pedido}\n`;
+    msg += `VALOR TOTAL BONIFICADO: ${formatarMoeda(totalBonificado)}\n`;
     msg += `SUPERVISOR:${headerData.supervisor}\n`;
     msg += `PRAZO:${headerData.prazo}\n\n`;
     
@@ -481,6 +484,14 @@ const App = () => {
                         value={headerData.pedido} 
                         onChange={e => setHeaderData({...headerData, pedido: e.target.value})} 
                       />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[9px] font-black text-green-700 uppercase ml-1 flex items-center gap-1"><Gift size={10}/> VALOR TOTAL BONIFICADO</label>
+                      <div className="w-full text-sm font-black p-3.5 bg-green-50/50 rounded-2xl border border-green-200 text-green-800 shadow-inner flex items-center justify-between">
+                         <span>TOTAL DO INVESTIMENTO:</span>
+                         <span className="text-lg">{formatarMoeda(blocos.reduce((acc, b) => acc + (b.res.valorBonificado || 0), 0))}</span>
+                      </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-3">
