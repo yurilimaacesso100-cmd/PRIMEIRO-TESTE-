@@ -38,6 +38,9 @@ const App = () => {
   const [showStockModal, setShowStockModal] = useState<{ open: boolean, target: 'venda' | 'bonifica', uid: number | null }>({ open: false, target: 'venda', uid: null });
   const [stockSearchTerm, setStockSearchTerm] = useState("");
   const [isMetasUnlocked, setIsMetasUnlocked] = useState(false);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [passwordInput, setPasswordInput] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
   const [isConfigExpanded, setIsConfigExpanded] = useState(false);
   const [activeTab, setActiveTab] = useState<'bonificacao' | 'metas'>('bonificacao');
   const [rcaSearchTerm, setRcaSearchTerm] = useState("");
@@ -385,12 +388,16 @@ const App = () => {
           </button>
           <button 
             onClick={() => {
-              setIsMetasUnlocked(true);
-              setActiveTab('metas');
+              if (isMetasUnlocked) {
+                setActiveTab('metas');
+              } else {
+                setShowPasswordModal(true);
+              }
             }}
             className={`flex-1 py-4 flex flex-col items-center gap-1 transition-all border-b-2 ${activeTab === 'metas' ? 'border-blue-600 text-blue-600' : 'border-transparent text-slate-400'}`}
           >
             <div className="relative">
+              {!isMetasUnlocked && <Lock size={10} className="absolute -top-1 -right-1 text-slate-400" />}
               <TrendingUp size={18}/>
             </div>
             <span className="text-[8px] font-black uppercase tracking-widest">Metas RCA</span>
@@ -1244,7 +1251,95 @@ const App = () => {
         </div>
       </footer>
 
-      {/* MODAL DE ESTOQUE */}
+      {/* MODAL DE SENHA METAS */}
+      <AnimatePresence>
+        {showPasswordModal && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-[#001E62]/80 backdrop-blur-md z-[200] flex items-center justify-center p-6"
+          >
+            <motion.div 
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ 
+                scale: 1, 
+                y: 0,
+                x: passwordError ? [0, -10, 10, -10, 10, 0] : 0
+              }}
+              transition={{ 
+                x: { duration: 0.4, ease: "easeInOut" }
+              }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="bg-white w-full max-w-sm rounded-[3rem] p-8 shadow-2xl text-center"
+            >
+              <div className="w-20 h-20 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-inner">
+                <Lock size={40}/>
+              </div>
+              <h2 className="text-xl font-black text-slate-800 uppercase tracking-tighter mb-2">Área Restrita</h2>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">Digite a senha de acesso às Metas</p>
+              
+              <div className="space-y-4">
+                <div className="relative">
+                  <input 
+                    type="password"
+                    autoFocus
+                    placeholder="SENHA"
+                    className={`w-full p-5 bg-slate-50 rounded-2xl border-2 text-center font-black tracking-[0.5em] transition-all outline-none ${passwordError ? 'border-red-500' : 'border-slate-100 focus:border-blue-600'}`}
+                    value={passwordInput}
+                    onChange={(e) => {
+                      setPasswordInput(e.target.value);
+                      setPasswordError(false);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        if (passwordInput === '@Vendas@2026@007') {
+                           setIsMetasUnlocked(true);
+                           setShowPasswordModal(false);
+                           setActiveTab('metas');
+                        } else {
+                           setPasswordError(true);
+                           setTimeout(() => setPasswordError(false), 500);
+                        }
+                      }
+                    }}
+                  />
+                  {passwordError && <p className="text-[10px] font-black text-red-500 uppercase mt-2">Senha Incorreta</p>}
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 pt-4">
+                  <button 
+                    onClick={() => {
+                      setShowPasswordModal(false);
+                      setPasswordInput("");
+                      setPasswordError(false);
+                    }}
+                    className="py-4 bg-slate-100 text-slate-400 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-slate-200 transition-all"
+                  >
+                    CANCELAR
+                  </button>
+                  <button 
+                    onClick={() => {
+                      if (passwordInput === '@Vendas@2026@007') {
+                        setIsMetasUnlocked(true);
+                        setShowPasswordModal(false);
+                        setActiveTab('metas');
+                      } else {
+                        setPasswordError(true);
+                        setTimeout(() => setPasswordError(false), 500);
+                      }
+                    }}
+                    className="py-4 bg-blue-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl shadow-blue-600/30 hover:bg-blue-700 transition-all"
+                  >
+                    ACESSAR
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <AnimatePresence>
         {showStockModal.open && (
           <motion.div 
