@@ -261,11 +261,15 @@ const App = () => {
       const nomeVenda = prodVenda ? prodVenda.nome : "Produto não encontrado";
       const nomeBonif = prodBonif ? prodBonif.nome : "Produto não encontrado";
       
+      // Preço de Nota do produto vendido
+      const precoNotaVendaVal = parseFloat(b.vendaPNota) || 0;
+      const precoNotaFormatado = precoNotaVendaVal.toFixed(2).replace('.', ',');
+
       // Usa o preço do campo ou o preço do banco de dados (mesma lógica do cálculo)
       const precoPraticado = parseFloat(b.bonificaPrecoPraticado) || (prodBonif ? prodBonif.preco : 0);
       const precoFormatado = precoPraticado.toFixed(2).replace('.', ',');
       
-      msg += `${nomeVenda} ${precoFormatado} -> BONIF: ${nomeBonif}\n`;
+      msg += `${nomeVenda} (Nota: R$ ${precoNotaFormatado}) -> BONIF: ${nomeBonif} (Praticado: R$ ${precoFormatado})\n`;
     });
     
     // Adiciona a data do dia
@@ -444,11 +448,23 @@ const App = () => {
                     <div className="grid grid-cols-2 gap-3">
                       <div className="space-y-1">
                         <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Equipe</label>
-                        <input 
-                          className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200" 
+                        <select 
+                          className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200 outline-none focus:ring-2 ring-blue-500/20 appearance-none" 
                           value={headerData.equipe} 
                           onChange={e => setHeaderData({...headerData, equipe: e.target.value})} 
-                        />
+                        >
+                          <option value="">Selecione a equipe</option>
+                          <option value="423 - DISTRIBUICAO UNILEVER - IMPERATRIZ/METROPOLITANA PC - MA">423 - DISTRIBUICAO UNILEVER - IMPERATRIZ/METROPOLITANA PC - MA</option>
+                          <option value="408 - DISTRIBUICAO UNILEVER - SUL PC - MA">408 - DISTRIBUICAO UNILEVER - SUL PC - MA</option>
+                          <option value="185 - DISTRIBUICAO UNILEVER - COCAIS PC - MA">185 - DISTRIBUICAO UNILEVER - COCAIS PC - MA</option>
+                          <option value="622 - DISTRIBUICAO UNILEVER - BAIXADA PC - MA">622 - DISTRIBUICAO UNILEVER - BAIXADA PC - MA</option>
+                          <option value="591 - DISTRIBUICAO UNILEVER - CAPITAL/METROPOLITANA PC - MA">591 - DISTRIBUICAO UNILEVER - CAPITAL/METROPOLITANA PC - MA</option>
+                          <option value="190 - DISTRIBUICAO UNILEVER - IMPERATRIZ/METROPOLITANA HF - MA">190 - DISTRIBUICAO UNILEVER - IMPERATRIZ/METROPOLITANA HF - MA</option>
+                          <option value="178 - DISTRIBUICAO UNILEVER - SUL HF - MA">178 - DISTRIBUICAO UNILEVER - SUL HF - MA</option>
+                          <option value="31 - DISTRIBUICAO UNILEVER - COCAIS HF - MA">31 - DISTRIBUICAO UNILEVER - COCAIS HF - MA</option>
+                          <option value="623 - DISTRIBUICAO UNILEVER - BAIXADA HF - MA">623 - DISTRIBUICAO UNILEVER - BAIXADA HF - MA</option>
+                          <option value="576 - DISTRIBUICAO UNILEVER - CAPITAL/METROPOLITANA HF - MA">576 - DISTRIBUICAO UNILEVER - CAPITAL/METROPOLITANA HF - MA</option>
+                        </select>
                       </div>
                       <div className="space-y-1">
                         <label className="text-[8px] font-black text-slate-400 uppercase ml-1">C.D.</label>
