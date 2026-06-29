@@ -29,6 +29,40 @@ const BATTLE_LABELS = {
   ]
 };
 
+const decompressUnicoData = (raw: any): any => {
+  if (!raw || !raw.vendedores) return raw;
+  
+  const decompressItem = (item: any) => {
+    return {
+      cnpj: item.j || '',
+      codCliente: item.c || '',
+      cliente: raw.clientes[item.i] || '',
+      cidade: raw.cidades[item.d] || '',
+      classificacao: raw.classificacoes[item.l] || '',
+      codVendedor: item.v || '',
+      vendedor: raw.vendedores[item.r] || '',
+      objSortHc: item.h || 0,
+      objSortNt: item.n || 0,
+      metaHc: item.mh || '',
+      metaNt: item.mn || '',
+      objSortBw: item.b || 0,
+      objSortPc: item.p || 0,
+      metaBw: item.mb || ''
+    };
+  };
+
+  return {
+    numericas: (raw.numericasHc || []).map(decompressItem),
+    ponderadas: (raw.ponderadasHc || []).map(decompressItem),
+    numericasHc: (raw.numericasHc || []).map(decompressItem),
+    ponderadasHc: (raw.ponderadasHc || []).map(decompressItem),
+    numericasPc: (raw.numericasPc || []).map(decompressItem),
+    ponderadasPc: (raw.ponderadasPc || []).map(decompressItem),
+    cob: (raw.cob || []).map(decompressItem),
+    lastUpdate: raw.lastUpdate
+  };
+};
+
 const App = () => {
   const [isSupervisorMode, setIsSupervisorMode] = useState(false);
   const [isLoadingDB, setIsLoadingDB] = useState(true);
@@ -52,15 +86,16 @@ const App = () => {
   const [unicoFilterType, setUnicoFilterType] = useState<'numericas' | 'ponderadas' | 'cob'>('numericas');
   const [unicoNumericaClassFilter, setUnicoNumericaClassFilter] = useState<'todos' | 'A' | 'B' | 'C'>('todos');
   const [unicoLiveDataset, setUnicoLiveDataset] = useState<any>(() => {
+    const decompressed = decompressUnicoData(unicoDataRaw);
     return {
-      numericas: unicoDataRaw.numericas || [],
-      ponderadas: unicoDataRaw.ponderadas || [],
-      numericasHc: (unicoDataRaw as any).numericasHc || unicoDataRaw.numericas || [],
-      ponderadasHc: (unicoDataRaw as any).ponderadasHc || unicoDataRaw.ponderadas || [],
-      numericasPc: (unicoDataRaw as any).numericasPc || [],
-      ponderadasPc: (unicoDataRaw as any).ponderadasPc || [],
-      cob: (unicoDataRaw as any).cob || [],
-      lastUpdate: unicoDataRaw.lastUpdate
+      numericas: decompressed.numericas || [],
+      ponderadas: decompressed.ponderadas || [],
+      numericasHc: decompressed.numericasHc || [],
+      ponderadasHc: decompressed.ponderadasHc || [],
+      numericasPc: decompressed.numericasPc || [],
+      ponderadasPc: decompressed.ponderadasPc || [],
+      cob: decompressed.cob || [],
+      lastUpdate: decompressed.lastUpdate
     };
   });
   const [isUpdatingUnicoLive, setIsUpdatingUnicoLive] = useState(false);

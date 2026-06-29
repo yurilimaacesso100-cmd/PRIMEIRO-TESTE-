@@ -172,14 +172,50 @@ async function run() {
     };
   }).filter(item => item.codCliente && item.codVendedor);
 
-  const finalData = {
-    numericas: numericasHc, // legacy fallback
-    ponderadas: ponderadasHc, // legacy fallback
-    numericasHc,
-    ponderadasHc,
-    numericasPc,
-    ponderadasPc,
-    cob,
+  const vendedores = [];
+  const cidades = [];
+  const classificacoes = [];
+  const clientes = [];
+
+  const getIdx = (arr, val) => {
+    if (!val) return -1;
+    let idx = arr.indexOf(val);
+    if (idx === -1) {
+      idx = arr.length;
+      arr.push(val);
+    }
+    return idx;
+  };
+
+  const compressItem = (item) => {
+    const res = {};
+    if (item.cnpj) res.j = item.cnpj;
+    if (item.codCliente) res.c = item.codCliente;
+    if (item.cliente) res.i = getIdx(clientes, item.cliente);
+    if (item.cidade) res.d = getIdx(cidades, item.cidade);
+    if (item.classificacao) res.l = getIdx(classificacoes, item.classificacao);
+    if (item.codVendedor) res.v = item.codVendedor;
+    if (item.vendedor) res.r = getIdx(vendedores, item.vendedor);
+    if (item.objSortHc) res.h = item.objSortHc;
+    if (item.objSortNt) res.n = item.objSortNt;
+    if (item.metaHc) res.mh = item.metaHc;
+    if (item.metaNt) res.mn = item.metaNt;
+    if (item.objSortBw) res.b = item.objSortBw;
+    if (item.objSortPc) res.p = item.objSortPc;
+    if (item.metaBw) res.mb = item.metaBw;
+    return res;
+  };
+
+  const compressed = {
+    vendedores,
+    cidades,
+    classificacoes,
+    clientes,
+    numericasHc: numericasHc.map(compressItem),
+    ponderadasHc: ponderadasHc.map(compressItem),
+    numericasPc: numericasPc.map(compressItem),
+    ponderadasPc: ponderadasPc.map(compressItem),
+    cob: cob.map(compressItem),
     lastUpdate: new Date().toISOString()
   };
 
@@ -189,8 +225,8 @@ async function run() {
   }
 
   const targetPath = path.join(targetDir, 'unico_data.json');
-  fs.writeFileSync(targetPath, JSON.stringify(finalData, null, 2));
-  console.log(`Saved ${numericasHc.length} numéricas HC, ${ponderadasHc.length} ponderadas HC, ${numericasPc.length} numéricas PC, ${ponderadasPc.length} ponderadas PC, and ${cob.length} COB to ${targetPath}`);
+  fs.writeFileSync(targetPath, JSON.stringify(compressed));
+  console.log(`Saved and compressed ${numericasHc.length} numéricas HC, ${ponderadasHc.length} ponderadas HC, ${numericasPc.length} numéricas PC, ${ponderadasPc.length} ponderadas PC, and ${cob.length} COB to ${targetPath}`);
 }
 
 run().catch(err => {
