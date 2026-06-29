@@ -732,14 +732,14 @@ const App = () => {
             className={`flex-1 py-4 flex flex-col items-center gap-1 transition-all border-b-2 ${activeTab === 'bonificacao' ? 'border-blue-600 text-blue-600' : 'border-transparent text-slate-400'}`}
           >
             <Calculator size={18}/>
-            <span className="text-[8px] font-black uppercase tracking-widest">Bonificação</span>
+            <span className="text-[8px] font-black uppercase tracking-widest">BONIFICAÇÃO</span>
           </button>
           <button 
             onClick={() => setActiveTab('unico')}
             className={`flex-1 py-4 flex flex-col items-center gap-1 transition-all border-b-2 ${activeTab === 'unico' ? 'border-blue-600 text-blue-600' : 'border-transparent text-slate-400'}`}
           >
             <Sparkles size={18}/>
-            <span className="text-[8px] font-black uppercase tracking-widest">Único</span>
+            <span className="text-[8px] font-black uppercase tracking-widest">ÚNICO</span>
           </button>
         </div>
       </nav>
@@ -1341,7 +1341,7 @@ const App = () => {
                   }`}
                 >
                   <span className="text-[8px] font-bold text-yellow-400">UNILEVER EQUIPE 1</span>
-                  <span>HC & NT</span>
+                  <span>HC e NT</span>
                 </button>
                 <button
                   onClick={() => {
@@ -1356,7 +1356,7 @@ const App = () => {
                   }`}
                 >
                   <span className="text-[8px] font-bold text-yellow-400">UNILEVER EQUIPE 2</span>
-                  <span>PC & BW</span>
+                  <span>PC e BW</span>
                 </button>
               </div>
             </div>
@@ -1845,7 +1845,7 @@ const App = () => {
                     }}
                     className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all"
                   >
-                    Alterar
+                    ALTERAR
                   </button>
                 </div>
 
