@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ShoppingCart, Gift, Trash2, Plus, Share2, CheckCircle2, Search, Calculator, User, Briefcase, Users, RefreshCw, Loader2, Camera, FileText, Sparkles, AlertCircle, Lock, Clock, BarChart3, TrendingUp, Trophy, ChevronDown, ChevronUp } from 'lucide-react';
+import { ShoppingCart, Gift, Trash2, Plus, Share2, CheckCircle2, Search, Calculator, User, Briefcase, Users, RefreshCw, Loader2, Camera, FileText, Sparkles, AlertCircle, Lock, Clock, BarChart3, TrendingUp, Trophy, ChevronDown, ChevronUp, Store, MapPin, ArrowLeft, ChevronLeft, FolderDown } from 'lucide-react';
 import { motion, AnimatePresence } from "motion/react";
 import { RCA_METAS_DATA } from './data/rcaData';
+import { RCAMetasPanel } from './components/RCAMetasPanel';
+import { ArquivosUnileverPanel } from './components/ArquivosUnileverPanel';
+import unicoDataRaw from './data/unico_data.json';
 
 /**
  * BONIFICAÇÃO UNILEVER - v12.0
@@ -37,14 +40,451 @@ const App = () => {
   const [lastUpdate, setLastUpdate] = useState<string | null>(null);
   const [showStockModal, setShowStockModal] = useState<{ open: boolean, target: 'venda' | 'bonifica', uid: number | null }>({ open: false, target: 'venda', uid: null });
   const [stockSearchTerm, setStockSearchTerm] = useState("");
-  const [isMetasUnlocked, setIsMetasUnlocked] = useState(false);
+  const [isMetasUnlocked, setIsMetasUnlocked] = useState(true);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [passwordInput, setPasswordInput] = useState("");
   const [passwordError, setPasswordError] = useState(false);
   const [isConfigExpanded, setIsConfigExpanded] = useState(false);
-  const [activeTab, setActiveTab] = useState<'bonificacao' | 'metas'>('bonificacao');
+  const [activeTab, setActiveTab] = useState<'bonificacao' | 'unico'>('bonificacao');
+  const [unicoSearchCode, setUnicoSearchCode] = useState("");
+  const [selectedUnicoRCA, setSelectedUnicoRCA] = useState<any>(null);
+  const [unicoTeam, setUnicoTeam] = useState<'hc_nt' | 'pc_bw'>('hc_nt');
+  const [unicoFilterType, setUnicoFilterType] = useState<'numericas' | 'ponderadas' | 'cob'>('numericas');
+  const [unicoNumericaClassFilter, setUnicoNumericaClassFilter] = useState<'todos' | 'A' | 'B' | 'C'>('todos');
+  const [unicoLiveDataset, setUnicoLiveDataset] = useState<any>(() => {
+    return {
+      numericas: unicoDataRaw.numericas || [],
+      ponderadas: unicoDataRaw.ponderadas || [],
+      numericasHc: (unicoDataRaw as any).numericasHc || unicoDataRaw.numericas || [],
+      ponderadasHc: (unicoDataRaw as any).ponderadasHc || unicoDataRaw.ponderadas || [],
+      numericasPc: (unicoDataRaw as any).numericasPc || [],
+      ponderadasPc: (unicoDataRaw as any).ponderadasPc || [],
+      cob: (unicoDataRaw as any).cob || [],
+      lastUpdate: unicoDataRaw.lastUpdate
+    };
+  });
+  const [isUpdatingUnicoLive, setIsUpdatingUnicoLive] = useState(false);
+  const [unicoViewMode, setUnicoViewMode] = useState<'individual' | 'dashboard' | 'todos_clientes'>('individual');
+  const [dashboardSearchTerm, setDashboardSearchTerm] = useState("");
+  const [dashboardPage, setDashboardPage] = useState(1);
+  const [expandedSellerCode, setExpandedSellerCode] = useState<string | null>(null);
+  const [clientsSearchTerm, setClientsSearchTerm] = useState("");
+  const [clientsPage, setClientsPage] = useState(1);
+
+  // Background sync for Único sheet data
+  useEffect(() => {
+    const syncUnicoLive = async () => {
+      try {
+        setIsUpdatingUnicoLive(true);
+        const urlNumericasHc = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRY_bLuau54-txiB9LFpMM7-hwaADWwve8kJYmk-MGlBfpWU0ngx7AZukR0V3At1zzP8hKNCjfj1Ks1/pub?gid=0&single=true&output=csv';
+        const urlPonderadasHc = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRY_bLuau54-txiB9LFpMM7-hwaADWwve8kJYmk-MGlBfpWU0ngx7AZukR0V3At1zzP8hKNCjfj1Ks1/pub?gid=1512938029&single=true&output=csv';
+        const urlNumericasPc = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRY_bLuau54-txiB9LFpMM7-hwaADWwve8kJYmk-MGlBfpWU0ngx7AZukR0V3At1zzP8hKNCjfj1Ks1/pub?gid=374244062&single=true&output=csv';
+        const urlPonderadasPc = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRY_bLuau54-txiB9LFpMM7-hwaADWwve8kJYmk-MGlBfpWU0ngx7AZukR0V3At1zzP8hKNCjfj1Ks1/pub?gid=1265667298&single=true&output=csv';
+        const urlCob = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRY_bLuau54-txiB9LFpMM7-hwaADWwve8kJYmk-MGlBfpWU0ngx7AZukR0V3At1zzP8hKNCjfj1Ks1/pub?gid=892426632&single=true&output=csv';
+        
+        const parseCSVText = (csvContent: string) => {
+          const lines = csvContent.split(/\r?\n/);
+          if (lines.length === 0 || !lines[0]) return [];
+          const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim());
+          const records: any[] = [];
+          for (let i = 1; i < lines.length; i++) {
+            const line = lines[i];
+            if (!line.trim()) continue;
+            
+            const values: string[] = [];
+            let current = '';
+            let inQuotes = false;
+            for (let j = 0; j < line.length; j++) {
+              const char = line[j];
+              if (char === '"') {
+                inQuotes = !inQuotes;
+              } else if (char === ',' && !inQuotes) {
+                values.push(current.trim());
+                current = '';
+              } else {
+                current += char;
+              }
+            }
+            values.push(current.trim());
+            
+            const record: any = {};
+            headers.forEach((header, index) => {
+              record[header] = values[index] || '';
+            });
+            records.push(record);
+          }
+          return records;
+        };
+
+        const [resNumHc, resPondHc, resNumPc, resPondPc, resCob] = await Promise.all([
+          fetch(urlNumericasHc).then(r => r.text()),
+          fetch(urlPonderadasHc).then(r => r.text()),
+          fetch(urlNumericasPc).then(r => r.text()),
+          fetch(urlPonderadasPc).then(r => r.text()),
+          fetch(urlCob).then(r => r.text())
+        ]);
+
+        const rawNumHc = parseCSVText(resNumHc);
+        const rawPondHc = parseCSVText(resPondHc);
+        const rawNumPc = parseCSVText(resNumPc);
+        const rawPondPc = parseCSVText(resPondPc);
+        const rawCob = parseCSVText(resCob);
+
+        const getVal = (item: any, possibleKeys: string[]) => {
+          for (const key of possibleKeys) {
+            if (item[key] !== undefined) return item[key];
+            const lowerKey = key.trim().toLowerCase();
+            for (const rawKey of Object.keys(item)) {
+              if (rawKey.trim().toLowerCase() === lowerKey) {
+                return item[rawKey];
+              }
+            }
+          }
+          return '';
+        };
+
+        if (rawNumHc.length > 0 && rawPondHc.length > 0) {
+          const numericasHc = rawNumHc.map(item => {
+            const codCliente = (getVal(item, ['COD CLI', 'COD CLIENTE', 'COD_CLI', 'CODIGO CLIENTE', 'COD CLIENTES']) || '').toString().trim();
+            const codVendedor = (getVal(item, ['COD VENDEDOR', 'COD DO VENDEDOR', 'COD_VENDEDOR', 'COD RCA', 'COD_RCA', 'RCA_COD', 'CODIGO VENDEDOR']) || '').toString().trim();
+            return {
+              cnpj: (getVal(item, ['CNPJ']) || '').toString().trim(),
+              codCliente,
+              cliente: (getVal(item, ['CLIENTES', 'CLIENTE', 'NOME CLIENTE']) || '').toString().trim(),
+              cidade: (getVal(item, ['CIDADES', 'CIDADE']) || '').toString().trim(),
+              classificacao: (getVal(item, ['CLASSIFICAÇÃO', 'CLASSIFICACAO', 'CLASS']) || '').toString().trim(),
+              codVendedor,
+              vendedor: (getVal(item, ['VENDEDOR', 'NOME VENDEDOR', 'RCA', 'NOME RCA']) || '').toString().trim(),
+              objSortHc: parseInt(getVal(item, ['OBJ SORT HC', 'OBJ_SORT_HC'])) || 0,
+              objSortNt: parseInt(getVal(item, ['OBJ SORT NT', 'OBJ_SORT_NT'])) || 0,
+            };
+          }).filter(item => item.codCliente && item.codVendedor);
+
+          const ponderadasHc = rawPondHc.map(item => {
+            const codCliente = (getVal(item, ['COD CLI', 'COD CLIENTE', 'COD_CLI', 'CODIGO CLIENTE', 'COD CLIENTES']) || '').toString().trim();
+            const codVendedor = (getVal(item, ['COD VENDEDOR', 'COD DO VENDEDOR', 'COD_VENDEDOR', 'COD RCA', 'COD_RCA', 'RCA_COD', 'CODIGO VENDEDOR']) || '').toString().trim();
+            return {
+              classificacao: (getVal(item, ['CLASSIFICAÇÃO', 'CLASSIFICACAO', 'CLASS']) || '').toString().trim(),
+              cnpj: (getVal(item, ['CNPJ']) || '').toString().trim(),
+              codCliente,
+              cliente: (getVal(item, ['CLIENTES', 'CLIENTE', 'NOME CLIENTE']) || '').toString().trim(),
+              cidade: (getVal(item, ['CIDADES', 'CIDADE']) || '').toString().trim(),
+              codVendedor,
+              vendedor: (getVal(item, ['VENDEDOR', 'NOME VENDEDOR', 'RCA', 'NOME RCA']) || '').toString().trim(),
+              metaHc: (getVal(item, ['META HC', 'META_HC']) || '').toString().trim(),
+              objSortHc: parseInt(getVal(item, ['OBJ SORT HC', 'OBJ_SORT_HC'])) || 0,
+              metaNt: (getVal(item, ['META NT', 'META_NT']) || '').toString().trim(),
+              objSortNt: parseInt(getVal(item, ['OBJ SORT NT', 'OBJ_SORT_NT'])) || 0,
+            };
+          }).filter(item => item.codCliente && item.codVendedor);
+
+          const numericasPc = rawNumPc.map(item => {
+            const codCliente = (getVal(item, ['COD CLI', 'COD CLIENTE', 'COD_CLI', 'CODIGO CLIENTE', 'COD CLIENTES']) || '').toString().trim();
+            const codVendedor = (getVal(item, ['COD RCA', 'COD VENDEDOR', 'COD DO VENDEDOR', 'COD_VENDEDOR', 'COD_RCA', 'RCA_COD', 'CODIGO VENDEDOR']) || '').toString().trim();
+            return {
+              cnpj: (getVal(item, ['CNPJ']) || '').toString().trim(),
+              codCliente,
+              cliente: (getVal(item, ['CLIENTES', 'CLIENTE', 'NOME CLIENTE']) || '').toString().trim(),
+              cidade: (getVal(item, ['CIDADES', 'CIDADE']) || '').toString().trim(),
+              classificacao: (getVal(item, ['CLASSIFICAÇÃO', 'CLASSIFICACAO', 'CLASS']) || '').toString().trim(),
+              codVendedor,
+              vendedor: (getVal(item, ['RCA', 'NOME RCA', 'VENDEDOR', 'NOME VENDEDOR']) || '').toString().trim(),
+              objSortBw: parseInt(getVal(item, ['OBJ SORT BW', 'OBJ_SORT_BW'])) || 0,
+              objSortPc: parseInt(getVal(item, ['OBJ SORT PC', 'OBJ_SORT_PC'])) || 0,
+            };
+          }).filter(item => item.codCliente && item.codVendedor);
+
+          const ponderadasPc = rawPondPc.map(item => {
+            const codCliente = (getVal(item, ['COD CLI', 'COD CLIENTE', 'COD_CLI', 'CODIGO CLIENTE', 'COD CLIENTES']) || '').toString().trim();
+            const codVendedor = (getVal(item, ['COD RCA', 'COD VENDEDOR', 'COD DO VENDEDOR', 'COD_VENDEDOR', 'COD_RCA', 'RCA_COD', 'CODIGO VENDEDOR']) || '').toString().trim();
+            return {
+              classificacao: (getVal(item, ['CLASSIFICAÇÃO', 'CLASSIFICACAO', 'CLASS']) || '').toString().trim(),
+              cnpj: (getVal(item, ['CNPJ']) || '').toString().trim(),
+              codCliente,
+              cliente: (getVal(item, ['CLIENTES', 'CLIENTE', 'NOME CLIENTE']) || '').toString().trim(),
+              cidade: (getVal(item, ['CIDADES', 'CIDADE']) || '').toString().trim(),
+              codVendedor,
+              vendedor: (getVal(item, ['RCA', 'NOME RCA', 'VENDEDOR', 'NOME VENDEDOR']) || '').toString().trim(),
+              metaBw: (getVal(item, ['META BW', 'META_BW']) || '').toString().trim(),
+              objSortBw: parseInt(getVal(item, ['OBJ SORT BW', 'OBJ_SORT_BW'])) || 0,
+              objSortPc: parseInt(getVal(item, ['OBJ SORT PC', 'OBJ_SORT_PC'])) || 0,
+            };
+          }).filter(item => item.codCliente && item.codVendedor);
+
+          const cob = rawCob.map(item => {
+            const codCliente = (getVal(item, ['COD CLI', 'COD CLIENTE', 'COD_CLI', 'CODIGO CLIENTE', 'COD CLIENTES']) || '').toString().trim();
+            const codVendedor = (getVal(item, ['COD RCA', 'COD VENDEDOR', 'COD DO VENDEDOR', 'COD_VENDEDOR', 'COD_RCA', 'RCA_COD', 'CODIGO VENDEDOR']) || '').toString().trim();
+            return {
+              codVendedor,
+              codCliente,
+              cnpj: (getVal(item, ['CNPJ']) || '').toString().trim(),
+              cliente: (getVal(item, ['CLIENTES', 'CLIENTE', 'NOME CLIENTE']) || '').toString().trim(),
+              cidade: (getVal(item, ['CIDADES', 'CIDADE']) || '').toString().trim(),
+              vendedor: (getVal(item, ['VENDEDOR', 'NOME VENDEDOR', 'RCA', 'NOME RCA']) || '').toString().trim(),
+            };
+          }).filter(item => item.codCliente && item.codVendedor);
+
+          setUnicoLiveDataset({
+            numericas: numericasHc,
+            ponderadas: ponderadasHc,
+            numericasHc,
+            ponderadasHc,
+            numericasPc,
+            ponderadasPc,
+            cob,
+            lastUpdate: new Date().toISOString()
+          });
+        }
+      } catch (err) {
+        console.warn('Could not sync live sheets, using local backup JSON', err);
+      } finally {
+        setIsUpdatingUnicoLive(false);
+      }
+    };
+
+    syncUnicoLive();
+  }, []);
+
+  // Compute unique sellers (vendedores)
+  const uniqueVendedores = React.useMemo(() => {
+    const map = new Map<string, string>();
+    const isHc = unicoTeam === 'hc_nt';
+    const numList = isHc ? (unicoLiveDataset.numericasHc || []) : (unicoLiveDataset.numericasPc || []);
+    const pondList = isHc ? (unicoLiveDataset.ponderadasHc || []) : (unicoLiveDataset.ponderadasPc || []);
+    const cobList = unicoLiveDataset.cob || [];
+
+    const activeTeamCodes = new Set<string>();
+
+    numList.forEach(item => {
+      if (item.codVendedor) {
+        const code = item.codVendedor.toString().trim();
+        activeTeamCodes.add(code);
+        map.set(code, (item.vendedor || '').toString().trim() || `${item.codVendedor} - Vendedor`);
+      }
+    });
+    pondList.forEach(item => {
+      if (item.codVendedor) {
+        const code = item.codVendedor.toString().trim();
+        activeTeamCodes.add(code);
+        map.set(code, (item.vendedor || '').toString().trim() || `${item.codVendedor} - Vendedor`);
+      }
+    });
+    cobList.forEach(item => {
+      if (item.codVendedor) {
+        const code = item.codVendedor.toString().trim();
+        if (activeTeamCodes.has(code)) {
+          map.set(code, (item.vendedor || '').toString().trim() || `${item.codVendedor} - Vendedor`);
+        }
+      }
+    });
+    return Array.from(map.entries())
+      .map(([code, name]) => ({ code, name }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, [unicoLiveDataset, unicoTeam]);
+
+  // Helper to determine store classification
+  const getStoreClass = React.useCallback((classificacao: string): 'A' | 'B' | 'C' | 'Outros' => {
+    const cl = (classificacao || '').trim().toLowerCase();
+    if (cl.includes('num. a') || cl.includes('classe a') || cl === 'a' || cl.endsWith(' a')) return 'A';
+    if (cl.includes('num. b') || cl.includes('classe b') || cl === 'b' || cl.endsWith(' b')) return 'B';
+    if (cl.includes('num. c') || cl.includes('classe c') || cl === 'c' || cl.endsWith(' c')) return 'C';
+    return 'Outros';
+  }, []);
+
+  // Compiled dashboard data for all sellers
+  const sellersDashboardData = React.useMemo(() => {
+    const list: any[] = [];
+    uniqueVendedores.forEach(v => {
+      const isHc = unicoTeam === 'hc_nt';
+      const numStores = (isHc ? (unicoLiveDataset.numericasHc || []) : (unicoLiveDataset.numericasPc || []))
+        .filter(item => (item.codVendedor || '').toString().trim() === v.code);
+      const pondStores = (isHc ? (unicoLiveDataset.ponderadasHc || []) : (unicoLiveDataset.ponderadasPc || []))
+        .filter(item => (item.codVendedor || '').toString().trim() === v.code);
+      const cobStores = (unicoLiveDataset.cob || [])
+        .filter(item => (item.codVendedor || '').toString().trim() === v.code);
+
+      const classA = numStores.filter(item => getStoreClass(item.classificacao) === 'A');
+      const classB = numStores.filter(item => getStoreClass(item.classificacao) === 'B');
+      const classC = numStores.filter(item => getStoreClass(item.classificacao) === 'C');
+      const classOther = numStores.filter(item => getStoreClass(item.classificacao) === 'Outros');
+
+      let classA_val1 = 0, classA_val2 = 0;
+      let classB_val1 = 0, classB_val2 = 0;
+      let classC_val1 = 0, classC_val2 = 0;
+      let total_val1 = 0, total_val2 = 0;
+
+      if (isHc) {
+        classA_val1 = classA.reduce((sum, item) => sum + (item.objSortHc || 0), 0);
+        classA_val2 = classA.reduce((sum, item) => sum + (item.objSortNt || 0), 0);
+        classB_val1 = classB.reduce((sum, item) => sum + (item.objSortHc || 0), 0);
+        classB_val2 = classB.reduce((sum, item) => sum + (item.objSortNt || 0), 0);
+        classC_val1 = classC.reduce((sum, item) => sum + (item.objSortHc || 0), 0);
+        classC_val2 = classC.reduce((sum, item) => sum + (item.objSortNt || 0), 0);
+
+        total_val1 = numStores.reduce((sum, item) => sum + (item.objSortHc || 0), 0);
+        total_val2 = numStores.reduce((sum, item) => sum + (item.objSortNt || 0), 0);
+      } else {
+        classA_val1 = classA.reduce((sum, item) => sum + (item.objSortBw || 0), 0);
+        classA_val2 = classA.reduce((sum, item) => sum + (item.objSortPc || 0), 0);
+        classB_val1 = classB.reduce((sum, item) => sum + (item.objSortBw || 0), 0);
+        classB_val2 = classB.reduce((sum, item) => sum + (item.objSortPc || 0), 0);
+        classC_val1 = classC.reduce((sum, item) => sum + (item.objSortBw || 0), 0);
+        classC_val2 = classC.reduce((sum, item) => sum + (item.objSortPc || 0), 0);
+
+        total_val1 = numStores.reduce((sum, item) => sum + (item.objSortBw || 0), 0);
+        total_val2 = numStores.reduce((sum, item) => sum + (item.objSortPc || 0), 0);
+      }
+
+      list.push({
+        code: v.code,
+        name: v.name,
+        numCount: numStores.length,
+        pondCount: pondStores.length,
+        cobCount: cobStores.length,
+        totalClients: numStores.length + pondStores.length + cobStores.length,
+        classA_count: classA.length,
+        classB_count: classB.length,
+        classC_count: classC.length,
+        classOther_count: classOther.length,
+        classA_val1,
+        classA_val2,
+        classB_val1,
+        classB_val2,
+        classC_val1,
+        classC_val2,
+        total_val1,
+        total_val2,
+        clients: [
+          ...numStores.map(s => ({ ...s, tipo: 'Numérica' })),
+          ...pondStores.map(s => ({ ...s, tipo: 'Ponderada' })),
+          ...cobStores.map(s => ({ ...s, tipo: 'COB' }))
+        ]
+      });
+    });
+
+    return list;
+  }, [uniqueVendedores, unicoLiveDataset, getStoreClass, unicoTeam]);
+
+  // Filter unique sellers for the main dropdown/search
+  const filteredVendedores = React.useMemo(() => {
+    const term = unicoSearchCode.trim().toLowerCase();
+    if (!term) return [];
+    return uniqueVendedores.filter(v => 
+      v.code.toLowerCase().includes(term) || 
+      v.name.toLowerCase().includes(term)
+    );
+  }, [unicoSearchCode, uniqueVendedores]);
+
+  // Filter dashboard sellers
+  const filteredDashboardSellers = React.useMemo(() => {
+    const term = dashboardSearchTerm.trim().toLowerCase();
+    if (!term) return sellersDashboardData;
+    return sellersDashboardData.filter(v => 
+      v.code.toLowerCase().includes(term) || 
+      v.name.toLowerCase().includes(term) ||
+      v.clients.some((c: any) => 
+        (c.cliente || '').toLowerCase().includes(term) || 
+        (c.codCliente || '').toLowerCase().includes(term) ||
+        (c.cnpj || '').toLowerCase().includes(term)
+      )
+    );
+  }, [dashboardSearchTerm, sellersDashboardData]);
+
+  // Flattened clients list
+  const allClientsList = React.useMemo(() => {
+    const list: any[] = [];
+    const isHc = unicoTeam === 'hc_nt';
+    const numList = isHc ? (unicoLiveDataset.numericasHc || []) : (unicoLiveDataset.numericasPc || []);
+    const pondList = isHc ? (unicoLiveDataset.ponderadasHc || []) : (unicoLiveDataset.ponderadasPc || []);
+    const cobList = unicoLiveDataset.cob || [];
+
+    const activeTeamCodes = new Set<string>();
+
+    numList.forEach(item => {
+      const code = (item.codVendedor || '').toString().trim();
+      activeTeamCodes.add(code);
+      list.push({
+        ...item,
+        codVendedor: code,
+        tipo: 'Numérica',
+        storeClass: getStoreClass(item.classificacao)
+      });
+    });
+    pondList.forEach(item => {
+      const code = (item.codVendedor || '').toString().trim();
+      activeTeamCodes.add(code);
+      list.push({
+        ...item,
+        codVendedor: code,
+        tipo: 'Ponderada',
+        storeClass: 'Ponderada'
+      });
+    });
+    cobList.forEach(item => {
+      const code = (item.codVendedor || '').toString().trim();
+      if (activeTeamCodes.has(code)) {
+        list.push({
+          ...item,
+          codVendedor: code,
+          tipo: 'COB',
+          storeClass: 'COB'
+        });
+      }
+    });
+    return list;
+  }, [unicoLiveDataset, getStoreClass, unicoTeam]);
+
+  // Filter flat client list
+  const filteredAllClients = React.useMemo(() => {
+    const term = clientsSearchTerm.trim().toLowerCase();
+    if (!term) return allClientsList;
+    return allClientsList.filter(c => 
+      (c.cliente || '').toLowerCase().includes(term) || 
+      (c.codCliente || '').toLowerCase().includes(term) ||
+      (c.cnpj || '').toLowerCase().includes(term) ||
+      (c.vendedor || '').toLowerCase().includes(term) ||
+      (c.codVendedor || '').toLowerCase().includes(term) ||
+      (c.cidade || '').toLowerCase().includes(term)
+    );
+  }, [clientsSearchTerm, allClientsList]);
+
+  // Stores for selected vendedor
+  const sellerStoresNumericas = React.useMemo(() => {
+    if (!selectedUnicoRCA) return [];
+    const isHc = unicoTeam === 'hc_nt';
+    const list = isHc ? (unicoLiveDataset.numericasHc || []) : (unicoLiveDataset.numericasPc || []);
+    return list.filter(item => (item.codVendedor || '').toString().trim() === (selectedUnicoRCA.code || '').toString().trim());
+  }, [selectedUnicoRCA, unicoLiveDataset, unicoTeam]);
+
+  const sellerStoresPonderadas = React.useMemo(() => {
+    if (!selectedUnicoRCA) return [];
+    const isHc = unicoTeam === 'hc_nt';
+    const list = isHc ? (unicoLiveDataset.ponderadasHc || []) : (unicoLiveDataset.ponderadasPc || []);
+    return list.filter(item => (item.codVendedor || '').toString().trim() === (selectedUnicoRCA.code || '').toString().trim());
+  }, [selectedUnicoRCA, unicoLiveDataset, unicoTeam]);
+
+  const sellerStoresCob = React.useMemo(() => {
+    if (!selectedUnicoRCA) return [];
+    const list = unicoLiveDataset.cob || [];
+    return list.filter(item => (item.codVendedor || '').toString().trim() === (selectedUnicoRCA.code || '').toString().trim());
+  }, [selectedUnicoRCA, unicoLiveDataset]);
+
+  // Filter numerical stores by classification A, B, C
+  const filteredSellerStoresNumericas = React.useMemo(() => {
+    let list = sellerStoresNumericas;
+    if (unicoNumericaClassFilter !== 'todos') {
+      const matchClass = unicoNumericaClassFilter.toLowerCase();
+      list = list.filter(item => {
+        const cl = (item.classificacao || '').toLowerCase();
+        return cl.includes(`num. ${matchClass}`) || cl.includes(`classe ${matchClass}`) || cl === matchClass || cl.endsWith(` ${matchClass}`);
+      });
+    }
+    return list;
+  }, [sellerStoresNumericas, unicoNumericaClassFilter]);
+
   const [rcaSearchTerm, setRcaSearchTerm] = useState("");
   const [selectedRCA, setSelectedRCA] = useState<any>(null);
+  const [selectedRcaTab, setSelectedRcaTab] = useState<'volume' | 'batalhas'>('volume');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   const filteredRCAs = RCA_METAS_DATA.filter(rca => 
@@ -66,6 +506,7 @@ const App = () => {
     cd: "87",
     vendedor: "",
     cliente: "",
+    tipoCliente: "",
     pedido: "",
     prazo: "32"
   });
@@ -236,6 +677,7 @@ const App = () => {
     let msg = `EQUIPE:${headerData.equipe}\n`;
     msg += `CD:${headerData.cd}\n`;
     msg += `CLIENTE:${headerData.cliente}\n`;
+    msg += `TIPO DE CLIENTE:${headerData.tipoCliente}\n`;
     msg += `RCA:${headerData.vendedor}\n`;
     msg += `Nº DO PEDIDO: ${headerData.pedido}\n`;
     msg += `VALOR TOTAL BONIFICADO: ${formatarMoeda(totalBonificado)}\n`;
@@ -280,6 +722,10 @@ const App = () => {
   };
 
   const copiarGeral = () => {
+    if (!headerData.tipoCliente) {
+      alert("Por favor, selecione o Tipo de Cliente (CPF ou CNPJ) no cabeçalho antes de copiar!");
+      return;
+    }
     const msg = getGeneratedMessage();
     const el = document.createElement('textarea');
     el.value = msg;
@@ -308,6 +754,7 @@ const App = () => {
         ...headerData,
         vendedor: "",
         cliente: "",
+        tipoCliente: "",
         pedido: "",
         prazo: "32"
       });
@@ -380,6 +827,37 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 pb-32">
+      {/* TOPO DE MARCA UNILEVER */}
+      <div className="bg-gradient-to-r from-blue-900 via-[#001E62] to-blue-950 text-white border-b border-blue-800 shadow-sm relative overflow-hidden">
+        {/* Glow effect */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.15),transparent_60%)] pointer-events-none" />
+        <div className="max-w-xl mx-auto px-4 py-3 flex items-center justify-between relative z-10">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm border border-white/10 shadow-inner">
+              <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Unilever_logo.svg/1024px-Unilever_logo.svg.png" 
+                alt="Unilever Logo" 
+                className="h-7 w-7 object-contain filter brightness-0 invert" 
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <div className="flex flex-col">
+              <h1 className="text-xs font-black uppercase tracking-widest leading-none bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                Unilever Portal
+              </h1>
+              <span className="text-[7px] font-bold text-yellow-400 tracking-[0.2em] uppercase mt-0.5">
+                Distribuição & Metas
+              </span>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-[7px] font-black px-2 py-0.5 bg-blue-800/80 text-blue-200 rounded border border-blue-700 uppercase tracking-widest">
+              v12.0
+            </span>
+          </div>
+        </div>
+      </div>
+
       {/* NAVEGAÇÃO SUPERIOR */}
       <nav className="sticky top-0 z-[100] bg-white/80 backdrop-blur-md border-b border-slate-200">
         <div className="max-w-xl mx-auto px-4 flex items-center justify-around">
@@ -391,20 +869,11 @@ const App = () => {
             <span className="text-[8px] font-black uppercase tracking-widest">Bonificação</span>
           </button>
           <button 
-            onClick={() => {
-              if (isMetasUnlocked) {
-                setActiveTab('metas');
-              } else {
-                setShowPasswordModal(true);
-              }
-            }}
-            className={`flex-1 py-4 flex flex-col items-center gap-1 transition-all border-b-2 ${activeTab === 'metas' ? 'border-blue-600 text-blue-600' : 'border-transparent text-slate-400'}`}
+            onClick={() => setActiveTab('unico')}
+            className={`flex-1 py-4 flex flex-col items-center gap-1 transition-all border-b-2 ${activeTab === 'unico' ? 'border-blue-600 text-blue-600' : 'border-transparent text-slate-400'}`}
           >
-            <div className="relative">
-              {!isMetasUnlocked && <Lock size={10} className="absolute -top-1 -right-1 text-slate-400" />}
-              <TrendingUp size={18}/>
-            </div>
-            <span className="text-[8px] font-black uppercase tracking-widest">Metas RCA</span>
+            <Sparkles size={18}/>
+            <span className="text-[8px] font-black uppercase tracking-widest">Único</span>
           </button>
         </div>
       </nav>
@@ -490,6 +959,21 @@ const App = () => {
                     </div>
 
                     <div className="space-y-1">
+                      <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1">
+                        <FileText size={10}/> TIPO DE CLIENTE
+                      </label>
+                      <select 
+                        className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20 appearance-none" 
+                        value={headerData.tipoCliente} 
+                        onChange={e => setHeaderData({...headerData, tipoCliente: e.target.value})} 
+                      >
+                        <option value="">Selecione o tipo (CPF / CNPJ)</option>
+                        <option value="CPF">CPF</option>
+                        <option value="CNPJ">CNPJ</option>
+                      </select>
+                    </div>
+
+                    <div className="space-y-1">
                       <label className="text-[9px] font-black text-blue-800 uppercase ml-1 flex items-center gap-1"><Briefcase size={10}/> RCA (CÓDIGO E NOME)</label>
                       <input 
                         className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20" 
@@ -549,6 +1033,10 @@ const App = () => {
                       <div className="flex gap-2">
                         <span className="text-slate-400 uppercase">Cliente:</span>
                         <span className="text-blue-900 uppercase">{headerData.cliente || "Não informado"}</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <span className="text-slate-400 uppercase">Tipo:</span>
+                        <span className="text-blue-900 uppercase">{headerData.tipoCliente || "Não informado"}</span>
                       </div>
                       <div className="flex gap-2">
                         <span className="text-slate-400 uppercase">Pedido:</span>
@@ -946,285 +1434,808 @@ const App = () => {
             <Plus size={16}/> Adicionar Novo Bloco
           </button>
         )}
-    </>
-  ) : (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12">
-            {/* CABEÇALHO METAS */}
+      </>
+    ) : (
+          <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12">
+            {/* CABEÇALHO ÚNICO */}
             <div className="bg-[#001E62] rounded-[3rem] p-8 text-white shadow-2xl relative overflow-hidden">
-               <div className="absolute top-0 right-0 w-48 h-48 bg-blue-400/20 rounded-full -mr-24 -mt-24 blur-3xl animate-pulse"></div>
+               <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-400/20 rounded-full -mr-24 -mt-24 blur-3xl animate-pulse"></div>
                <div className="relative z-10">
                  <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-md">
-                        <TrendingUp size={24} className="text-blue-300"/>
+                        <Sparkles size={24} className="text-emerald-300"/>
                     </div>
-                    <h2 className="text-3xl font-black italic uppercase tracking-tighter">Metas RCA</h2>
+                    <h2 className="text-3xl font-black italic uppercase tracking-tighter">Indicador Único</h2>
                  </div>
-                 <p className="text-blue-200 text-[10px] font-bold uppercase tracking-[0.3em] max-w-[200px] leading-relaxed">
-                    Acompanhamento diário de indicadores e projeção de ganhos
+                 <p className="text-blue-200 text-[10px] font-bold uppercase tracking-[0.3em] max-w-[280px] leading-relaxed">
+                    Consulte seus clientes e objetivos de sortimento e volume
                  </p>
-               </div>
-            </div>
-
-            {/* BUSCA RCA */}
-            <div className="relative group">
-               <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none">
-                 <Search size={18} className="text-slate-400 group-focus-within:text-blue-600 transition-colors" />
-               </div>
-               <input 
-                 type="text"
-                 placeholder="Pesquise seu Código ou Nome..."
-                 className="w-full bg-white border-2 border-slate-100 rounded-[2rem] py-5 pl-14 pr-6 outline-none focus:border-blue-600 shadow-xl shadow-blue-900/5 text-sm font-bold transition-all"
-                 value={rcaSearchTerm}
-                 onFocus={() => setIsSearchFocused(true)}
-                 onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
-                 onChange={(e) => {
-                    setRcaSearchTerm(e.target.value);
-                    if (e.target.value === "") setSelectedRCA(null);
-                 }}
-               />
-               
-               <AnimatePresence>
-                 {(isSearchFocused || rcaSearchTerm.trim() !== "") && filteredRCAs.length > 0 && !selectedRCA && (
-                   <motion.div 
-                     initial={{ opacity: 0, y: -10 }}
-                     animate={{ opacity: 1, y: 0 }}
-                     exit={{ opacity: 0, y: -10 }}
-                     className="absolute top-full left-0 right-0 mt-2 bg-white rounded-3xl shadow-2xl border border-slate-100 z-50 overflow-hidden max-h-60 overflow-y-auto"
-                   >
-                     {filteredRCAs.map((rca) => (
-                       <button
-                         key={rca.id}
-                         onClick={() => {
-                           setSelectedRCA(rca);
-                           setRcaSearchTerm(rca.name);
-                         }}
-                         className="w-full px-6 py-4 text-left hover:bg-slate-50 transition-colors flex items-center justify-between group"
-                       >
-                         <div>
-                            <p className="text-xs font-black text-slate-800 uppercase tracking-tight">{rca.name}</p>
-                            <p className="text-[9px] font-bold text-slate-400 uppercase">{rca.id} • {rca.region}</p>
-                         </div>
-                         <Plus size={16} className="text-slate-300 group-hover:text-blue-600"/>
-                       </button>
-                     ))}
-                   </motion.div>
+                 {isUpdatingUnicoLive && (
+                   <div className="absolute bottom-2 right-4 flex items-center gap-1.5 bg-emerald-500/20 px-2 py-1 rounded text-[8px] font-black uppercase tracking-wider text-emerald-300">
+                     <Loader2 size={10} className="animate-spin"/> Atualizando...
+                   </div>
                  )}
-               </AnimatePresence>
+               </div>
             </div>
 
-            {selectedRCA ? (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="space-y-6"
-              >
-                {/* INDICADORES PRINCIPAIS */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {/* VOLUME */}
-                  <div className="bg-white rounded-[2.5rem] p-6 shadow-xl shadow-blue-900/5 border-2 border-blue-500/10">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center shadow-inner">
-                        <BarChart3 size={24}/>
-                      </div>
-                      <div className="flex flex-col">
-                        <div className="flex justify-between items-center w-full">
-                          <h4 className="text-[7px] font-black text-slate-400 uppercase tracking-widest">OBJETIVO VOLUME</h4>
-                          <span className="text-[9px] font-black text-slate-800">{formatarMoeda(selectedRCA.metaVolume)}</span>
-                        </div>
-                        <div className="flex justify-between items-center w-full mt-1">
-                          <h4 className="text-[7px] font-black text-blue-600 uppercase tracking-widest">VOLUME REALIZADO</h4>
-                          <span className="text-[9px] font-black text-blue-800">{formatarMoeda(selectedRCA.volume)}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                       <motion.div 
-                         initial={{ width: 0 }}
-                         animate={{ width: `${Math.min(100, (selectedRCA.volume / selectedRCA.metaVolume) * 100)}%` }}
-                         className={`h-full rounded-full shadow-lg ${selectedRCA.volume >= selectedRCA.metaVolume ? 'bg-green-500 shadow-green-500/50' : 'bg-blue-600 shadow-blue-500/50'}`}
-                       ></motion.div>
-                    </div>
-                  </div>
-
-                  {/* POSITIVAÇÃO */}
-                  <div className="bg-white rounded-[2.5rem] p-6 shadow-xl shadow-blue-900/5 border-2 border-green-500/10">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center shadow-inner">
-                        <CheckCircle2 size={24}/>
-                      </div>
-                      <div className="flex flex-col">
-                        <div className="flex justify-between items-center w-full">
-                          <h4 className="text-[7px] font-black text-slate-400 uppercase tracking-widest">OBJETIVO POSITIVAÇÃO</h4>
-                          <span className="text-[9px] font-black text-slate-800">{selectedRCA.pdvsTotal} PDVs</span>
-                        </div>
-                        <div className="flex justify-between items-center w-full mt-1">
-                          <h4 className="text-[7px] font-black text-green-600 uppercase tracking-widest">REALIZADO POSITIVAÇÃO</h4>
-                          <span className="text-[9px] font-black text-green-800">{selectedRCA.positivacao} PDVs</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                       <motion.div 
-                         initial={{ width: 0 }}
-                         animate={{ width: `${Math.min(100, (selectedRCA.positivacao / selectedRCA.pdvsTotal) * 100)}%` }}
-                         className="bg-green-500 h-full rounded-full shadow-[0_0_10px_rgba(34,197,94,0.5)]"
-                       ></motion.div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* BATALHAS BREAKDOWN */}
-                <div className="bg-white rounded-[2.5rem] p-8 shadow-xl shadow-blue-900/5 border-4 border-yellow-500/10 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-4">
-                        <Trophy size={48} className="text-yellow-500/10 -rotate-12"/>
-                    </div>
-                    
-                    <h3 className="text-sm font-black text-slate-800 uppercase tracking-widest mb-6 flex items-center gap-2">
-                        <span className="w-2 h-6 bg-yellow-500 rounded-full"></span>
-                        Status das Batalhas
-                    </h3>
-
-                    <div className="grid grid-cols-2 gap-4">
-                        {(() => {
-                        const labels = (selectedRCA.battles.dove || selectedRCA.battles.oral || selectedRCA.battles.rexona || selectedRCA.battles.sabLiq) ? BATTLE_LABELS.BPC : BATTLE_LABELS.HF;
-                        const isBPC = (selectedRCA.battles.dove || selectedRCA.battles.oral || selectedRCA.battles.rexona || selectedRCA.battles.sabLiq);
-                        
-                        // Mapeamento dinâmico baseado no time
-                        const battleEntries = isBPC ? [
-                          { label: labels[0], data: selectedRCA.battles.dove || { meta: 0, realizado: 0, reach: "0,00%", posTela: 0, posTotal: 0 } },
-                          { label: labels[1], data: selectedRCA.battles.oral || { meta: 0, realizado: 0, reach: "0,00%", posTela: 0, posTotal: 0 } },
-                          { label: labels[2], data: selectedRCA.battles.rexona || { meta: 0, realizado: 0, reach: "0,00%", posTela: 0, posTotal: 0 } },
-                          { label: labels[3], data: selectedRCA.battles.sabLiq || { meta: 0, realizado: 0, reach: "0,00%", posTela: 0, posTotal: 0 } }
-                        ] : [
-                          { label: labels[0], data: selectedRCA.battles.amidos || { meta: 0, realizado: 0, reach: "0,00%", posTela: 0, posTotal: 0 } },
-                          { label: labels[1], data: selectedRCA.battles.cif || { meta: 0, realizado: 0, reach: "0,00%", posTela: 0, posTotal: 0 } },
-                          { label: labels[2], data: selectedRCA.battles.mayo || { meta: 0, realizado: 0, reach: "0,00%", posTela: 0, posTotal: 0 } },
-                          { label: labels[3], data: selectedRCA.battles.poLiq || { meta: 0, realizado: 0, reach: "0,00%", posTela: 0, posTotal: 0 } }
-                        ];
-
-                           return battleEntries.map((b, idx) => (
-                             <div key={idx} className="bg-slate-50 rounded-3xl p-4 border border-slate-100 flex flex-col gap-2">
-                                <div>
-                                  <p className="text-[9px] font-black text-slate-400 uppercase mb-1">{b.label}</p>
-                                  <div className="flex justify-between text-[7px] font-bold uppercase mb-1">
-                                    <span className="text-slate-500">OBJETIVO: {b.data.meta}</span>
-                                    <span className="text-blue-600">POS FAT: {b.data.realizado}</span>
-                                  </div>
-                                  <div className="flex items-center justify-between">
-                                      <span className="text-xl font-black text-slate-800">{b.data.realizado}</span>
-                                      <div className={`px-2 h-6 rounded-lg flex items-center justify-center text-[9px] font-black bg-${idx % 2 === 0 ? 'blue' : 'emerald'}-100 text-${idx % 2 === 0 ? 'blue' : 'emerald'}-600`}>
-                                          ALCA%: {b.data.reach || "0,00%"}
-                                      </div>
-                                  </div>
-                                </div>
-                                <div className="grid grid-cols-2 gap-1 text-[7px] font-bold uppercase text-slate-400 pt-2 border-t border-slate-200/60">
-                                  <div className="flex flex-col">
-                                    <span>Pos Tela</span>
-                                    <span className="text-slate-600">{b.data.posTela}</span>
-                                  </div>
-                                  <div className="flex flex-col text-right">
-                                    <span>Pos Total</span>
-                                    <span className="text-slate-600">{b.data.posTotal}</span>
-                                  </div>
-                                </div>
-                            </div>
-                          ));
-                        })()}
-                    </div>
-                </div>
-
-                {/* PROJEÇÃO FINANCEIRA */}
-                <div className="bg-[#001E62] rounded-[3rem] p-8 text-white shadow-2xl relative overflow-hidden">
-                    <div className="absolute bottom-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mb-32 blur-3xl"></div>
-                    
-                    {(() => {
-                        const comissionBase = selectedRCA.volume * 0.01;
-                        const reachGoalBonus = selectedRCA.volume >= selectedRCA.metaVolume ? selectedRCA.volume * 0.005 : 0;
-                        const comissionVolume = comissionBase + reachGoalBonus;
-                        
-                        // Premiação dinâmica baseada no time
-                        const isBPC = (selectedRCA.battles.dove || selectedRCA.battles.oral || selectedRCA.battles.rexona || selectedRCA.battles.sabLiq);
-                        let premBat = 0;
-                        if (isBPC) {
-                          premBat = ((selectedRCA.battles.dove?.realizado || 0) * 10) + 
-                                    ((selectedRCA.battles.oral?.realizado || 0) * 5) + 
-                                    ((selectedRCA.battles.rexona?.realizado || 0) * 5) + 
-                                    ((selectedRCA.battles.sabLiq?.realizado || 0) * 5);
-                        } else {
-                          premBat = ((selectedRCA.battles.poLiq?.realizado || 0) * 10) + 
-                                    ((selectedRCA.battles.cif?.realizado || 0) * 5) + 
-                                    ((selectedRCA.battles.mayo?.realizado || 0) * 5) + 
-                                    ((selectedRCA.battles.amidos?.realizado || 0) * 5);
-                        }
-                        
-                        const total = comissionVolume + premBat;
-
-                        return (
-                          <div className="relative z-10">
-                              <div className="flex items-center justify-between mb-8">
-                                  <div>
-                                      <span className="text-[8px] font-black text-blue-400 uppercase tracking-[0.4em]">Remuneração Variável Parcial</span>
-                                      <h3 className="text-4xl font-black tracking-tighter text-green-400 drop-shadow-lg">
-                                          {formatarMoeda(total)}
-                                      </h3>
-                                  </div>
-                                  <div className="bg-white/10 p-3 rounded-2xl backdrop-blur-md">
-                                      <Sparkles className="text-yellow-400" size={24}/>
-                                  </div>
-                              </div>
-
-                              <div className="space-y-3 bg-black/20 rounded-3xl p-6 backdrop-blur-sm border border-white/5">
-                                  <div className="flex justify-between items-center">
-                                      <div className="flex flex-col">
-                                        <span className="text-[10px] font-bold text-blue-200 uppercase tracking-widest">Comissão Estimada (Vol)</span>
-                                      </div>
-                                      <span className="text-xs font-black">{formatarMoeda(comissionVolume)}</span>
-                                  </div>
-                                  <div className="flex justify-between items-center">
-                                      <span className="text-[10px] font-bold text-blue-200 uppercase tracking-widest">Premiação Batalhas</span>
-                                      <span className="text-xs font-black">{formatarMoeda(premBat)}</span>
-                                  </div>
-                              </div>
-                              
-                              <p className="text-[8px] font-bold text-blue-300 uppercase italic mt-4 text-center opacity-60">
-                                  * Valores aproximados baseados nos indicadores informados no sistema.
-                              </p>
-                          </div>
-                        );
-                    })()}
-                </div>
-                
-                <button 
-                  onClick={() => setSelectedRCA(null)}
-                  className="w-full py-5 bg-white border-2 border-slate-100 rounded-[2.5rem] text-slate-400 font-black uppercase text-xs tracking-widest hover:bg-slate-50 transition-all hover:text-slate-600"
+            {/* SELEÇÃO DE EQUIPE */}
+            <div className="flex flex-col gap-2 bg-white p-4 rounded-[2rem] shadow-xl shadow-blue-900/5 border border-slate-100">
+              <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest px-1">Equipe Unilever Selecionada:</span>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={() => {
+                    setUnicoTeam('hc_nt');
+                    setSelectedUnicoRCA(null);
+                    setUnicoSearchCode("");
+                  }}
+                  className={`py-3.5 rounded-xl font-black text-xs tracking-wider uppercase transition-all flex flex-col items-center gap-0.5 ${
+                    unicoTeam === 'hc_nt'
+                      ? 'bg-gradient-to-r from-blue-700 to-blue-900 text-white shadow-md'
+                      : 'bg-slate-50 hover:bg-slate-100 text-slate-500'
+                  }`}
                 >
-                  Limpar Pesquisa
+                  <span className="text-[8px] font-bold text-yellow-400">UNILEVER EQUIPE 1</span>
+                  <span>HC & NT</span>
                 </button>
-              </motion.div>
-            ) : (
-                <div className="bg-white rounded-[3rem] p-12 text-center border-2 border-dashed border-slate-200 flex flex-col items-center gap-4">
+                <button
+                  onClick={() => {
+                    setUnicoTeam('pc_bw');
+                    setSelectedUnicoRCA(null);
+                    setUnicoSearchCode("");
+                  }}
+                  className={`py-3.5 rounded-xl font-black text-xs tracking-wider uppercase transition-all flex flex-col items-center gap-0.5 ${
+                    unicoTeam === 'pc_bw'
+                      ? 'bg-gradient-to-r from-blue-700 to-blue-900 text-white shadow-md'
+                      : 'bg-slate-50 hover:bg-slate-100 text-slate-500'
+                  }`}
+                >
+                  <span className="text-[8px] font-bold text-yellow-400">UNILEVER EQUIPE 2</span>
+                  <span>PC & BW</span>
+                </button>
+              </div>
+            </div>
+
+            {/* SUB-SELEÇÃO DE MODO DE VISUALIZAÇÃO */}
+            <div className="grid grid-cols-3 gap-1 bg-slate-100 p-1.5 rounded-2xl shadow-inner mb-6">
+              <button
+                onClick={() => setUnicoViewMode('individual')}
+                className={`py-3 rounded-xl font-black text-[9px] tracking-wider uppercase transition-all flex items-center justify-center gap-1.5 ${
+                  unicoViewMode === 'individual'
+                    ? 'bg-white text-[#001E62] shadow-sm font-black'
+                    : 'text-slate-500 hover:text-[#001E62]'
+                }`}
+              >
+                <User size={12} />
+                <span>Consulta RCA</span>
+              </button>
+              <button
+                onClick={() => setUnicoViewMode('dashboard')}
+                className={`py-3 rounded-xl font-black text-[9px] tracking-wider uppercase transition-all flex items-center justify-center gap-1.5 ${
+                  unicoViewMode === 'dashboard'
+                    ? 'bg-white text-[#001E62] shadow-sm font-black'
+                    : 'text-slate-500 hover:text-[#001E62]'
+                }`}
+              >
+                <Users size={12} />
+                <span>Dashboard Geral</span>
+              </button>
+              <button
+                onClick={() => setUnicoViewMode('todos_clientes')}
+                className={`py-3 rounded-xl font-black text-[9px] tracking-wider uppercase transition-all flex items-center justify-center gap-1.5 ${
+                  unicoViewMode === 'todos_clientes'
+                    ? 'bg-white text-[#001E62] shadow-sm font-black'
+                    : 'text-slate-500 hover:text-[#001E62]'
+                }`}
+              >
+                <Briefcase size={12} />
+                <span>Ver Todos Clientes</span>
+              </button>
+            </div>
+
+            {/* MODO 2: DASHBOARD GERAL DE VENDEDORES */}
+            {unicoViewMode === 'dashboard' && (
+              <div className="space-y-6 animate-in fade-in duration-300">
+                {/* CARDS DE MÉTRICAS RÁPIDAS */}
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                  <div className="bg-white p-4 rounded-2xl shadow-xl shadow-blue-900/5 border border-slate-100 flex flex-col gap-1">
+                    <span className="text-[8px] font-black text-slate-400 uppercase tracking-wider">Total Vendedores</span>
+                    <span className="text-xl font-black text-blue-900">{uniqueVendedores.length}</span>
+                  </div>
+                  <div className="bg-white p-4 rounded-2xl shadow-xl shadow-blue-900/5 border border-slate-100 flex flex-col gap-1">
+                    <span className="text-[8px] font-black text-slate-400 uppercase tracking-wider">Clientes Numéricos</span>
+                    <span className="text-xl font-black text-blue-900">
+                      {unicoTeam === 'hc_nt' ? (unicoLiveDataset.numericasHc || []).length : (unicoLiveDataset.numericasPc || []).length}
+                    </span>
+                  </div>
+                  <div className="bg-white p-4 rounded-2xl shadow-xl shadow-blue-900/5 border border-slate-100 flex flex-col gap-1">
+                    <span className="text-[8px] font-black text-slate-400 uppercase tracking-wider">Clientes Ponderados</span>
+                    <span className="text-xl font-black text-blue-900">
+                      {unicoTeam === 'hc_nt' ? (unicoLiveDataset.ponderadasHc || []).length : (unicoLiveDataset.ponderadasPc || []).length}
+                    </span>
+                  </div>
+                  <div className="bg-white p-4 rounded-2xl shadow-xl shadow-blue-900/5 border border-slate-100 flex flex-col gap-1">
+                    <span className="text-[8px] font-black text-slate-400 uppercase tracking-wider">Clientes COB</span>
+                    <span className="text-xl font-black text-purple-600">{(unicoLiveDataset.cob || []).length}</span>
+                  </div>
+                  <div className="bg-white p-4 rounded-2xl shadow-xl shadow-blue-900/5 border border-slate-100 flex flex-col gap-1 col-span-2 md:col-span-1">
+                    <span className="text-[8px] font-black text-slate-400 uppercase tracking-wider">Total Geral (Filtrado)</span>
+                    <span className="text-xl font-black text-emerald-600">{allClientsList.length} PDVs</span>
+                  </div>
+                </div>
+
+                {/* BUSCA */}
+                <div className="flex flex-col md:flex-row gap-3">
+                  <div className="relative flex-1 group">
+                    <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none">
+                      <Search size={18} className="text-slate-400 group-focus-within:text-blue-600 transition-colors" />
+                    </div>
+                    <input 
+                      type="text"
+                      placeholder="Buscar por vendedor, cliente, código ou CNPJ..."
+                      className="w-full bg-white border-2 border-slate-100 rounded-2xl py-4 pl-14 pr-6 outline-none focus:border-blue-600 shadow-xl shadow-blue-900/5 text-sm font-bold transition-all"
+                      value={dashboardSearchTerm}
+                      onChange={(e) => {
+                        setDashboardSearchTerm(e.target.value);
+                        setDashboardPage(1);
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* LISTA DE VENDEDORES COMPILADA */}
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center px-1">
+                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Lista de Vendedores ({filteredDashboardSellers.length})</span>
+                    <span className="text-[8px] font-black text-slate-400 uppercase tracking-wider">Clique na Linha para Expandir Lojas A, B, C e Objetivos</span>
+                  </div>
+
+                  {(() => {
+                    const itemsPerPage = 10;
+                    const totalPages = Math.ceil(filteredDashboardSellers.length / itemsPerPage);
+                    const startIndex = (dashboardPage - 1) * itemsPerPage;
+                    const paginatedSellers = filteredDashboardSellers.slice(startIndex, startIndex + itemsPerPage);
+
+                    if (filteredDashboardSellers.length === 0) {
+                      return (
+                        <div className="text-center py-12 bg-white rounded-[2.5rem] border border-slate-100 text-slate-400 font-bold text-xs">
+                          Nenhum vendedor encontrado com os filtros aplicados.
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <div className="space-y-4">
+                        {paginatedSellers.map((v) => {
+                          const isExpanded = expandedSellerCode === v.code;
+                          return (
+                            <div key={v.code} className="bg-white rounded-[2rem] border border-slate-100 shadow-xl shadow-blue-900/5 overflow-hidden transition-all">
+                              {/* CABEÇALHO DO VENDEDOR */}
+                              <div 
+                                onClick={() => setExpandedSellerCode(isExpanded ? null : v.code)}
+                                className="p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 hover:bg-slate-50/80 transition-colors cursor-pointer"
+                              >
+                                <div className="flex items-center gap-3">
+                                  <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
+                                    <User size={20} />
+                                  </div>
+                                  <div>
+                                    <span className="text-[8px] font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded uppercase tracking-wider">CÓD: {v.code}</span>
+                                    <h4 className="text-xs font-black text-slate-800 uppercase mt-0.5">{v.name}</h4>
+                                  </div>
+                                </div>
+
+                                <div className="flex flex-wrap items-center gap-2">
+                                  <span className="text-[8px] font-black px-2 py-1 bg-blue-50 text-blue-700 rounded border border-blue-100 uppercase tracking-wider">
+                                    Numéricas: {v.numCount}
+                                  </span>
+                                  <span className="text-[8px] font-black px-2 py-1 bg-purple-50 text-purple-700 rounded border border-purple-100 uppercase tracking-wider">
+                                    Ponderadas: {v.pondCount}
+                                  </span>
+                                  <span className="text-[8px] font-black px-2 py-1 bg-emerald-50 text-emerald-700 rounded border border-emerald-100 uppercase tracking-wider">
+                                    COB: {v.cobCount}
+                                  </span>
+                                  <span className="text-[8px] font-black px-2 py-1 bg-slate-50 text-slate-700 rounded border border-slate-200 uppercase tracking-wider">
+                                    Total: {v.totalClients} PDVs
+                                  </span>
+                                  <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 transition-all">
+                                    {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* PAINEL DE DETALHES DO VENDEDOR EXPANDIDO */}
+                              {isExpanded && (
+                                <div className="border-t border-slate-100 bg-slate-50/50 p-6 space-y-6">
+                                  {/* RESUMO DOS OBJETIVOS POR CLASSE DE LOJA */}
+                                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                    <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+                                      <div className="flex justify-between items-center">
+                                        <span className="text-[9px] font-black text-slate-800 uppercase">Lojas Classe A</span>
+                                        <span className="text-[9px] font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded">{v.classA_count} PDVs</span>
+                                      </div>
+                                    </div>
+
+                                    <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+                                      <div className="flex justify-between items-center">
+                                        <span className="text-[9px] font-black text-slate-800 uppercase">Lojas Classe B</span>
+                                        <span className="text-[9px] font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded">{v.classB_count} PDVs</span>
+                                      </div>
+                                    </div>
+
+                                    <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+                                      <div className="flex justify-between items-center">
+                                        <span className="text-[9px] font-black text-slate-800 uppercase">Lojas Classe C</span>
+                                        <span className="text-[9px] font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded">{v.classC_count} PDVs</span>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  {/* LISTA COMPLETA DOS CLIENTES VINCULADOS */}
+                                  <div className="space-y-2">
+                                    <h5 className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Clientes Vinculados ({v.clients.length})</h5>
+                                    <div className="bg-white rounded-2xl border border-slate-100 overflow-hidden max-h-72 overflow-y-auto shadow-sm">
+                                      <table className="w-full text-left border-collapse">
+                                        <thead>
+                                          <tr className="bg-slate-50 text-[8px] font-black text-slate-400 uppercase border-b border-slate-100 tracking-wider">
+                                            <th className="p-3 pl-4">Código / Cliente</th>
+                                            <th className="p-3">CNPJ</th>
+                                            <th className="p-3">Cidade</th>
+                                            <th className="p-3">Classe</th>
+                                            <th className="p-3">Tipo</th>
+                                            <th className="p-3 text-right pr-4">
+                                              {unicoTeam === 'hc_nt' ? 'Objetivos (HC / NT)' : 'Objetivos (BW / PC)'}
+                                            </th>
+                                          </tr>
+                                        </thead>
+                                        <tbody className="divide-y divide-slate-100">
+                                          {v.clients.map((c: any, cIdx: number) => (
+                                            <tr key={c.codCliente + '-' + c.tipo + '-' + cIdx} className="hover:bg-slate-50/50 transition-colors">
+                                              <td className="p-3 pl-4 text-xs font-black text-slate-800 uppercase truncate max-w-[220px]">
+                                                {c.cliente || `${c.codCliente} - Cliente`}
+                                              </td>
+                                              <td className="p-3 text-[10px] font-mono text-slate-500">{c.cnpj || '-'}</td>
+                                              <td className="p-3 text-[10px] font-bold text-slate-600 uppercase">{c.cidade || '-'}</td>
+                                              <td className="p-3">
+                                                <span className={`inline-flex items-center justify-center px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider rounded shadow-sm min-w-[70px] text-center ${
+                                                  c.tipo === 'COB'
+                                                    ? 'bg-emerald-600 text-white'
+                                                    : c.tipo === 'Ponderada' 
+                                                      ? 'bg-purple-600 text-white' 
+                                                      : getStoreClass(c.classificacao) === 'A'
+                                                        ? 'bg-rose-600 text-white'
+                                                        : getStoreClass(c.classificacao) === 'B'
+                                                          ? 'bg-amber-500 text-white'
+                                                          : getStoreClass(c.classificacao) === 'C'
+                                                            ? 'bg-blue-600 text-white'
+                                                            : 'bg-slate-500 text-white'
+                                                }`}>
+                                                  {c.tipo === 'COB' ? 'COB' : c.tipo === 'Ponderada' ? 'POND' : `NUM ${getStoreClass(c.classificacao)}`}
+                                                </span>
+                                              </td>
+                                              <td className="p-3 text-[10px] font-black text-slate-500 uppercase">{c.tipo}</td>
+                                              <td className="p-3 text-right pr-4 font-mono text-xs font-bold text-slate-700">
+                                                {c.tipo === 'COB' ? (
+                                                  '-'
+                                                ) : c.tipo === 'Ponderada' ? (
+                                                  unicoTeam === 'hc_nt' ? `(Meta: ${c.metaHc || '-'} / ${c.metaNt || '-'})` : `(Meta: ${c.metaBw || '-'})`
+                                                ) : (
+                                                  unicoTeam === 'hc_nt' ? `${c.objSortHc} HC / ${c.objSortNt} NT` : `${c.objSortBw} BW / ${c.objSortPc} PC`
+                                                )}
+                                              </td>
+                                            </tr>
+                                          ))}
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+
+                        {/* CONTROLES DE PAGINAÇÃO */}
+                        {totalPages > 1 && (
+                          <div className="flex items-center justify-between bg-white p-4 rounded-2xl border border-slate-100 shadow-sm mt-4">
+                            <button
+                              disabled={dashboardPage === 1}
+                              onClick={() => setDashboardPage(prev => Math.max(1, prev - 1))}
+                              className="px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 text-slate-600 rounded-xl text-[9px] font-black uppercase tracking-wider transition-all"
+                            >
+                              Anterior
+                            </button>
+                            <span className="text-[10px] font-black text-slate-500 uppercase">Página {dashboardPage} de {totalPages}</span>
+                            <button
+                              disabled={dashboardPage === totalPages}
+                              onClick={() => setDashboardPage(prev => Math.min(totalPages, prev + 1))}
+                              className="px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 text-slate-600 rounded-xl text-[9px] font-black uppercase tracking-wider transition-all"
+                            >
+                              Próxima
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
+                </div>
+              </div>
+            )}
+
+            {/* MODO 3: TODOS OS CLIENTES */}
+            {unicoViewMode === 'todos_clientes' && (
+              <div className="space-y-6 animate-in fade-in duration-300">
+                {/* BARRA DE BUSCA GERAL DE CLIENTES */}
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none">
+                    <Search size={18} className="text-slate-400 group-focus-within:text-blue-600 transition-colors" />
+                  </div>
+                  <input 
+                    type="text"
+                    placeholder="Buscar por cliente, código, CNPJ, cidade ou vendedor..."
+                    className="w-full bg-white border-2 border-slate-100 rounded-2xl py-4 pl-14 pr-6 outline-none focus:border-blue-600 shadow-xl shadow-blue-900/5 text-sm font-bold transition-all"
+                    value={clientsSearchTerm}
+                    onChange={(e) => {
+                      setClientsSearchTerm(e.target.value);
+                      setClientsPage(1);
+                    }}
+                  />
+                </div>
+
+                {/* TABELA COMPLETA COM TODOS OS CLIENTES E OBJETIVOS */}
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center px-1">
+                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Todos os Clientes ({filteredAllClients.length})</span>
+                    <span className="text-[8px] font-black text-slate-400 uppercase tracking-wider">Listagem Direta da Base Única</span>
+                  </div>
+
+                  {(() => {
+                    const itemsPerPage = 20;
+                    const totalPages = Math.ceil(filteredAllClients.length / itemsPerPage);
+                    const startIndex = (clientsPage - 1) * itemsPerPage;
+                    const paginatedClients = filteredAllClients.slice(startIndex, startIndex + itemsPerPage);
+
+                    if (filteredAllClients.length === 0) {
+                      return (
+                        <div className="text-center py-12 bg-white rounded-[2.5rem] border border-slate-100 text-slate-400 font-bold text-xs">
+                          Nenhum cliente encontrado na base geral.
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <div className="space-y-4">
+                        <div className="bg-white rounded-[2rem] border border-slate-100 overflow-hidden shadow-xl shadow-blue-900/5">
+                          <div className="overflow-x-auto">
+                            <table className="w-full text-left border-collapse">
+                              <thead>
+                                <tr className="bg-slate-50 text-[8px] font-black text-slate-400 uppercase border-b border-slate-100 tracking-wider">
+                                  <th className="p-4 pl-6">Cliente</th>
+                                  <th className="p-4">CNPJ</th>
+                                  <th className="p-4">Cidade</th>
+                                  <th className="p-4">Classe</th>
+                                  <th className="p-4">Vendedor</th>
+                                  <th className="p-4 text-right pr-6">
+                                    {unicoTeam === 'hc_nt' ? 'Objetivo (HC / NT)' : 'Objetivo (BW / PC)'}
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody className="divide-y divide-slate-100">
+                                {paginatedClients.map((c: any, index) => (
+                                  <tr key={c.codCliente + '-' + c.tipo + '-' + index} className="hover:bg-slate-50/50 transition-colors">
+                                    <td className="p-4 pl-6">
+                                      <div className="flex flex-col gap-0.5">
+                                        <span className="text-xs font-black text-slate-800 uppercase truncate max-w-[200px]">
+                                          {c.cliente || `${c.codCliente} - Cliente`}
+                                        </span>
+                                        <span className="text-[8px] font-black text-slate-400">CÓD: {c.codCliente}</span>
+                                      </div>
+                                    </td>
+                                    <td className="p-4 text-[10px] font-mono text-slate-500">{c.cnpj || '-'}</td>
+                                    <td className="p-4 text-[10px] font-bold text-slate-600 uppercase">{c.cidade || '-'}</td>
+                                    <td className="p-4">
+                                      <span className={`inline-flex items-center justify-center px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-md shadow-sm min-w-[75px] text-center ${
+                                        c.tipo === 'COB'
+                                          ? 'bg-emerald-600 text-white'
+                                          : c.tipo === 'Ponderada' 
+                                            ? 'bg-purple-600 text-white' 
+                                            : c.storeClass === 'A'
+                                              ? 'bg-rose-600 text-white'
+                                              : c.storeClass === 'B'
+                                                ? 'bg-amber-500 text-white'
+                                                : c.storeClass === 'C'
+                                                  ? 'bg-blue-600 text-white'
+                                                  : 'bg-slate-500 text-white'
+                                      }`}>
+                                        {c.tipo === 'COB' ? 'COB' : c.tipo === 'Ponderada' ? 'POND' : `NUM ${c.storeClass}`}
+                                      </span>
+                                    </td>
+                                    <td className="p-4">
+                                      <div className="flex flex-col">
+                                        <span className="text-[10px] font-black text-slate-700 uppercase truncate max-w-[150px]">{c.vendedor || 'Sem Vendedor'}</span>
+                                        <span className="text-[8px] font-bold text-slate-400">CÓD: {c.codVendedor || '-'}</span>
+                                      </div>
+                                    </td>
+                                    <td className="p-4 text-right pr-6 font-mono text-xs font-bold text-slate-700">
+                                      {c.tipo === 'COB' ? (
+                                        '-'
+                                      ) : c.tipo === 'Ponderada' ? (
+                                        unicoTeam === 'hc_nt' ? `(Meta: ${c.metaHc || '-'} / ${c.metaNt || '-'})` : `(Meta: ${c.metaBw || '-'})`
+                                      ) : (
+                                        unicoTeam === 'hc_nt' ? `${c.objSortHc} HC / ${c.objSortNt} NT` : `${c.objSortBw} BW / ${c.objSortPc} PC`
+                                      )}
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+
+                        {/* CONTROLES DE PAGINAÇÃO */}
+                        {totalPages > 1 && (
+                          <div className="flex items-center justify-between bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
+                            <button
+                              disabled={clientsPage === 1}
+                              onClick={() => setClientsPage(prev => Math.max(1, prev - 1))}
+                              className="px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 text-slate-600 rounded-xl text-[9px] font-black uppercase tracking-wider transition-all"
+                            >
+                              Anterior
+                            </button>
+                            <span className="text-[10px] font-black text-slate-500 uppercase">Página {clientsPage} de {totalPages}</span>
+                            <button
+                              disabled={clientsPage === totalPages}
+                              onClick={() => setClientsPage(prev => Math.min(totalPages, prev + 1))}
+                              className="px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 text-slate-600 rounded-xl text-[9px] font-black uppercase tracking-wider transition-all"
+                            >
+                              Próxima
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
+                </div>
+              </div>
+            )}
+
+            {/* MODO 1: INDIVIDUAL */}
+            {unicoViewMode === 'individual' && (
+              <div className="space-y-6">
+                {/* BUSCA VENDEDOR */}
+                {!selectedUnicoRCA ? (
+              <div className="space-y-4">
+                <div className="relative group">
+                   <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none">
+                     <Search size={18} className="text-slate-400 group-focus-within:text-blue-600 transition-colors" />
+                   </div>
+                   <input 
+                     type="text"
+                     placeholder="Digite seu Código ou Nome de Vendedor..."
+                     className="w-full bg-white border-2 border-slate-100 rounded-[2rem] py-5 pl-14 pr-6 outline-none focus:border-blue-600 shadow-xl shadow-blue-900/5 text-sm font-bold transition-all"
+                     value={unicoSearchCode}
+                     onChange={(e) => setUnicoSearchCode(e.target.value)}
+                   />
+                </div>
+
+                {/* LISTA DE VENDEDORES ENCONTRADOS */}
+                {unicoSearchCode.trim() !== "" ? (
+                  <div className="bg-white rounded-[2.5rem] p-6 shadow-xl shadow-blue-900/5 border border-slate-100 max-h-96 overflow-y-auto space-y-2">
+                    <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-2 mb-2">Vendedores Encontrados ({filteredVendedores.length})</h3>
+                    {filteredVendedores.length > 0 ? (
+                      filteredVendedores.map((v) => (
+                        <button
+                          key={v.code}
+                          onClick={() => {
+                            setSelectedUnicoRCA(v);
+                            setUnicoSearchCode("");
+                          }}
+                          className="w-full text-left p-4 hover:bg-blue-50/50 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-between group transition-all"
+                        >
+                          <div>
+                            <span className="text-[8px] font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded uppercase tracking-wider">CÓDIGO: {v.code}</span>
+                            <h4 className="text-xs font-black text-slate-800 uppercase mt-1 group-hover:text-blue-700 transition-colors">{v.name}</h4>
+                          </div>
+                          <Plus size={16} className="text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"/>
+                        </button>
+                      ))
+                    ) : (
+                      <div className="text-center py-8 text-slate-400 font-bold text-xs">
+                        Nenhum vendedor encontrado com este termo.
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="bg-white rounded-[3rem] p-12 text-center border-2 border-dashed border-slate-200 flex flex-col items-center gap-4">
                     <div className="w-20 h-20 bg-slate-50 text-slate-300 rounded-[2.5rem] flex items-center justify-center">
-                        <Search size={40}/>
+                      <User size={40}/>
                     </div>
                     <div>
-                        <h4 className="text-lg font-black text-slate-800 uppercase tracking-tight">Aguardando Identificação</h4>
-                        <p className="text-xs font-bold text-slate-400 max-w-[200px] mx-auto mt-1">
-                            Utilize a barra de busca acima para carregar seus indicadores diários.
-                        </p>
+                      <h4 className="text-lg font-black text-slate-800 uppercase tracking-tight">Área do Vendedor</h4>
+                      <p className="text-xs font-bold text-slate-400 max-w-[240px] mx-auto mt-1 leading-relaxed">
+                        Digite seu código ou nome acima para visualizar a sua carteira de clientes, sortimentos e metas de volume.
+                      </p>
                     </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              /* VENDEDOR SELECIONADO - PAINEL DO RCA */
+              <div className="space-y-6">
+                {/* CARD DE IDENTIFICAÇÃO DO VENDEDOR */}
+                <div className="bg-white rounded-[2.5rem] p-6 shadow-xl shadow-blue-900/5 border border-slate-100 flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center shadow-inner">
+                      <User size={24} />
+                    </div>
+                    <div>
+                      <span className="text-[8px] font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded uppercase tracking-wider">VENDEDOR SELECIONADO</span>
+                      <h3 className="text-sm font-black text-slate-800 uppercase tracking-tight mt-1 truncate max-w-[200px]">{selectedUnicoRCA.name}</h3>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setSelectedUnicoRCA(null);
+                      setUnicoSearchCode("");
+                    }}
+                    className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all"
+                  >
+                    Alterar
+                  </button>
                 </div>
+
+                {/* FILTROS PRINCIPAIS: NUMÉRICAS VS PONDERADAS VS COB */}
+                <div className="grid grid-cols-3 gap-2 bg-white p-2 rounded-2xl shadow-xl shadow-blue-900/5 border border-slate-100">
+                  <button
+                    onClick={() => setUnicoFilterType('numericas')}
+                    className={`py-4 rounded-xl font-black text-[10px] tracking-wider uppercase transition-all flex flex-col items-center gap-1 ${
+                      unicoFilterType === 'numericas' 
+                        ? 'bg-[#001E62] text-white shadow-lg' 
+                        : 'hover:bg-slate-50 text-slate-400'
+                    }`}
+                  >
+                    <span className="text-sm font-black">{sellerStoresNumericas.length}</span>
+                    <span>NUMÉRICAS</span>
+                  </button>
+                  <button
+                    onClick={() => setUnicoFilterType('ponderadas')}
+                    className={`py-4 rounded-xl font-black text-[10px] tracking-wider uppercase transition-all flex flex-col items-center gap-1 ${
+                      unicoFilterType === 'ponderadas' 
+                        ? 'bg-[#001E62] text-white shadow-lg' 
+                        : 'hover:bg-slate-50 text-slate-400'
+                    }`}
+                  >
+                    <span className="text-sm font-black">{sellerStoresPonderadas.length}</span>
+                    <span>PONDERADAS</span>
+                  </button>
+                  <button
+                    onClick={() => setUnicoFilterType('cob')}
+                    className={`py-4 rounded-xl font-black text-[10px] tracking-wider uppercase transition-all flex flex-col items-center gap-1 ${
+                      unicoFilterType === 'cob' 
+                        ? 'bg-[#001E62] text-white shadow-lg' 
+                        : 'hover:bg-slate-50 text-slate-400'
+                    }`}
+                  >
+                    <span className="text-sm font-black">{sellerStoresCob.length}</span>
+                    <span>COB</span>
+                  </button>
+                </div>
+
+                {/* FILTRO SECUNDÁRIO PARA NUMÉRICAS (A, B, C) */}
+                {unicoFilterType === 'numericas' && (
+                  <div className="flex items-center gap-1 bg-slate-100 p-1.5 rounded-xl overflow-x-auto animate-in fade-in duration-200">
+                    <span className="text-[8px] font-black text-slate-400 uppercase px-2 tracking-wider">FILTRO CLASSE:</span>
+                    {(['todos', 'A', 'B', 'C'] as const).map((cl) => (
+                      <button
+                        key={cl}
+                        onClick={() => setUnicoNumericaClassFilter(cl)}
+                        className={`px-3 py-1.5 rounded-lg font-black text-[8px] uppercase tracking-wider transition-all whitespace-nowrap ${
+                          unicoNumericaClassFilter === cl
+                            ? 'bg-white text-blue-900 shadow-sm font-black'
+                            : 'text-slate-500 hover:text-slate-800'
+                        }`}
+                      >
+                        {cl === 'todos' ? 'TODAS' : `CLASSE ${cl}`}
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {/* LISTA DE LOJAS COM OBJETIVOS */}
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center px-1">
+                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                      {unicoFilterType === 'numericas' ? 'LOJAS NUMÉRICAS' : unicoFilterType === 'ponderadas' ? 'LOJAS PONDERADAS' : 'CLIENTES COB'} (
+                      {unicoFilterType === 'numericas' ? filteredSellerStoresNumericas.length : unicoFilterType === 'ponderadas' ? sellerStoresPonderadas.length : sellerStoresCob.length} CLIENTES)
+                    </span>
+                    <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">OBJETIVOS UNILEVER</span>
+                  </div>
+
+                  <div className="space-y-3">
+                    {unicoFilterType === 'numericas' ? (
+                      filteredSellerStoresNumericas.length > 0 ? (
+                        filteredSellerStoresNumericas.map((item, index) => (
+                          <div key={index} className="bg-white rounded-3xl p-5 shadow-xl shadow-blue-900/5 border border-slate-100 flex flex-col gap-4 relative overflow-hidden animate-in fade-in duration-300">
+                            {/* BADGE DE CLASSIFICAÇÃO */}
+                            {(() => {
+                              const storeCl = getStoreClass(item.classificacao);
+                              const bgClass = item.classificacao === 'Ponderada' || storeCl === 'Outros'
+                                ? 'bg-purple-600 text-white' 
+                                : storeCl === 'A'
+                                  ? 'bg-rose-600 text-white'
+                                  : storeCl === 'B'
+                                    ? 'bg-amber-500 text-white'
+                                    : 'bg-blue-600 text-white';
+                              return (
+                                <div className={`absolute top-4 right-4 font-black text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md shadow-sm ${bgClass}`}>
+                                  {item.classificacao || 'Numérica'}
+                                </div>
+                              );
+                            })()}
+
+                            <div className="flex flex-col gap-1 pr-20">
+                              <span className="text-[8px] font-black text-slate-400 uppercase tracking-wider">COD CLIENTE: {item.codCliente}</span>
+                              <h4 className="text-xs font-black text-slate-800 uppercase tracking-tight leading-tight">{item.cliente}</h4>
+                              <div className="flex items-center gap-3 mt-1 text-slate-400 text-[8px] font-bold uppercase">
+                                <span className="flex items-center gap-1"><MapPin size={10} /> {item.cidade}</span>
+                                <span>CNPJ: {item.cnpj}</span>
+                              </div>
+                            </div>
+
+                            {/* OBJETIVOS DE SORTIMENTO */}
+                            {unicoTeam === 'hc_nt' ? (
+                              <div className="grid grid-cols-2 gap-3 pt-3 border-t border-slate-50">
+                                <div className="bg-blue-50/50 rounded-2xl p-3 border border-blue-100/50 flex flex-col items-center text-center">
+                                  <span className="text-[8px] font-black text-blue-600 uppercase tracking-widest">OBJ SORT HC</span>
+                                  <span className="text-lg font-black text-blue-900 mt-1">{item.objSortHc} <span className="text-[10px] font-bold text-blue-500 uppercase">ITENS</span></span>
+                                  <span className="text-[7px] font-bold text-blue-400 uppercase tracking-wider mt-1">Sugerido no Portfólio HC</span>
+                                </div>
+                                <div className="bg-slate-50 rounded-2xl p-3 border border-slate-100 flex flex-col items-center text-center">
+                                  <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest">OBJ SORT NT</span>
+                                  <span className="text-lg font-black text-slate-800 mt-1">{item.objSortNt} <span className="text-[10px] font-bold text-slate-400 uppercase">ITENS</span></span>
+                                  <span className="text-[7px] font-bold text-slate-400 uppercase tracking-wider mt-1">Sugerido no Portfólio NT</span>
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="grid grid-cols-2 gap-3 pt-3 border-t border-slate-50">
+                                <div className="bg-blue-50/50 rounded-2xl p-3 border border-blue-100/50 flex flex-col items-center text-center">
+                                  <span className="text-[8px] font-black text-blue-600 uppercase tracking-widest">OBJ SORT BW</span>
+                                  <span className="text-lg font-black text-blue-900 mt-1">{item.objSortBw} <span className="text-[10px] font-bold text-blue-500 uppercase">ITENS</span></span>
+                                  <span className="text-[7px] font-bold text-blue-400 uppercase tracking-wider mt-1">Sugerido no Portfólio BW</span>
+                                </div>
+                                <div className="bg-slate-50 rounded-2xl p-3 border border-slate-100 flex flex-col items-center text-center">
+                                  <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest">OBJ SORT PC</span>
+                                  <span className="text-lg font-black text-slate-800 mt-1">{item.objSortPc} <span className="text-[10px] font-bold text-slate-400 uppercase">ITENS</span></span>
+                                  <span className="text-[7px] font-bold text-slate-400 uppercase tracking-wider mt-1">Sugerido no Portfólio PC</span>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        ))
+                      ) : (
+                        <div className="bg-white rounded-3xl p-12 text-center border-2 border-dashed border-slate-200 text-slate-400 font-bold text-xs uppercase">
+                          Nenhuma loja numérica encontrada para esta classe.
+                        </div>
+                      )
+                    ) : unicoFilterType === 'ponderadas' ? (
+                      sellerStoresPonderadas.length > 0 ? (
+                        sellerStoresPonderadas.map((item, index) => (
+                          <div key={index} className="bg-white rounded-3xl p-5 shadow-xl shadow-blue-900/5 border border-slate-100 flex flex-col gap-4 relative overflow-hidden animate-in fade-in duration-300">
+                            {/* BADGE DE CLASSIFICAÇÃO */}
+                            <div className="absolute top-4 right-4 bg-purple-600 text-white font-black text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md shadow-sm">
+                              {item.classificacao || 'Ponderada'}
+                            </div>
+
+                            <div className="flex flex-col gap-1 pr-24">
+                              <span className="text-[8px] font-black text-slate-400 uppercase tracking-wider">COD CLIENTE: {item.codCliente}</span>
+                              <h4 className="text-xs font-black text-slate-800 uppercase tracking-tight leading-tight">{item.cliente}</h4>
+                              <div className="flex items-center gap-3 mt-1 text-slate-400 text-[8px] font-bold uppercase">
+                                <span className="flex items-center gap-1"><MapPin size={10} /> {item.cidade}</span>
+                                <span>CNPJ: {item.cnpj}</span>
+                              </div>
+                            </div>
+
+                            {/* OBJETIVOS DE VOLUME E COBERTURA */}
+                            {unicoTeam === 'hc_nt' ? (
+                              <div className="space-y-3 pt-3 border-t border-slate-50">
+                                {/* OBJETIVO DE VOLUME (DINHEIRO) */}
+                                <div className="grid grid-cols-2 gap-3">
+                                  <div className="bg-emerald-50/50 rounded-2xl p-3.5 border border-emerald-100 flex flex-col items-center text-center">
+                                    <span className="text-[8px] font-black text-emerald-700 uppercase tracking-widest">VOLUME META HC</span>
+                                    <span className="text-sm font-black text-emerald-800 mt-1.5">{item.metaHc || 'R$ 0,00'}</span>
+                                    <span className="text-[7px] font-bold text-emerald-500 uppercase tracking-wider mt-1">Objetivo Financeiro</span>
+                                  </div>
+                                  <div className="bg-emerald-50/20 rounded-2xl p-3.5 border border-emerald-50 flex flex-col items-center text-center">
+                                    <span className="text-[8px] font-black text-emerald-600 uppercase tracking-widest">VOLUME META NT</span>
+                                    <span className="text-sm font-black text-emerald-800 mt-1.5">{item.metaNt || 'R$ 0,00'}</span>
+                                    <span className="text-[7px] font-bold text-emerald-500 uppercase tracking-wider mt-1">Objetivo Financeiro</span>
+                                  </div>
+                                </div>
+
+                                {/* OBJETIVO DE SORTIMENTO (ITENS) */}
+                                <div className="grid grid-cols-2 gap-3">
+                                  <div className="bg-blue-50/30 rounded-2xl p-3 border border-blue-100/30 flex flex-col items-center text-center">
+                                    <span className="text-[8px] font-black text-blue-600 uppercase tracking-widest">SORTIMENTO HC</span>
+                                    <span className="text-base font-black text-blue-900 mt-1">{item.objSortHc} <span className="text-[8px] font-bold text-blue-500 uppercase">ITENS</span></span>
+                                  </div>
+                                  <div className="bg-slate-50 rounded-2xl p-3 border border-slate-100/50 flex flex-col items-center text-center">
+                                    <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest">SORTIMENTO NT</span>
+                                    <span className="text-base font-black text-slate-800 mt-1">{item.objSortNt} <span className="text-[8px] font-bold text-slate-400 uppercase">ITENS</span></span>
+                                  </div>
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="space-y-3 pt-3 border-t border-slate-50">
+                                {/* OBJETIVO DE VOLUME (DINHEIRO) */}
+                                <div className="grid grid-cols-1 gap-3">
+                                  <div className="bg-emerald-50/50 rounded-2xl p-3.5 border border-emerald-100 flex flex-col items-center text-center">
+                                    <span className="text-[8px] font-black text-emerald-700 uppercase tracking-widest">VOLUME META BW</span>
+                                    <span className="text-sm font-black text-emerald-800 mt-1.5">{item.metaBw || 'R$ 0,00'}</span>
+                                    <span className="text-[7px] font-bold text-emerald-500 uppercase tracking-wider mt-1">Objetivo Financeiro</span>
+                                  </div>
+                                </div>
+
+                                {/* OBJETIVO DE SORTIMENTO (ITENS) */}
+                                <div className="grid grid-cols-2 gap-3">
+                                  <div className="bg-blue-50/30 rounded-2xl p-3 border border-blue-100/30 flex flex-col items-center text-center">
+                                    <span className="text-[8px] font-black text-blue-600 uppercase tracking-widest">SORTIMENTO BW</span>
+                                    <span className="text-base font-black text-blue-900 mt-1">{item.objSortBw} <span className="text-[8px] font-bold text-blue-500 uppercase">ITENS</span></span>
+                                  </div>
+                                  <div className="bg-slate-50 rounded-2xl p-3 border border-slate-100/50 flex flex-col items-center text-center">
+                                    <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest">SORTIMENTO PC</span>
+                                    <span className="text-base font-black text-slate-800 mt-1">{item.objSortPc} <span className="text-[8px] font-bold text-slate-400 uppercase">ITENS</span></span>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        ))
+                      ) : (
+                        <div className="bg-white rounded-3xl p-12 text-center border-2 border-dashed border-slate-200 text-slate-400 font-bold text-xs uppercase">
+                          Nenhuma loja ponderada encontrada.
+                        </div>
+                      )
+                    ) : (
+                      sellerStoresCob.length > 0 ? (
+                        sellerStoresCob.map((item, index) => (
+                          <div key={index} className="bg-white rounded-3xl p-5 shadow-xl shadow-blue-900/5 border border-slate-100 flex flex-col gap-4 relative overflow-hidden animate-in fade-in duration-300">
+                            {/* BADGE DE CLASSIFICAÇÃO */}
+                            <div className="absolute top-4 right-4 bg-emerald-600 text-white font-black text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md shadow-sm">
+                              COB
+                            </div>
+
+                            <div className="flex flex-col gap-1 pr-20">
+                              <span className="text-[8px] font-black text-slate-400 uppercase tracking-wider">COD CLIENTE: {item.codCliente}</span>
+                              <h4 className="text-xs font-black text-slate-800 uppercase tracking-tight leading-tight">{item.cliente}</h4>
+                              <div className="flex items-center gap-3 mt-1 text-slate-400 text-[8px] font-bold uppercase">
+                                <span className="flex items-center gap-1"><MapPin size={10} /> {item.cidade}</span>
+                                <span>CNPJ: {item.cnpj}</span>
+                              </div>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="bg-white rounded-3xl p-12 text-center border-2 border-dashed border-slate-200 text-slate-400 font-bold text-xs uppercase">
+                          Nenhum cliente COB encontrado.
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+              </div>
             )}
-            
+              </div>
+            )}
+
             {/* RODAPÉ FEEDBACK */}
             <div className="bg-slate-50 rounded-[2.5rem] p-8 border-2 border-slate-100/50">
                <div className="flex items-center gap-4 mb-4">
                   <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center shadow-sm">
                     <AlertCircle size={20}/>
                   </div>
-                  <h4 className="text-[10px] font-black text-slate-800 uppercase tracking-widest italic">Atenção Importante</h4>
+                  <h4 className="text-[10px] font-black text-slate-800 uppercase tracking-widest italic">Informativo Único</h4>
                </div>
                <p className="text-[10px] font-bold text-slate-500 leading-relaxed text-justify">
-                  Este painel é uma ferramenta de apoio para o RCA acompanhar seu desempenho prévio. Os dados oficiais são validados mensalmente pela equipe de inteligência comercial. Caso identifique alguma divergência, entre em contato com seu Supervisor.
+                  As classificações, sortimentos e metas de volumes exibidos neste painel servem para guiar o trabalho de atendimento. Foco no portfólio para o atingimento das metas propostas pela Unilever.
                </p>
             </div>
           </div>
@@ -1233,9 +2244,17 @@ const App = () => {
 
       <footer className="fixed bottom-0 left-0 right-0 p-4 bg-[#001E62] text-white shadow-2xl z-50">
         <div className="max-w-4xl mx-auto flex items-center justify-between px-4">
-          <div className="flex flex-col">
-            <h1 className="text-lg font-black italic uppercase leading-none tracking-tighter">BONIFICAÇÃO UNILEVER</h1>
-            <p className="text-[8px] font-bold text-yellow-400 tracking-[0.2em] uppercase mt-1">CRIADO POR YURI LIMA</p>
+          <div className="flex items-center gap-3">
+            <img 
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Unilever_logo.svg/1024px-Unilever_logo.svg.png" 
+              alt="Unilever Logo" 
+              className="h-8 w-8 object-contain filter brightness-0 invert" 
+              referrerPolicy="no-referrer"
+            />
+            <div className="flex flex-col">
+              <h1 className="text-base font-black italic uppercase leading-none tracking-tighter">BONIFICAÇÃO UNILEVER</h1>
+              <p className="text-[8px] font-bold text-yellow-400 tracking-[0.2em] uppercase mt-1">CRIADO POR YURI LIMA</p>
+            </div>
           </div>
 
           <div className="flex items-center gap-3">
@@ -1258,10 +2277,20 @@ const App = () => {
 
             <button 
               onClick={copiarGeral} 
-              className="bg-green-600 hover:bg-green-700 px-8 py-3 rounded-xl font-black text-xs flex items-center gap-2 transition-all active:scale-95 shadow-lg"
+              className={`px-8 py-3 rounded-xl font-black text-xs flex items-center gap-2 transition-all active:scale-95 shadow-lg ${
+                !headerData.tipoCliente 
+                  ? "bg-slate-500 hover:bg-slate-600 opacity-70" 
+                  : "bg-green-600 hover:bg-green-700"
+              }`}
             >
-              {copiado ? <CheckCircle2 size={16}/> : <Share2 size={16}/>}
-              {copiado ? "COPIADO!" : "ENVIAR TUDO"}
+              {copiado ? (
+                <CheckCircle2 size={16}/>
+              ) : !headerData.tipoCliente ? (
+                <Lock size={16}/>
+              ) : (
+                <Share2 size={16}/>
+              )}
+              {copiado ? "COPIADO!" : !headerData.tipoCliente ? "SELECIONE CPF/CNPJ" : "ENVIAR TUDO"}
             </button>
           </div>
         </div>
