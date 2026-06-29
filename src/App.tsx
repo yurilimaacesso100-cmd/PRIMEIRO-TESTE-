@@ -918,11 +918,11 @@ const App = () => {
                       <div className="space-y-1">
                         <label className="text-[8px] font-black text-slate-400 uppercase ml-1">Equipe</label>
                         <select 
-                          className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200 outline-none focus:ring-2 ring-blue-500/20 appearance-none" 
+                          className="w-full text-[11px] font-bold p-2.5 bg-slate-50 rounded-xl border border-slate-200 outline-none focus:ring-2 ring-blue-500/20 appearance-none uppercase" 
                           value={headerData.equipe} 
                           onChange={e => setHeaderData({...headerData, equipe: e.target.value})} 
                         >
-                          <option value="">Selecione a equipe</option>
+                          <option value="">SELECIONE A EQUIPE</option>
                           <option value="423 - DISTRIBUICAO UNILEVER - IMPERATRIZ/METROPOLITANA PC - MA">423 - DISTRIBUICAO UNILEVER - IMPERATRIZ/METROPOLITANA PC - MA</option>
                           <option value="408 - DISTRIBUICAO UNILEVER - SUL PC - MA">408 - DISTRIBUICAO UNILEVER - SUL PC - MA</option>
                           <option value="185 - DISTRIBUICAO UNILEVER - COCAIS PC - MA">185 - DISTRIBUICAO UNILEVER - COCAIS PC - MA</option>
@@ -963,11 +963,11 @@ const App = () => {
                         <FileText size={10}/> TIPO DE CLIENTE
                       </label>
                       <select 
-                        className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20 appearance-none" 
+                        className="w-full text-xs font-bold p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 outline-none focus:ring-2 ring-blue-500/20 appearance-none uppercase" 
                         value={headerData.tipoCliente} 
                         onChange={e => setHeaderData({...headerData, tipoCliente: e.target.value})} 
                       >
-                        <option value="">Selecione o tipo (CPF / CNPJ)</option>
+                        <option value="">SELECIONE O TIPO (CPF / CNPJ)</option>
                         <option value="CPF">CPF</option>
                         <option value="CNPJ">CNPJ</option>
                       </select>
