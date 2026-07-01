@@ -588,10 +588,6 @@ const App = () => {
   };
 
   const copiarGeral = () => {
-    if (!headerData.tipoCliente) {
-      alert("Por favor, selecione o Tipo de Cliente (CPF ou CNPJ) no cabeçalho antes de copiar!");
-      return;
-    }
     const msg = getGeneratedMessage();
     const el = document.createElement('textarea');
     el.value = msg;
@@ -699,14 +695,6 @@ const App = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.15),transparent_60%)] pointer-events-none" />
         <div className="max-w-xl mx-auto px-4 py-3 flex items-center justify-between relative z-10">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm border border-white/10 shadow-inner">
-              <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Unilever_logo.svg/1024px-Unilever_logo.svg.png" 
-                alt="Unilever Logo" 
-                className="h-7 w-7 object-contain filter brightness-0 invert" 
-                referrerPolicy="no-referrer"
-              />
-            </div>
             <div className="flex flex-col">
               <h1 className="text-xs font-black uppercase tracking-widest leading-none bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
                 Unilever Portal
@@ -836,6 +824,7 @@ const App = () => {
                         <option value="">SELECIONE O TIPO (CPF / CNPJ)</option>
                         <option value="CPF">CPF</option>
                         <option value="CNPJ">CNPJ</option>
+                        <option value="SEM CNPJ">SEM CNPJ</option>
                       </select>
                     </div>
 
@@ -2111,12 +2100,6 @@ const App = () => {
       <footer className="fixed bottom-0 left-0 right-0 p-4 bg-[#001E62] text-white shadow-2xl z-50">
         <div className="max-w-4xl mx-auto flex items-center justify-between px-4">
           <div className="flex items-center gap-3">
-            <img 
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Unilever_logo.svg/1024px-Unilever_logo.svg.png" 
-              alt="Unilever Logo" 
-              className="h-8 w-8 object-contain filter brightness-0 invert" 
-              referrerPolicy="no-referrer"
-            />
             <div className="flex flex-col">
               <h1 className="text-base font-black italic uppercase leading-none tracking-tighter">BONIFICAÇÃO UNILEVER</h1>
               <p className="text-[8px] font-bold text-yellow-400 tracking-[0.2em] uppercase mt-1">CRIADO POR YURI LIMA</p>
@@ -2143,20 +2126,14 @@ const App = () => {
 
             <button 
               onClick={copiarGeral} 
-              className={`px-8 py-3 rounded-xl font-black text-xs flex items-center gap-2 transition-all active:scale-95 shadow-lg ${
-                !headerData.tipoCliente 
-                  ? "bg-slate-500 hover:bg-slate-600 opacity-70" 
-                  : "bg-green-600 hover:bg-green-700"
-              }`}
+              className="px-8 py-3 rounded-xl font-black text-xs flex items-center gap-2 transition-all active:scale-95 shadow-lg bg-green-600 hover:bg-green-700 text-white"
             >
               {copiado ? (
                 <CheckCircle2 size={16}/>
-              ) : !headerData.tipoCliente ? (
-                <Lock size={16}/>
               ) : (
                 <Share2 size={16}/>
               )}
-              {copiado ? "COPIADO!" : !headerData.tipoCliente ? "SELECIONE CPF/CNPJ" : "ENVIAR TUDO"}
+              {copiado ? "COPIADO!" : "ENVIAR TUDO"}
             </button>
           </div>
         </div>
